@@ -1,6 +1,6 @@
 # Proposed architecture
 
-Everything in this document describes proposed behavior. The current repository contains documentation only.
+The runtime behavior in this document is proposed. The current repository contains documentation, examples, and documentation quality tooling.
 
 ## The flow
 
@@ -24,6 +24,12 @@ Candidate program graph ------------> Checks
 
 Readable views describe both the accepted program and proposed changes. An edit is accepted only after its required checks pass. A failed edit preserves the previous accepted version.
 
+## Where the coding agent fits
+
+An existing agent host owns the model conversation, authentication, tool permissions, and budget. Universal IR would provide the program representation, edit interface, checks, and compilers. The model might run remotely while those tools run locally.
+
+A local CLI would let existing coding agents call the tools through terminal commands. An SDK would let custom hosts call the same core directly. CLI first is a proposed adoption path; the entry-point priority remains a milestone 1 decision. See the [usage journeys](../examples/using-with-ai.md).
+
 ## The program graph
 
 A graph is a set of connected parts. Here, those parts describe a program and the connections show how they depend on one another.
@@ -45,6 +51,8 @@ Checks would cover references, types, supported operations, and declared effects
 
 Checks cannot automatically establish that an unclear request matches the user's intention. Assumptions and unresolved choices must remain visible. Edit conflicts and missing information must be reported rather than silently guessed away.
 
+Accepting a graph version, building artifacts, and deploying an application are separate steps. A valid graph does not by itself establish that a migration or deployment will succeed. Target tests must check observable behavior, runtime capability enforcement, and defined failure handling. Permission-sensitive updates must use a documented consistency model so a permission check and protected mutation cannot silently disagree.
+
 ## Extensions and targets
 
 The core stays small. Extensions add concepts such as database transactions, reactive interfaces, or GPU operations, with documented meanings and rules for connecting them.
@@ -65,7 +73,7 @@ A summary such as "project administrators can now archive tasks" must be backed 
 
 The primary comparison is the cost of completing a correct change. Measurements include context and generation tokens, verification and repair work, latency, and review effort. A shorter encoding is useful only if the complete process benefits.
 
-The implementation language and final encoding are undecided. Milestone 1 will record those choices; this document defines no executable syntax or public executable API.
+The compiler implementation language and final encoding are undecided. Python is used only for repository quality tooling. Milestone 1 will record core choices; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 

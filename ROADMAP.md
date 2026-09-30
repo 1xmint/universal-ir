@@ -24,6 +24,8 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [x] Describe the proposed architecture and its boundaries.
 - [x] Walk through a task application and an administrator archive change.
 - [x] Document contribution guidance and ordered milestones.
+- [x] Add subscription and API usage journeys, agent handoffs, and decision records.
+- [x] Add reproducible documentation checks and tests with pull-request CI.
 
 **Purpose:** Give contributors a shared starting point.
 
@@ -33,8 +35,10 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 - [ ] Define a versioned format for typed values, functions, references, and explicit effects.
 - [ ] Document valid and invalid examples with clear expected interpretations.
+- [ ] Specify operation and error meanings, capability boundaries, and deterministic fixture outcomes.
 - [ ] Choose the implementation language and initial encoding; record the reasons and tradeoffs.
-- [ ] Define edit boundaries and how accepted versions are identified.
+- [ ] Define reference identities, edit acceptance, version evolution, and compatibility rules.
+- [ ] Choose the first user entry point: CLI or SDK, backed by a reusable core.
 
 **Purpose:** Establish precise meanings before writing the core.
 
@@ -45,7 +49,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Build a parser and validator for the defined format.
 - [ ] Build a reference interpreter for small supported programs.
 - [ ] Add structured edits that check their starting version and validate the result before acceptance.
-- [ ] Add executable tests and CI with the first executable code.
+- [ ] Add core behavior tests to the existing CI, including unsupported effects and execution limits.
 
 **Purpose:** Prove that the format can represent, run, and safely change programs.
 
@@ -65,7 +69,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 ### 4. Measure the benefit
 
 - [ ] Publish a reproducible comparison against ordinary AI file editing.
-- [ ] Use the same tasks, model configuration, tools, acceptance checks, and attempt limits for both approaches.
+- [ ] Use the same tasks, model configuration, acceptance checks, and attempt limits; document approach-specific tools.
 - [ ] Report correctness, total tokens, repair attempts, latency, and review effort.
 - [ ] Include failed outcomes and explain how measurements were collected.
 
@@ -95,6 +99,6 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 ## Current boundaries
 
-The initial repository contains documentation and a conceptual example. It establishes no public executable API. The implementation language and final encoding remain decisions for milestone 1. Source directories and build tooling will arrive with executable code.
+The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. The compiler implementation language, final encoding, and first user entry point remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

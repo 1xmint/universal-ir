@@ -1,0 +1,30 @@
+name: Design proposal
+description: Propose a focused architecture or program-format change.
+title: "[Design] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete use case or limitation does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe meanings, boundaries, examples, and important alternatives.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Validation and tradeoffs
+      description: How would we check this, and what might it cost or break?
+    validations:
+      required: true
+  - type: input
+    id: milestone
+    attributes:
+      label: Related roadmap milestone
+      placeholder: "For example: 1. Define a small program format"
