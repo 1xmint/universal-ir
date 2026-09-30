@@ -4,7 +4,7 @@
 
 Give AI one shared way to build and change software. Check that the software follows its rules, then turn it into programs that run on different systems. People should always be able to inspect what it does.
 
-We will start small, prove that changes work, and expand to other kinds of software when the evidence supports it.
+The long-term scope is a universal foundation for any kind of software, across languages, frameworks, and runtimes. We will start small, prove that changes work, and expand when evidence supports it. A narrow first adapter tests the foundation; it does not define its eventual limits.
 
 ## Guiding principles
 
@@ -13,6 +13,9 @@ We will start small, prove that changes work, and expand to other kinds of softw
 - **Keep human inspection available.** Show behavior, rules, and changes in forms people can understand.
 - **Reuse existing infrastructure.** Build on existing libraries, compilers, and runtimes where they fit.
 - **Measure the whole task.** Count context, generation, checking, and repair when comparing token use. Correctness comes first.
+- **Connect the big picture to detail.** Keep nested structure and relationships across it navigable without requiring everything in one model context.
+- **Show freshness and evidence.** Tie findings to their inputs; detect external changes and reconcile after stopped operation.
+- **Keep unknowns visible.** Distinguish established facts, declared intent, hypotheses, and bounded observations.
 
 ## Milestones
 
@@ -26,6 +29,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [x] Document contribution guidance and ordered milestones.
 - [x] Add real development journeys for subscription and API users, agent handoffs, and decision records.
 - [x] Add reproducible documentation checks and tests with pull-request CI.
+- [x] Document the universal-foundation direction, complex-project views, and a proposed pause/resume adoption workflow.
 
 **Purpose:** Give contributors a shared starting point.
 
@@ -38,13 +42,18 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Specify operation and error meanings, capability boundaries, and deterministic fixture outcomes.
 - [ ] Choose the implementation language and initial encoding; record the reasons and tradeoffs.
 - [ ] Define reference identities, edit acceptance, version evolution, and compatibility rules.
+- [ ] Specify shared relationships, provenance, source mappings, snapshot identity, and evidence categories without treating a partial source index as executable semantics.
+- [ ] Specify overview and task-view selection, expansion, omissions, and freshness behavior.
 - [x] Adopt reusable core, CLI first, SDK later ([decision 0002](docs/design/0002-cli-first.md)).
+- [x] Adopt a universal foundation with connected views and explicit freshness goals ([decision 0004](docs/design/0004-universal-coherence.md)).
 - [ ] Define setup and integration for a supported coding agent and an external API harness.
 - [ ] Define supported existing-repository adoption, including source/graph authority, file mappings, freshness, and unsupported code.
+- [ ] Choose the first source adapter and its supported operations; specify external-edit invalidation and restart reconciliation.
+- [ ] Specify candidate checks, destination preconditions, interrupted application, and recovery guarantees for source changes.
 
 **Purpose:** Establish precise meanings before writing the core.
 
-**Done when:** Each example has an unambiguous interpretation, including what makes it valid or invalid. The minimum supported operations and version rules are documented.
+**Done when:** Each example has an unambiguous interpretation, including what makes it valid or invalid. The minimum supported operations, version rules, and bounded adoption contract are documented with expected valid, stale, unsupported, and interrupted-operation outcomes. The [adoption proposal](docs/existing-repositories.md) lists the open specifications.
 
 ### 2. Build the core
 
@@ -52,11 +61,14 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Build a reference interpreter for small supported programs.
 - [ ] Deliver an initial CLI over the supported core operations, with documented automation results and failure behavior.
 - [ ] Add structured edits that check their starting version and validate the result before acceptance.
+- [ ] Build the first source adapter and rebuildable snapshots with source-linked overview and task views.
+- [ ] Detect active and offline changes, invalidate affected findings, and publish only coherent refreshed snapshots.
+- [ ] Add candidate source checks and the specified application protocol while preserving unrelated code and dirty files.
 - [ ] Add core behavior tests to the existing CI, including unsupported effects and execution limits.
 
 **Purpose:** Prove that the format can represent, run, and safely change programs.
 
-**Done when:** Small programs run with expected results. Invalid programs, broken references, and stale edits are rejected. A failed edit leaves the previous accepted program intact.
+**Done when:** Small programs run with expected results. Invalid programs, broken references, and stale edits are rejected. A failed graph edit leaves the previous accepted program intact. Source-adoption tests demonstrate declared preservation, freshness, unsupported-operation, and recovery guarantees, including changes made while stopped. Compiler execution and source navigation have distinct support boundaries.
 
 ### 3. Generate a useful application
 
@@ -66,11 +78,13 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Check behavior and permissions through server requests, including requests that bypass the interface.
 - [ ] Demonstrate a short setup-to-prompt workflow in a user's new project.
 - [ ] Demonstrate a real change or fix in a supported existing project while preserving unrelated code and its build/test workflow.
+- [ ] Demonstrate external edits, stop/edit/restart reconciliation, cache reconstruction, and stale-proposal rejection in that workflow.
+- [ ] Demonstrate navigation from an overview through relevant nested and cross-component relationships, with explicit unknowns.
 - [ ] Demonstrate an external API harness invoking the CLI and consuming its results without requiring an SDK.
 
 **Purpose:** Show that one connected representation can produce a useful application.
 
-**Done when:** The generated application passes behavior and permission checks before and after the archive change. Accepted changes include any required data migration and readable explanation. The new-project, existing-project, and external-harness consumer journeys pass their documented checks within explicit support boundaries.
+**Done when:** The generated application passes behavior and permission checks before and after the archive change. Accepted changes include any required data migration and readable explanation. The new-project, existing-project, and external-harness consumer journeys pass their documented checks within explicit support boundaries. Existing-source adoption meets the [demonstration cases](docs/existing-repositories.md#required-demonstration); conceptual walkthroughs alone do not complete this gate.
 
 ### 4. Measure the benefit
 
@@ -78,6 +92,8 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Use the same tasks, model configuration, acceptance checks, and attempt limits; document approach-specific tools.
 - [ ] Report correctness, total tokens, repair attempts, latency, and review effort.
 - [ ] Measure setup effort and cover both new-project work and changes or fixes in existing projects.
+- [ ] Measure cold discovery, warm startup verification, offline-change reconciliation, active refresh, view retrieval, and context size.
+- [ ] Include a complex-project scenario with nested and cross-component relationships; document scale, coverage, and omissions.
 - [ ] Include failed outcomes and explain how measurements were collected.
 
 **Purpose:** Find out whether the representation makes correct changes easier or cheaper.
@@ -97,6 +113,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 ### 6. Expand from evidence
 
 - [ ] Add domain extensions only for concrete use cases.
+- [ ] Add source adapters and semantic extensions across languages, frameworks, runtimes, and domains with explicit meanings and ownership boundaries.
 - [ ] Improve the model editing interface using measured failures and costs.
 - [ ] Add a public SDK over the same core when a concrete embedding use case justifies it.
 - [ ] Add compatibility tests and document boundaries for each addition.
@@ -107,6 +124,6 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 ## Current boundaries
 
-The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later and the real-development consumer journeys are accepted. The compiler implementation language, final encoding, exact CLI interfaces, and source/graph adoption policy remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
+The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later, real-development consumer journeys, and the universal-foundation coherence direction are accepted. The compiler implementation language, final encoding, first source adapter, exact CLI interfaces, and technical source/graph adoption policy remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

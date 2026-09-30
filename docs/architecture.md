@@ -4,6 +4,10 @@ The runtime behavior in this document is proposed. The current repository contai
 
 ## The flow
 
+The shared foundation aims to cover any kind of software through faithful adapters and semantic extensions. This direction is accepted in [decision 0004](design/0004-universal-coherence.md). Actual language, framework, and runtime support requires bounded demonstrations.
+
+The following flow describes future IR-native programs whose executable graph owns generated artifacts:
+
 ~~~text
 Human intent and examples
           |
@@ -36,21 +40,53 @@ The intended user installs the tool into their development environment, connects
 
 ## Adopting existing repositories
 
-The current compiler flow describes a program managed through its graph. It does not yet define how to adopt an existing source repository.
+Existing-source adoption needs a different ownership flow. The [adoption proposal](existing-repositories.md) recommends keeping source files authoritative and deriving a rebuildable, versioned graph:
 
-An adoption design must specify supported languages and constructs, mappings to existing files, the authority of source versus graph, freshness after external edits, and treatment of unsupported parts. It must preserve unrelated code and the project's existing build and test workflow.
+~~~text
+Current source and project configuration
+                  |
+              Source adapters
+                  |
+       Source-backed graph and evidence <--- Declared intent and rules
+                  |
+       Overview and expandable task views
+                  |
+       Candidate source edits and checks
+                  |
+       Guarded application and reconciliation
+~~~
 
-For graph-managed generated artifacts, the accepted graph remains the source of truth. For existing source files, the adoption policy is still open. Do not treat independently edited source files and a graph as two simultaneous authorities, or claim a partial project index captures complete execution semantics.
+Source-backed facts are not automatically executable IR. Supported lowering would need defined semantics and target behavior checks. The technical adoption policy, first adapter, source mappings, and application guarantees still need milestone 1 specifications.
 
-The first consumer release needs a documented, bounded existing-project workflow. It does not need to import every language or replace every framework. These boundaries must be explicit before the project can claim that an agent can use it to fix an existing repository.
+For graph-managed generated artifacts, the accepted graph remains the source of truth. For existing source, the recommended graph is the current agent view of authoritative inputs. Never treat independently edited source and cached facts as simultaneous authorities. Preserve unrelated code and the project's build and test workflow.
+
+The first consumer release needs a demonstrated, bounded existing-project workflow, including changes made while stopped and rejection of stale proposals. Universal scope is a foundation goal, not a claim that every adapter already exists.
+
+## Coherence at several scales
+
+Connect purpose, structure, supported behavior, and evidence. A complex system has nested components and relationships that cross them: events, data, permissions, interfaces, migrations, and checks. Use a graph behind tree views, system overviews, and task-focused expansions.
+
+The [coherence proposal](coherence.md) defines those views and their evidence boundaries. An agent should move from the big picture to relevant source and back, with visible omissions and unknowns. A compact summary must not claim exhaustive runtime understanding or complete change-impact coverage.
+
+Declared intent needs explicit ownership. Compiler facts, syntax, hypotheses, contracts, and observations need distinguishable provenance. Changes to either code or declarations may invalidate derived relationships and summaries.
+
+## Lifecycle and different kinds of state
+
+Source snapshots, derived findings, candidate changes, check results, built artifacts, deployments, and runtime observations describe different things. Link them by identity and evidence; refreshing source does not establish that production changed.
+
+The proposed lifecycle detects active changes, marks affected findings stale, and verifies relevant inputs before serving current views or accepting dependent edits. Watchers help responsiveness; content and configuration verification provide the freshness guard.
+
+When stopped, no monitoring occurs. On restart, reconcile current included inputs with persisted state, detect additions and deletions as well as edits, and reuse only verified cached extraction. Rebuild affected relationships or the whole view when required. Do not overwrite source to restore the old graph or show pre-pause results as current.
+
+Publishing a coherent refreshed snapshot requires detecting input changes during extraction. Report unstable or unsupported scopes clearly. Discovery and refresh latency must be measured; immediate access to a warm view is not a zero-cost cold-start guarantee. See the [complex-project walkthrough](../examples/complex-project.md).
 
 ## The program graph
 
 A graph is a set of connected parts. Here, those parts describe a program and the connections show how they depend on one another.
 
-The small core would represent typed values, functions, references, and effects. Later extensions would describe application data, permissions, interfaces, and other domain-specific behavior.
+The small executable core would represent typed values, functions, references, and effects. Shared identity, provenance, snapshot, and relationship contracts would also support source-backed views. Extensions would describe application data, permissions, interfaces, and other domain-specific behavior without flattening unsupported semantics.
 
-- **Stable identities:** Each editable part has an identity that survives renaming and rearrangement. References use those identities, so changing a display name does not silently disconnect the program.
+- **Stable identities:** Graph-managed parts retain identity through known edits such as renaming. References use those identities rather than display names. Source locations are snapshot-specific; ambiguous external changes must not silently redirect an identity to different code.
 - **Types:** Values and operations declare the kinds of data they accept and produce. Checks reject incompatible connections.
 - **Effects:** Reading stored data, changing it, contacting a service, or accessing a device is explicit. Declaring an effect does not itself grant permission to perform it.
 - **Permissions:** Rules describe who may perform protected actions. Target integrations must enforce those rules at trusted execution boundaries.
@@ -64,6 +100,8 @@ An AI editor would receive the relevant parts of the graph and propose a bounded
 Checks would cover references, types, supported operations, and declared effects. Application extensions would add permission and behavior checks. Tests and simulation would check selected outcomes; proofs could establish specific properties where practical.
 
 Checks cannot automatically establish that an unclear request matches the user's intention. Assumptions and unresolved choices must remain visible. Edit conflicts and missing information must be reported rather than silently guessed away.
+
+For existing source, validate a bounded candidate against identified inputs and attach actual check outcomes to that exact candidate. Failed candidate checks leave the destination unchanged. Live multi-file application, concurrent editors, interrupted writes, and recovery require their own specified guarantees; do not assume arbitrary filesystem writes are atomic. Unsupported source semantics must restrict the claims made about a change.
 
 Accepting a graph version, building artifacts, and deploying an application are separate steps. A valid graph does not by itself establish that a migration or deployment will succeed. Target tests must check observable behavior, runtime capability enforcement, and defined failure handling. Permission-sensitive updates must use a documented consistency model so a permission check and protected mutation cannot silently disagree.
 
@@ -87,7 +125,7 @@ A summary such as "project administrators can now archive tasks" must be backed 
 
 The primary comparison is the cost of completing a correct change. Measurements include context and generation tokens, verification and repair work, latency, and review effort. A shorter encoding is useful only if the complete process benefits.
 
-The compiler implementation language and final encoding are undecided. Python is used only for repository quality tooling. Milestone 1 will record core choices; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
+The compiler implementation language, final encoding, first source adapter, and detailed adoption contracts are undecided. Python is used only for repository quality tooling. Milestone 1 will record core choices; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 

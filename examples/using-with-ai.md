@@ -2,7 +2,7 @@
 
 These examples describe people using Universal IR in their own projects. They are planned consumer journeys, not instructions for contributing to Universal IR.
 
-There is no installer, project setup integration, usable CLI, compiler, or SDK yet. The reusable-core and CLI-first direction is accepted; the supported languages, source adapters, and exact interfaces still need specifications.
+There is no installer, project setup integration, usable CLI, source index, state service, compiler, or SDK yet. Reusable core, CLI first, and the universal-foundation direction are accepted; the supported languages, source adapters, and exact interfaces still need specifications.
 
 ## Example 1: a user with a coding subscription
 
@@ -16,7 +16,7 @@ The intended setup is:
 4. Keep the agent's existing subscription authentication.
 5. Start prompting the agent to create, change, or fix the project.
 
-Setup should establish project intent, supported structure, known checks, and how the agent invokes the CLI. It should surface unsupported code or capabilities before claiming that the project is ready. Exact setup commands and supported agent integrations do not exist yet.
+Setup should establish project intent, supported structure, known checks, and how the agent invokes the CLI. It should provide an overview linked to expandable detail and surface unsupported code or capabilities before claiming that the project is ready. Exact setup commands and supported agent integrations do not exist yet.
 
 ### New project
 
@@ -38,9 +38,17 @@ The user opens an existing repository and asks:
 
 A supported adoption workflow would inspect the current project, identify relevant source and rules, and give the agent a coherent view of the task. The agent would propose a bounded change, receive check results, and repair failures before reporting completion.
 
-This requires a source adapter and a defined relationship between existing files and the program graph. The tool must detect stale information after external edits and preserve unrelated code. It must report unsupported parts rather than assume it understands every language, framework, or runtime.
+The [adoption proposal](../docs/existing-repositories.md) recommends a source adapter and a rebuildable graph whose facts are tied to current source inputs. The tool must detect stale information after external edits and preserve unrelated code. It must report unsupported parts rather than assume it understands every language, framework, or runtime.
 
-The source/graph authority and round-trip policy remain open design work. A partial index of a repository cannot be described as a complete executable representation. The supported subset must be demonstrated on a real existing-project change before this journey is advertised as working.
+The source/graph authority and application policy still need final specifications. A partial index of a repository cannot be described as a complete executable representation. The supported subset must be demonstrated on a real existing-project change before this journey is advertised as working.
+
+### Return after manual or other agent edits
+
+The user stops using Universal IR, changes files with another editor or agent, and later reconnects it. The proposed tool would treat the persisted view as historical, inspect current included inputs, detect added, changed, and deleted files, and refresh affected relationships and summaries before returning a current view.
+
+It would preserve the intervening edits and reject affected proposals based on the old snapshot. Missing or incompatible cached information would be rebuilt. If inputs keep changing or behavior is unsupported, it would report that boundary rather than silently show the old tree as current.
+
+For a large project, an overview would lead to nested components and cross-cutting connections instead of loading every detail into one prompt. See the [complex-project walkthrough](complex-project.md). Discovery, restart, and refresh speed are measurements to collect, not working performance claims.
 
 ### What the CLI provides
 
@@ -75,10 +83,12 @@ A usable consumer release must demonstrate:
 - A short, documented setup-to-prompt path for a supported coding agent.
 - A new-project task completed with observable checks.
 - A real change or fix in a supported existing repository, preserving unrelated code and the project's build/test workflow.
+- Reconciliation after offline edits, stale-proposal rejection, and reconstruction without a usable cache.
+- An overview connected to task detail, evidence, and visible unknowns across component boundaries.
 - An external harness invoking the CLI and consuming its results.
 - Explicit support boundaries and rejection of stale or unsupported changes.
 - Measured task success, total token use, repair work, latency, review effort, and setup effort against a baseline.
 
 Less busywork and better performance are goals to evaluate. Structure alone does not establish improvements.
 
-The accepted intent is recorded in [decision 0003](../docs/design/0003-real-development-workflows.md). Follow the [roadmap](../ROADMAP.md) and [architecture](../docs/architecture.md) for the remaining design and implementation work. To contribute to Universal IR itself, use [CONTRIBUTING.md](../CONTRIBUTING.md).
+The consumer intent is recorded in [decision 0003](../docs/design/0003-real-development-workflows.md), and universal coherence and freshness goals in [decision 0004](../docs/design/0004-universal-coherence.md). Follow the [roadmap](../ROADMAP.md) and [architecture](../docs/architecture.md) for the remaining design and implementation work. To contribute to Universal IR itself, use [CONTRIBUTING.md](../CONTRIBUTING.md).

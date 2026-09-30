@@ -45,7 +45,7 @@ The policy follows GitHub's [ruleset model](https://docs.github.com/en/repositor
 
 ## Next implementation gate
 
-Before building the core, milestone 1 must define the supported subset, operation meanings, errors, reference identities, effect and capability boundaries, edit acceptance, version evolution, and valid/invalid fixtures. Those decisions need a recorded rationale. The [CLI-first decision](design/0002-cli-first.md) fixes delivery priority; exact CLI interfaces still need a specification.
+Before building the core, milestone 1 must define the supported subset, operation meanings, errors, reference identities, effect and capability boundaries, edit acceptance, version evolution, and valid/invalid fixtures. It must also specify source mappings, provenance, coherent snapshots, retrieval boundaries, external-edit invalidation, restart reconciliation, and source application/recovery guarantees. Those decisions need a recorded rationale. The [CLI-first decision](design/0002-cli-first.md) fixes delivery priority, and [decision 0004](design/0004-universal-coherence.md) establishes universal coherence and freshness goals; exact interfaces and technical adoption contracts still need specifications.
 
 Keep an interpreter as a reference for target behavior. Passing type checks alone must not be presented as proof that a program matches human intent or is safe to deploy.
 
