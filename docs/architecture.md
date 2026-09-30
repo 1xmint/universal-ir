@@ -32,6 +32,18 @@ A local CLI will be the first entry point, so existing coding agents can call th
 
 The core owns program representation, validation, editing, interpretation, and compilation behavior. The CLI is an adapter over that core, and the future SDK will use the same behavior. Exact commands, automation outputs, diagnostics, and exit behavior must be specified before CLI release.
 
+The intended user installs the tool into their development environment, connects a supported project and coding agent, and prompts the agent to do work. An API harness can invoke the CLI as a tool before an SDK is available. The host owns repository creation, general command execution, and deployment authorization; Universal IR provides the supported representation and checkable operations. These consumer journeys are accepted in [decision 0003](design/0003-real-development-workflows.md).
+
+## Adopting existing repositories
+
+The current compiler flow describes a program managed through its graph. It does not yet define how to adopt an existing source repository.
+
+An adoption design must specify supported languages and constructs, mappings to existing files, the authority of source versus graph, freshness after external edits, and treatment of unsupported parts. It must preserve unrelated code and the project's existing build and test workflow.
+
+For graph-managed generated artifacts, the accepted graph remains the source of truth. For existing source files, the adoption policy is still open. Do not treat independently edited source files and a graph as two simultaneous authorities, or claim a partial project index captures complete execution semantics.
+
+The first consumer release needs a documented, bounded existing-project workflow. It does not need to import every language or replace every framework. These boundaries must be explicit before the project can claim that an agent can use it to fix an existing repository.
+
 ## The program graph
 
 A graph is a set of connected parts. Here, those parts describe a program and the connections show how they depend on one another.

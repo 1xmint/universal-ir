@@ -19,6 +19,7 @@ This repository contains a proposed runtime design, examples, and executable doc
 
 - Explain ideas in simple words and define technical terms.
 - Keep the README, architecture, examples, roadmap, and decision records consistent.
+- Treat work in users' own new or existing projects as the main product journey, as recorded in docs/design/0003-real-development-workflows.md. Keep contributor onboarding separate and existing-source adoption boundaries explicit.
 - Distinguish proposals, accepted decisions, implemented features, and measured results.
 - Keep the program representation as the intended source of truth for generated artifacts.
 - Keep checking a graph, building artifacts, and deploying software as distinct operations.

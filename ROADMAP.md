@@ -24,7 +24,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [x] Describe the proposed architecture and its boundaries.
 - [x] Walk through a task application and an administrator archive change.
 - [x] Document contribution guidance and ordered milestones.
-- [x] Add subscription and API usage journeys, agent handoffs, and decision records.
+- [x] Add real development journeys for subscription and API users, agent handoffs, and decision records.
 - [x] Add reproducible documentation checks and tests with pull-request CI.
 
 **Purpose:** Give contributors a shared starting point.
@@ -39,6 +39,8 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Choose the implementation language and initial encoding; record the reasons and tradeoffs.
 - [ ] Define reference identities, edit acceptance, version evolution, and compatibility rules.
 - [x] Adopt reusable core, CLI first, SDK later ([decision 0002](docs/design/0002-cli-first.md)).
+- [ ] Define setup and integration for a supported coding agent and an external API harness.
+- [ ] Define supported existing-repository adoption, including source/graph authority, file mappings, freshness, and unsupported code.
 
 **Purpose:** Establish precise meanings before writing the core.
 
@@ -62,16 +64,20 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Build TypeScript and PostgreSQL targets for the project task application.
 - [ ] Generate its initial behavior and the administrator archive change.
 - [ ] Check behavior and permissions through server requests, including requests that bypass the interface.
+- [ ] Demonstrate a short setup-to-prompt workflow in a user's new project.
+- [ ] Demonstrate a real change or fix in a supported existing project while preserving unrelated code and its build/test workflow.
+- [ ] Demonstrate an external API harness invoking the CLI and consuming its results without requiring an SDK.
 
 **Purpose:** Show that one connected representation can produce a useful application.
 
-**Done when:** The generated application passes behavior and permission checks before and after the archive change. Accepted changes include any required data migration and readable explanation.
+**Done when:** The generated application passes behavior and permission checks before and after the archive change. Accepted changes include any required data migration and readable explanation. The new-project, existing-project, and external-harness consumer journeys pass their documented checks within explicit support boundaries.
 
 ### 4. Measure the benefit
 
 - [ ] Publish a reproducible comparison against ordinary AI file editing.
 - [ ] Use the same tasks, model configuration, acceptance checks, and attempt limits; document approach-specific tools.
 - [ ] Report correctness, total tokens, repair attempts, latency, and review effort.
+- [ ] Measure setup effort and cover both new-project work and changes or fixes in existing projects.
 - [ ] Include failed outcomes and explain how measurements were collected.
 
 **Purpose:** Find out whether the representation makes correct changes easier or cheaper.
@@ -101,6 +107,6 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 ## Current boundaries
 
-The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later is accepted. The compiler implementation language, final encoding, and exact CLI interfaces remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
+The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later and the real-development consumer journeys are accepted. The compiler implementation language, final encoding, exact CLI interfaces, and source/graph adoption policy remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.
