@@ -2,7 +2,7 @@
 
 ## Read first
 
-Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For user-facing changes, read examples/using-with-ai.md and the relevant worked example.
+Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/coherence.md and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md and the relevant worked example.
 
 This repository contains a proposed runtime design, examples, and executable documentation quality tooling. There is no executable compiler, runtime, or public runtime API.
 
@@ -20,8 +20,12 @@ This repository contains a proposed runtime design, examples, and executable doc
 - Explain ideas in simple words and define technical terms.
 - Keep the README, architecture, examples, roadmap, and decision records consistent.
 - Treat work in users' own new or existing projects as the main product journey, as recorded in docs/design/0003-real-development-workflows.md. Keep contributor onboarding separate and existing-source adoption boundaries explicit.
+- Preserve the universal-foundation and connected-view direction in docs/design/0004-universal-coherence.md. A narrow adapter demonstration must not redefine the long-term scope; ambition must not become a claim of implemented support.
 - Distinguish proposals, accepted decisions, implemented features, and measured results.
 - Keep the program representation as the intended source of truth for generated artifacts.
+- Keep existing-source ownership policy explicit. A derived view must not overwrite newer source to make its cached facts appear correct; a partial source index is not complete executable semantics.
+- Tie views, summaries, and check evidence to their inputs and versions. Detect external edits and reconcile after stopped operation before presenting current facts or accepting dependent edits.
+- Keep declared intent, established facts, hypotheses, source state, deployments, and runtime observations distinguishable. Show omissions and unknown relationships in focused views.
 - Keep checking a graph, building artifacts, and deploying software as distinct operations.
 - Treat token efficiency as a hypothesis to measure across complete, correctly finished tasks.
 - Record material design choices and compatibility effects in numbered design decisions.
