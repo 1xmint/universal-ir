@@ -34,7 +34,7 @@ For future core changes, add meaningful behavior and failure checks. Include inv
 
 Permission checks must cover trusted execution boundaries and requests that bypass the interface. A model explanation is not evidence that behavior is correct.
 
-Add source directories and runtime tooling with executable core code. Python quality tooling does not select the compiler language. The final encoding and user entry-point priority remain milestone 1 decisions.
+Add source directories and runtime tooling with executable core code. Python quality tooling does not select the compiler language. Reusable core, CLI first, SDK later is accepted in docs/design/0002-cli-first.md. Keep domain behavior in the core and the CLI as an adapter. The compiler language, final encoding, and exact CLI interfaces remain milestone 1 decisions.
 
 ## Hand off clearly
 

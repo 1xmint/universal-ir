@@ -10,7 +10,7 @@ Universal IR starts as a design repository. Contributors need a coherent directi
 
 - The long-term product is a shared, machine-editable program representation with checks, readable views, and target compilers.
 - The first executable core will support a deliberately small subset with precise meanings and a reference interpreter.
-- Existing coding agents can eventually interact with this core through an adapter. A local CLI and an embedded SDK are possible interfaces; their priority remains open.
+- Existing coding agents can eventually interact with this core through an adapter. At adoption, CLI-versus-SDK priority was open; [0002](0002-cli-first.md) subsequently establishes reusable core, CLI first, SDK later.
 - Model authentication, billing, and agent orchestration remain outside the core.
 - Proposed behavior must be labeled. Token savings and cross-platform behavior require measurements.
 - Python 3.12 or newer is used for documentation quality tooling only. This does not choose the compiler's implementation language.

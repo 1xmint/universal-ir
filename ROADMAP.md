@@ -38,7 +38,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Specify operation and error meanings, capability boundaries, and deterministic fixture outcomes.
 - [ ] Choose the implementation language and initial encoding; record the reasons and tradeoffs.
 - [ ] Define reference identities, edit acceptance, version evolution, and compatibility rules.
-- [ ] Choose the first user entry point: CLI or SDK, backed by a reusable core.
+- [x] Adopt reusable core, CLI first, SDK later ([decision 0002](docs/design/0002-cli-first.md)).
 
 **Purpose:** Establish precise meanings before writing the core.
 
@@ -48,6 +48,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 - [ ] Build a parser and validator for the defined format.
 - [ ] Build a reference interpreter for small supported programs.
+- [ ] Deliver an initial CLI over the supported core operations, with documented automation results and failure behavior.
 - [ ] Add structured edits that check their starting version and validate the result before acceptance.
 - [ ] Add core behavior tests to the existing CI, including unsupported effects and execution limits.
 
@@ -91,6 +92,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 - [ ] Add domain extensions only for concrete use cases.
 - [ ] Improve the model editing interface using measured failures and costs.
+- [ ] Add a public SDK over the same core when a concrete embedding use case justifies it.
 - [ ] Add compatibility tests and document boundaries for each addition.
 
 **Purpose:** Grow coverage without losing precise meanings or reliable changes.
@@ -99,6 +101,6 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 ## Current boundaries
 
-The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. The compiler implementation language, final encoding, and first user entry point remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
+The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later is accepted. The compiler implementation language, final encoding, and exact CLI interfaces remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.
