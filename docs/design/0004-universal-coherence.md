@@ -35,3 +35,7 @@ The proposed initial existing-source policy keeps source authoritative and deriv
 Documentation must explain nested and cross-cutting structure, different kinds of state, pause/resume reconciliation, unknowns, and the distinction between accepted goals and proposed mechanisms.
 
 Future implementation must demonstrate external-edit detection, stale-edit rejection, preservation of unrelated code, traceable views, and bounded support on a real existing project. Measure initial discovery, restart, refresh, context size, task success, and whole-task costs. Do not mark those demonstrations complete from documentation alone.
+
+## Subsequent decisions
+
+[0005](0005-portable-project-state.md) resolves the existing-source authority and storage questions that were open when this direction was accepted. It establishes inventory across languages as the first coherence proof, with deeper semantic support following later. [0006](0006-conversational-knowledge.md) establishes AI prefill and attributable conversation-derived knowledge. Detailed executable interfaces and source application guarantees remain later contracts.

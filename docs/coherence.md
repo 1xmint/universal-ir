@@ -1,6 +1,6 @@
 # Coherent views of complex software
 
-The universal-foundation direction is accepted in [decision 0004](design/0004-universal-coherence.md). The mechanisms below are proposed. There is no working project index, state service, CLI, or compiler yet.
+The universal-foundation direction is accepted in [decision 0004](design/0004-universal-coherence.md). The first inventory, knowledge, lifecycle, and collaboration contracts are specified in [portable project coherence](specs/project-coherence.md), under decisions [0005](design/0005-portable-project-state.md) and [0006](design/0006-conversational-knowledge.md). Broader semantic mechanisms below remain proposed. There is no working project index, state service, CLI, or compiler yet.
 
 ## What instantly coherent means
 
@@ -48,6 +48,10 @@ The eventual agent-facing encoding should be chosen through whole-task measureme
 
 Code rarely establishes the complete reason for a feature or design choice. Declared requirements and decisions need an explicit home, ownership, and links to the relevant implementation. Updating an implementation should not silently rewrite its stated purpose to match.
 
+The existing agent can prefill purpose from inspected evidence, then refine it through normal developer conversation. Store those interpretations with their supporting inputs and scope. A host-attested developer statement or approved declaration has a different origin; an AI paraphrase and a model's claim of approval do not automatically establish developer intent. Capture selected project knowledge rather than requiring a complete chat archive or manual questionnaire.
+
+Committed `.uir/` configuration and durable records travel with the project, including links to existing documents. Local caches and drafts remain separate. Source-derived facts and summaries are versioned views, while developer requirements retain their authority when code changes. Known discrepancies should be surfaced; the first file inventory cannot discover every behavioral violation.
+
 Each relationship should identify its origin and scope. Distinguish compiler-resolved facts, syntactic facts, declared contracts, inferred hypotheses, and test or runtime observations. An agent hypothesis may suggest where to investigate; it must not become a confirmed fact merely by being stored.
 
 Findings should include the inputs, source locations where applicable, extraction method, and snapshot they describe. Unknown call targets and unavailable dependency behavior remain visible. Missing evidence is not evidence that an effect or dependency does not exist.
@@ -86,4 +90,4 @@ Summaries should be derived from identified inputs and refreshed when those inpu
 
 Use the [complex-project walkthrough](../examples/complex-project.md) to define concrete navigation and change scenarios. Check that a reader or agent can move from a system overview to relevant detail, follow cross-service relationships, and find unknowns without losing the snapshot or evidence trail.
 
-The [adoption proposal](existing-repositories.md) defines a candidate lifecycle for external edits and pause/resume operation. Exact schemas, retrieval rules, consistency guarantees, performance budgets, and runtime integrations remain open specifications.
+The [coherence specification](specs/project-coherence.md) defines required first-proof lifecycle, attribution, sharing, and remote-awareness outcomes. The broader [adoption proposal](existing-repositories.md) adds future checked source changes. Concrete schemas, retrieval algorithms, source application guarantees, performance budgets, and runtime integrations remain later implementation contracts.

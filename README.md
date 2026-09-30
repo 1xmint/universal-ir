@@ -16,7 +16,7 @@ Connect purpose, structure, behavior, and evidence in one shared representation.
 
 For graph-managed programs, let AI propose small structured edits, check each candidate, and use target compilers to produce runnable software. Different targets would handle how supported programs run on a server, in a browser, or on another system.
 
-For existing projects, the proposed adoption path keeps source files authoritative and builds a rebuildable view of supported facts. External changes, including changes made while the tool is stopped, must be reconciled before presenting that view as current. Unknown behavior stays visible. The exact source-adoption contract still needs specification.
+For existing projects, the accepted design keeps source files authoritative and builds a rebuildable view of supported facts. Shared configuration and durable project knowledge travel in a committed `.uir/` area; local caches and working views describe each checkout. Optional shared snapshots can reuse compatible extraction. External edits must be reconciled before presenting a view as current. None of these operations is implemented yet.
 
 Readable views would help people and agents understand a project, review a change, and trace behavior back to its rules and evidence. Source state, check results, deployments, and runtime observations would remain distinct.
 
@@ -26,7 +26,7 @@ The accepted delivery direction is [reusable core, CLI first, SDK later](docs/de
 
 This repository contains documentation, examples, and documentation quality tooling. There is no executable program format, source index, state service, usable CLI, compiler, runtime, or public executable API yet. Broad software support, fast coherent views, and lower token costs are goals to test, not demonstrated results.
 
-The first implementation step is to specify the small versioned core and its source-backed adoption contract: typed values, functions, references, effects, evidence, snapshots, and checked edits. The implementation language, final encoding, first adapter, and exact interfaces remain milestone 1 decisions.
+The [portable project-coherence specification](docs/specs/project-coherence.md) defines the first proof: inventory across languages, connected views, conversational project knowledge, and freshness. Deep semantic adapters, checked source edits, executable IR, and compilers follow in later increments. Concrete metadata schemas, extraction/CLI interfaces, and implementation language must be specified before building that proof; final executable IR encoding remains open.
 
 ## Intended use in your own projects
 
@@ -35,7 +35,9 @@ The intended setup is: install the CLI, connect a supported new or existing proj
 - **Coding subscription:** Keep using your existing coding agent and authentication. Its terminal tools invoke the Universal IR CLI while it creates a project, changes a feature, or fixes a supported existing repository.
 - **API-backed harness:** Register the CLI as a tool in your existing model loop. Use its structured results and checks to guide work; adopt a public SDK later if a direct integration is useful.
 
-These are planned consumer workflows, not working setup instructions. There is no installer or usable CLI yet. The [adoption proposal](docs/existing-repositories.md) describes ownership, pause/resume reconciliation, checked source changes, and unsupported parts; it still needs precise contracts and a working demonstration.
+These are planned consumer workflows, not working setup instructions. There is no installer or usable CLI yet. The first design lets the existing agent prefill purpose from evidence and refine it through normal conversation, while keeping interpretations and developer declarations distinguishable. Local inventory requires no model calls by design; AI interpretation and agent work have separate costs to measure.
+
+The [coherence specification](docs/specs/project-coherence.md) covers local and optional shared views, including awareness of published changes before a graph is ready. The broader [adoption proposal](docs/existing-repositories.md) covers future checked source changes, whose application guarantees still need contracts and demonstration.
 
 The [real development examples](examples/using-with-ai.md) explain both journeys. The [accepted product-use decision](docs/design/0003-real-development-workflows.md) records the goal. To help build Universal IR itself, use the [contribution guide](CONTRIBUTING.md).
 
@@ -44,6 +46,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Roadmap](ROADMAP.md): milestones and what it takes to complete them.
 - [Architecture](docs/architecture.md): proposed parts and how they connect.
 - [Coherent project views](docs/coherence.md): nested structure, cross-cutting relationships, and different kinds of state.
+- [Portable project-coherence specification](docs/specs/project-coherence.md): repository storage, conversational knowledge, lifecycle, and collaboration contracts.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.

@@ -33,3 +33,7 @@ A subscription or API key supplies model access through another tool. Users shou
 Before claiming a usable consumer release, demonstrate a supported new-project workflow, a real change or fix in an existing project, and an external harness calling the CLI. Document setup steps, support boundaries, and check results.
 
 Evaluate task success, total token use, repair work, latency, review effort, and setup effort against a baseline. A structured representation alone does not establish better performance.
+
+## Subsequent decisions
+
+[0005](0005-portable-project-state.md) resolves source authority and portable state storage, with local operation and optional published collaboration. [0006](0006-conversational-knowledge.md) defines AI-prefilled purpose and attributable conversation-derived knowledge. The [coherence specification](../specs/project-coherence.md) covers the first inventory proof; checked source edits and the full consumer release remain future work.

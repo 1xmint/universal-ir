@@ -10,6 +10,8 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0002](0002-cli-first.md) | Accepted | Reusable core, CLI first, SDK later |
 | [0003](0003-real-development-workflows.md) | Accepted | Real development workflows for product users |
 | [0004](0004-universal-coherence.md) | Accepted | Universal foundation, connected views, and freshness goals |
+| [0005](0005-portable-project-state.md) | Accepted | Local project state, reusable snapshots, and published collaboration |
+| [0006](0006-conversational-knowledge.md) | Accepted | AI-prefilled, attributable conversational project knowledge |
 
 ## Adding a decision
 
@@ -23,4 +25,6 @@ Use the next available four-digit number and a short filename. Include:
 
 Record an accepted decision through the pull request that adopts it. Link to any decision it supersedes and preserve earlier records. A model's recommendation is not automatically an accepted project decision.
 
-The entry-point priority, consumer journeys, and universal-foundation coherence direction are accepted: reusable core, CLI first, SDK later, for work in users' own new or existing projects, with connected views and explicit freshness. The initial program format, compiler implementation language, encoding, first source adapter, exact CLI interfaces, and technical source/graph adoption policy are still open. The [adoption proposal](../existing-repositories.md) recommends a policy without treating it as a finalized implementation contract. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
+Reusable core, CLI first, SDK later, real-development consumer journeys, and universal coherence remain accepted. Decisions 0005 and 0006 now establish existing-source authority, repository knowledge with local caches, optional shared snapshots, published-revision awareness, inventory-first scope, and conversational knowledge provenance.
+
+The [project-coherence specification](../specs/project-coherence.md) is a completed documentation increment, not an implemented feature or the full program-format milestone. Executable IR semantics, implementation language, encoding, deep source adapters, concrete metadata/CLI schemas, source application/recovery, and remote bindings still need implementation contracts. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
