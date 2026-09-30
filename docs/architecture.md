@@ -28,7 +28,9 @@ Readable views describe both the accepted program and proposed changes. An edit 
 
 An existing agent host owns the model conversation, authentication, tool permissions, and budget. Universal IR would provide the program representation, edit interface, checks, and compilers. The model might run remotely while those tools run locally.
 
-A local CLI would let existing coding agents call the tools through terminal commands. An SDK would let custom hosts call the same core directly. CLI first is a proposed adoption path; the entry-point priority remains a milestone 1 decision. See the [usage journeys](../examples/using-with-ai.md).
+A local CLI will be the first entry point, so existing coding agents can call the tools through terminal commands. A public SDK will follow later for custom hosts. This priority is accepted in [decision 0002](design/0002-cli-first.md); neither interface is implemented yet. See the [usage journeys](../examples/using-with-ai.md).
+
+The core owns program representation, validation, editing, interpretation, and compilation behavior. The CLI is an adapter over that core, and the future SDK will use the same behavior. Exact commands, automation outputs, diagnostics, and exit behavior must be specified before CLI release.
 
 ## The program graph
 

@@ -54,7 +54,7 @@ For agent contributions, include scope, changed behavior, commands and outcomes,
 
 Keep important accepted choices in numbered [decision records](docs/design/README.md), including their reasons, tradeoffs, and compatibility effects. Record acceptance through the pull request that adopts the decision. Preserve superseded records.
 
-The compiler implementation language, final encoding, and CLI-versus-SDK priority remain decisions for milestone 1. Add compiler source directories and runtime build tooling when implementing the core.
+Reusable core, CLI first, SDK later is accepted in [decision 0002](docs/design/0002-cli-first.md). The compiler implementation language, final encoding, and exact CLI interfaces remain decisions for milestone 1. Add compiler source directories and runtime build tooling when implementing the core.
 
 ## Provide evidence
 

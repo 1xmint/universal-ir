@@ -16,6 +16,8 @@ The shared format would describe what the program does. Different targets would 
 
 Readable views would help people understand the program, review a change, and trace behavior back to its rules.
 
+The accepted delivery direction is [reusable core, CLI first, SDK later](docs/design/0002-cli-first.md). Existing coding agents will use the CLI through terminal tools; custom integrations can use a public SDK later. Both will share the same core behavior.
+
 ## Current state
 
 This repository contains documentation, examples, and documentation quality tooling. There is no executable program format, compiler, runtime, or public executable API yet. Support across platforms and lower token costs are goals to test, not demonstrated results.

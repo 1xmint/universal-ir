@@ -40,7 +40,7 @@ Point the host at your clone and use the same bounded tasks and checks as above.
 
 Once the core and application targets exist, a user journey could be:
 
-1. Install a released Universal IR tool and open a separate application workspace.
+1. Install the released Universal IR CLI and open a separate application workspace.
 2. Use your existing coding agent and its existing model authentication.
 3. Ask for a project task app and settle the permissions and behavior requirements.
 4. Have the agent create a program graph through the supported editing interface.
@@ -62,6 +62,6 @@ A developer could use an SDK to inspect a graph, submit an edit against a known 
 | Local CLI | Existing agents can call it through terminal tools across providers and languages | Process overhead and command-result handling |
 | Embedded SDK | Typed, direct integration with a custom host and repeated operations | Language bindings and closer version coupling |
 
-A reusable core can support both. CLI first is the current recommendation for ease of adoption; it is a proposal, not an accepted interface decision.
+The accepted direction is reusable core, CLI first, SDK later. Both interfaces will use the same core behavior. Exact CLI commands and SDK interfaces remain to be designed; neither is implemented yet. See [decision 0002](../docs/design/0002-cli-first.md).
 
 Return to the [roadmap](../ROADMAP.md), [architecture](../docs/architecture.md), or [development guide](../docs/development.md).
