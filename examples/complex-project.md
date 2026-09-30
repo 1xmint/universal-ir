@@ -1,6 +1,6 @@
 # Worked example: a complex project and its changing state
 
-This is a conceptual walkthrough of the proposed [coherent views](../docs/coherence.md) and [adoption lifecycle](../docs/existing-repositories.md). It is not an implemented demonstration, executable syntax, or evidence of support for a particular stack.
+This is a conceptual walkthrough of [coherent views](../docs/coherence.md) and the broader [adoption lifecycle](../docs/existing-repositories.md). The [first-proof specification](../docs/specs/project-coherence.md) covers inventory and attributable declarations; deep semantic connections and checked source editing below require later adapters and checks. This is not an implemented demonstration, executable syntax, or evidence of support for a particular stack.
 
 ## The system at several scales
 
@@ -48,6 +48,12 @@ If files change again during reconciliation, it must retry or report an unstable
 The workspace may be at S2 while production still runs an artifact built from S1. The development database and production database may have different migration states. A worker observation may describe only one environment and a limited time window.
 
 The graph should keep those identities and relationships separate. It should not infer that refreshing the source view deployed the fix, applied a migration, or updated every running worker. Without deployment or observation inputs, those states remain unknown.
+
+## Published changes while another developer works
+
+Sally merges a change to the event contract while Alice is editing the worker on a separate checkout. A remote revision observation can tell Alice's agent that the published branch advanced before a graph for that revision is available. Alice's local view remains tied to her own files.
+
+When a compatible published snapshot becomes available, the agent can compare known relationships and expose unknown impact. It must not infer that Alice integrated the change or that the combined behavior passed checks. Shared snapshots are optional artifacts; dirty local views are not grouped into one graph merely because the developers use the same GitHub account or repository.
 
 ## Evidence required from a future implementation
 

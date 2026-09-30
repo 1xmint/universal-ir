@@ -19,7 +19,7 @@ The long-term scope is a universal foundation for any kind of software, across l
 
 ## Milestones
 
-Checkboxes show completed work. Later milestones depend on the earlier ones; these are completion gates, not promised dates.
+Checkboxes show completed work. Each implementation increment depends on its relevant contracts; these are completion gates, not promised dates. The first coherence proof can follow its specific implementation gate below without claiming that executable IR semantics or later consumer gates are complete.
 
 ### 0. Explain the idea
 
@@ -48,12 +48,28 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [x] Adopt a universal foundation with connected views and explicit freshness goals ([decision 0004](docs/design/0004-universal-coherence.md)).
 - [ ] Define setup and integration for a supported coding agent and an external API harness.
 - [ ] Define supported existing-repository adoption, including source/graph authority, file mappings, freshness, and unsupported code.
-- [ ] Choose the first source adapter and its supported operations; specify external-edit invalidation and restart reconciliation.
+- [ ] Choose the first deep semantic source adapter and its supported operations; specify its dependency invalidation beyond the initial inventory contract.
 - [ ] Specify candidate checks, destination preconditions, interrupted application, and recovery guarantees for source changes.
 
 **Purpose:** Establish precise meanings before writing the core.
 
 **Done when:** Each example has an unambiguous interpretation, including what makes it valid or invalid. The minimum supported operations, version rules, and bounded adoption contract are documented with expected valid, stale, unsupported, and interrupted-operation outcomes. The [adoption proposal](docs/existing-repositories.md) lists the open specifications.
+
+#### Portable project coherence specification
+
+This is a documentation increment within milestone 1. The first working proof will inventory projects across languages before deep semantic adapters or checked source editing. It does not complete the full program-format milestone or any executable behavior gate.
+
+- [x] Record source authority, shared `.uir/` knowledge, local caches, immutable snapshots, and optional published collaboration ([decision 0005](docs/design/0005-portable-project-state.md)).
+- [x] Record AI-prefilled purpose and attributable conversational knowledge ([decision 0006](docs/design/0006-conversational-knowledge.md)).
+- [x] Specify inventory, views, lifecycle, conceptual operations, compatibility/trust, and failure outcomes.
+- [x] Document solo, five-developer, merge-during-work, restart, and non-GitHub walkthroughs with acceptance cases.
+- [x] Define the future local-only, Git-committed graph, and optional shared-cache cost comparison without claiming savings.
+
+**Purpose:** Establish portable project knowledge and state boundaries before implementation.
+
+**Done when:** The [specification](docs/specs/project-coherence.md), decisions, and related guides agree, their examples and failures are unambiguous, documentation checks and rendering review pass, and the update is published through the checked PR workflow.
+
+**Next gate:** Specify concrete metadata schemas, content identity, filesystem/ignore behavior, view expansion, host provenance, and initial CLI I/O; choose implementation tooling. Transport bindings, access controls, schedules, and retention are required before a remote release. This documentation does not choose those interfaces or the compiler language.
 
 ### 2. Build the core
 
@@ -62,6 +78,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Deliver an initial CLI over the supported core operations, with documented automation results and failure behavior.
 - [ ] Add structured edits that check their starting version and validate the result before acceptance.
 - [ ] Build the first source adapter and rebuildable snapshots with source-linked overview and task views.
+- [ ] Demonstrate the specified language-independent inventory, declared relationships, conversational knowledge, and local lifecycle before deep semantic adapters or source editing.
 - [ ] Detect active and offline changes, invalidate affected findings, and publish only coherent refreshed snapshots.
 - [ ] Add candidate source checks and the specified application protocol while preserving unrelated code and dirty files.
 - [ ] Add core behavior tests to the existing CI, including unsupported effects and execution limits.
@@ -93,6 +110,7 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 - [ ] Report correctness, total tokens, repair attempts, latency, and review effort.
 - [ ] Measure setup effort and cover both new-project work and changes or fixes in existing projects.
 - [ ] Measure cold discovery, warm startup verification, offline-change reconciliation, active refresh, view retrieval, and context size.
+- [ ] Run the specified local-only, Git-committed graph, and optional shared-cache comparison, including total five-developer and infrastructure costs.
 - [ ] Include a complex-project scenario with nested and cross-component relationships; document scale, coverage, and omissions.
 - [ ] Include failed outcomes and explain how measurements were collected.
 
@@ -124,6 +142,6 @@ Checkboxes show completed work. Later milestones depend on the earlier ones; the
 
 ## Current boundaries
 
-The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later, real-development consumer journeys, and the universal-foundation coherence direction are accepted. The compiler implementation language, final encoding, first source adapter, exact CLI interfaces, and technical source/graph adoption policy remain decisions for milestone 1. Compiler source directories and runtime build tooling will arrive with executable core code.
+The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. Only the project-coherence documentation increment is complete here. Compiler language, final encoding, deep source adapters, concrete metadata/CLI schemas, source application/recovery, and remote bindings remain later contracts. Source directories and runtime tooling will arrive with executable code.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

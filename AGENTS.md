@@ -2,7 +2,7 @@
 
 ## Read first
 
-Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/coherence.md and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md and the relevant worked example.
+Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md and the relevant worked example.
 
 This repository contains a proposed runtime design, examples, and executable documentation quality tooling. There is no executable compiler, runtime, or public runtime API.
 
@@ -24,6 +24,10 @@ This repository contains a proposed runtime design, examples, and executable doc
 - Distinguish proposals, accepted decisions, implemented features, and measured results.
 - Keep the program representation as the intended source of truth for generated artifacts.
 - Keep existing-source ownership policy explicit. A derived view must not overwrite newer source to make its cached facts appear correct; a partial source index is not complete executable semantics.
+- Follow decisions 0005 and 0006: shared `.uir/` configuration/knowledge, ignored local caches, checkout-specific working views, optional compatible snapshots, and attributable conversational knowledge. Do not create adoption metadata here merely to document the layout.
+- Keep inventory across languages distinct from deep semantic support and source editing. A documentation specification or inventory proof does not complete executable IR or consumer release gates.
+- Keep local freshness, observed upstream revision, extraction support, and graph readiness separate. Do not relabel a checkout as rebased or remotely validated after a notification or snapshot import.
+- Do not promote an AI interpretation into developer intent based on a model's assertion of approval. Retain source evidence, host attribution, and supersession history; changed source must not silently rewrite requirements.
 - Tie views, summaries, and check evidence to their inputs and versions. Detect external edits and reconcile after stopped operation before presenting current facts or accepting dependent edits.
 - Keep declared intent, established facts, hypotheses, source state, deployments, and runtime observations distinguishable. Show omissions and unknown relationships in focused views.
 - Keep checking a graph, building artifacts, and deploying software as distinct operations.

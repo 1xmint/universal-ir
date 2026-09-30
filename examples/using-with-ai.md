@@ -2,7 +2,7 @@
 
 These examples describe people using Universal IR in their own projects. They are planned consumer journeys, not instructions for contributing to Universal IR.
 
-There is no installer, project setup integration, usable CLI, source index, state service, compiler, or SDK yet. Reusable core, CLI first, and the universal-foundation direction are accepted; the supported languages, source adapters, and exact interfaces still need specifications.
+There is no installer, project setup integration, usable CLI, source index, state service, compiler, or SDK yet. The [project-coherence specification](../docs/specs/project-coherence.md) defines the first inventory and knowledge proof. Deep semantic adapters, source editing, and executable interfaces remain later work.
 
 ## Example 1: a user with a coding subscription
 
@@ -17,6 +17,18 @@ The intended setup is:
 5. Start prompting the agent to create, change, or fix the project.
 
 Setup should establish project intent, supported structure, known checks, and how the agent invokes the CLI. It should provide an overview linked to expandable detail and surface unsupported code or capabilities before claiming that the project is ready. Exact setup commands and supported agent integrations do not exist yet.
+
+### First coherence increment
+
+The user asks:
+
+> Map this project, explain its likely purpose and structure, show what you do not understand, and retain the project goals we establish in this conversation.
+
+The planned first proof inventories files across languages and connects explicitly declared relationships. The existing agent can propose purpose from that evidence, with interpretations labeled and linked to their inputs. The developer can correct it through normal conversation. Host-attested statements and approved declarations remain distinct from the agent's paraphrases and hypotheses.
+
+Shared configuration and durable knowledge travel in a committed `.uir/` area, with references to existing documents where useful. Local caches, drafts, and uncommitted work stay local by default. Discovery preserves application files and needs no paid model calls; explanation and conversation use the existing host's model and budget. There are no working setup commands yet.
+
+The new-project generation and existing-project fixes below describe later consumer capabilities. A first inventory proof does not establish permission correctness or deliver checked source edits.
 
 ### New project
 
@@ -38,9 +50,9 @@ The user opens an existing repository and asks:
 
 A supported adoption workflow would inspect the current project, identify relevant source and rules, and give the agent a coherent view of the task. The agent would propose a bounded change, receive check results, and repair failures before reporting completion.
 
-The [adoption proposal](../docs/existing-repositories.md) recommends a source adapter and a rebuildable graph whose facts are tied to current source inputs. The tool must detect stale information after external edits and preserve unrelated code. It must report unsupported parts rather than assume it understands every language, framework, or runtime.
+The accepted [coherence contract](../docs/specs/project-coherence.md) keeps existing source authoritative and derived facts tied to current inputs. The broader [adoption proposal](../docs/existing-repositories.md) adds a future deep source adapter and checked changes. The tool must detect stale information after external edits, preserve unrelated code, and report unsupported parts.
 
-The source/graph authority and application policy still need final specifications. A partial index of a repository cannot be described as a complete executable representation. The supported subset must be demonstrated on a real existing-project change before this journey is advertised as working.
+Ownership is decided, but source application and recovery guarantees still need contracts. A partial index cannot be described as a complete executable representation. The supported source-editing subset must be demonstrated on a real change before this fix journey is advertised as working.
 
 ### Return after manual or other agent edits
 
@@ -49,6 +61,14 @@ The user stops using Universal IR, changes files with another editor or agent, a
 It would preserve the intervening edits and reject affected proposals based on the old snapshot. Missing or incompatible cached information would be rebuilt. If inputs keep changing or behavior is unsupported, it would report that boundary rather than silently show the old tree as current.
 
 For a large project, an overview would lead to nested components and cross-cutting connections instead of loading every detail into one prompt. See the [complex-project walkthrough](complex-project.md). Discovery, restart, and refresh speed are measurements to collect, not working performance claims.
+
+### Work with teammates and published changes
+
+Five developers can share committed configuration and project knowledge while their working views remain specific to each checkout. A compatible published snapshot may be reused from local storage, CI artifacts, or an optional service after verification; downloading it does not replace local edits.
+
+If Sally merges while Alice is working, Alice's agent can learn that the published revision advanced even when its graph is pending. It can compare known relationships and show unresolved impact without pretending Alice has rebased or passed tests against the new revision. Git fetching or optional provider notifications can supply awareness; GitHub is not required. Offline operation retains local views and explicitly last-known remote state.
+
+See the [solo and team walkthroughs](../docs/specs/project-coherence.md#walkthroughs). Live sharing of uncommitted edits is outside the first proof.
 
 ### What the CLI provides
 
@@ -72,6 +92,8 @@ The initial integration would expose the CLI as a tool:
 
 The exact request/result format is not defined yet. This workflow must preserve the distinction between a checked representation, generated artifacts, and live deployment.
 
+For the first coherence proof, the harness would request inventory and views, submit attributed knowledge, refresh inputs, and optionally exchange published snapshots or observe upstream. The source-editing loop above follows later. It must not promote model interpretations to developer declarations without the specified evidence origin.
+
 The API key stays in the existing harness. Universal IR does not need to own the model conversation, route providers, or charge for model access. A key without a tool-executing host is insufficient to run these operations.
 
 A public SDK comes later for direct, typed integration. It would use the same core behavior as the CLI, so an API harness does not have to wait for an SDK to participate in the first consumer release.
@@ -91,4 +113,4 @@ A usable consumer release must demonstrate:
 
 Less busywork and better performance are goals to evaluate. Structure alone does not establish improvements.
 
-The consumer intent is recorded in [decision 0003](../docs/design/0003-real-development-workflows.md), and universal coherence and freshness goals in [decision 0004](../docs/design/0004-universal-coherence.md). Follow the [roadmap](../ROADMAP.md) and [architecture](../docs/architecture.md) for the remaining design and implementation work. To contribute to Universal IR itself, use [CONTRIBUTING.md](../CONTRIBUTING.md).
+Consumer intent and universal coherence remain in decisions 0003 and 0004. Portable state and conversational knowledge are now accepted in decisions [0005](../docs/design/0005-portable-project-state.md) and [0006](../docs/design/0006-conversational-knowledge.md). Follow the [roadmap](../ROADMAP.md) and [architecture](../docs/architecture.md) for remaining implementation gates. To contribute to Universal IR itself, use [CONTRIBUTING.md](../CONTRIBUTING.md).

@@ -1,16 +1,18 @@
 # Existing-repository adoption and freshness
 
-**Status:** Proposed technical design under the accepted [universal-foundation direction](design/0004-universal-coherence.md). None of this workflow is implemented. Exact interfaces, algorithms, support matrix, and edit guarantees require milestone 1 specifications.
+**Status:** Broader adoption proposal. Existing-source authority, portable storage, inventory-first scope, conversational knowledge, and lifecycle requirements are accepted in decisions [0005](design/0005-portable-project-state.md) and [0006](design/0006-conversational-knowledge.md), with the [project-coherence specification](specs/project-coherence.md). None of the workflow is implemented. Deep semantic support and checked source application remain proposed work requiring separate contracts.
 
 ## Scope and ownership
 
 Let an existing agent work in a user's project without converting it wholesale or replacing its framework and checks. Preserve current files and unrelated human work while exposing coherent, versioned relationships.
 
-The recommended existing-source policy is that source files remain authoritative for implemented behavior. The graph is a rebuildable, source-backed view. Declared requirements are authoritative for stated intent, but agreement with implementation needs evidence. A current graph may be the main agent entry point without replacing either authority.
+The accepted existing-source policy keeps source files authoritative for implemented behavior. The graph is a rebuildable, source-backed view. Declared requirements describe stated intent, but agreement with implementation needs evidence. A current graph may be the main agent entry point without replacing either authority.
 
 For future IR-native projects, the accepted executable graph would be authoritative for generated artifacts. Mode and ownership boundaries must be explicit. A mixed project would need declared file or module ownership; automatic bidirectional editing of source and executable IR is outside the initial proposal.
 
-The first proof should support one language and a small set of operations deeply. TypeScript is a candidate because the task example targets it, not an accepted adapter choice. A language-neutral foundation must admit later adapters without pretending that a generic syntax tree captures all language semantics.
+The first coherence proof inventories projects across languages and connects containment, explicit declarations, and attributable project knowledge. It does not perform deep semantic analysis or checked source edits. A later source-editing proof needs a deeply supported language and small set of operations; TypeScript remains a candidate, not an accepted adapter choice. Inventory must not be presented as complete language semantics.
+
+Shared configuration and durable knowledge travel in a committed `.uir/` area, with ignored local caches. Working views belong to checkouts and snapshots rather than GitHub members. Optional shared published snapshots require input compatibility, integrity, and accepted provenance; local reconstruction remains available. The specification separates observed upstream revision from graph readiness and local freshness.
 
 ## Discover without rewriting
 
@@ -104,6 +106,6 @@ These are future acceptance cases, not passing tests. The [complex-project walkt
 
 ## Open specifications and references
 
-Milestone 1 still needs the first adapter, support matrix, identity scheme, dependency invalidation rules, snapshot schema, retrieval boundaries, application and recovery protocol, evidence format, and performance budgets. The source-authority policy in this document is recommended and must be finalized through a decision record before implementation depends on it.
+The [coherence specification](specs/project-coherence.md) settles ownership, storage, first-proof scope, conceptual records and operations, lifecycle outcomes, provenance, optional sharing, and published collaboration. Before executable inventory, define concrete schemas, content identity, filesystem behavior, extraction compatibility, view expansion, host integration, and CLI I/O. Before source editing, define the deep adapter, support matrix, semantic identities, invalidation, and application/recovery protocol. Remote release also needs transport, access, trust, scheduling, and retention contracts. Performance remains to be measured.
 
 Useful existing work includes [TypeScript compiler services](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API), [versioned LSP edits and declared failure handling](https://raw.githubusercontent.com/microsoft/language-server-protocol/gh-pages/_specifications/lsp/3.17/types/workspaceEdit.md), and [static analysis limitations](https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/). These are references, not dependencies or claims of current compatibility.

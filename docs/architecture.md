@@ -1,6 +1,6 @@
 # Proposed architecture
 
-The runtime behavior in this document is proposed. The current repository contains documentation, examples, and documentation quality tooling.
+The runtime behavior in this document is not implemented. Accepted design contracts are identified below; broader mechanisms remain proposed. The current repository contains documentation, examples, and documentation quality tooling.
 
 ## The flow
 
@@ -40,7 +40,7 @@ The intended user installs the tool into their development environment, connects
 
 ## Adopting existing repositories
 
-Existing-source adoption needs a different ownership flow. The [adoption proposal](existing-repositories.md) recommends keeping source files authoritative and deriving a rebuildable, versioned graph:
+Existing-source adoption has a different ownership flow. [Decision 0005](design/0005-portable-project-state.md) keeps source files authoritative and derives a rebuildable, versioned graph. The [coherence specification](specs/project-coherence.md) defines the inventory-first contract; the broader [adoption proposal](existing-repositories.md) retains future source-editing work:
 
 ~~~text
 Current source and project configuration
@@ -56,9 +56,17 @@ Current source and project configuration
        Guarded application and reconciliation
 ~~~
 
-Source-backed facts are not automatically executable IR. Supported lowering would need defined semantics and target behavior checks. The technical adoption policy, first adapter, source mappings, and application guarantees still need milestone 1 specifications.
+Source-backed facts are not automatically executable IR. The first proof covers inventory across languages and declared relationships, not resolved runtime semantics. Supported lowering, deep adapters, and checked source application still need defined contracts and behavior checks.
 
-For graph-managed generated artifacts, the accepted graph remains the source of truth. For existing source, the recommended graph is the current agent view of authoritative inputs. Never treat independently edited source and cached facts as simultaneous authorities. Preserve unrelated code and the project's build and test workflow.
+For graph-managed generated artifacts, the accepted graph remains the source of truth. For existing source, the derived graph is the agent view of identified authoritative inputs. Never treat independently edited source and cached facts as simultaneous authorities. Preserve unrelated code and the project's build and test workflow.
+
+## Portable knowledge and collaboration
+
+Shared configuration and durable project knowledge live in a committed `.uir/` area in adopting projects. Local caches are ignored and each checkout has its own working view. Extracted graphs are reusable artifacts, not required source-commit diffs. Import requires matching inputs, compatible extraction, integrity, and accepted producer provenance; integrity alone cannot establish correctness.
+
+Optional shared builders or artifact stores can reuse published-revision work. Observed branch revision, graph readiness, and local source freshness are separate. Notifications prompt reconciliation; delayed events or older extraction results cannot regress the latest verified view. A remote merge can be reported before its graph is ready without making a local checkout appear rebased.
+
+The same concepts support Git hosts and non-Git folders. Without a configured upstream, local operation still works but has no remote-awareness claim. Shared services are optional; uncommitted work remains local by default. See the [sharing and collaboration contracts](specs/project-coherence.md#shared-snapshots-and-local-fallback).
 
 The first consumer release needs a demonstrated, bounded existing-project workflow, including changes made while stopped and rejection of stale proposals. Universal scope is a foundation goal, not a claim that every adapter already exists.
 
@@ -69,6 +77,8 @@ Connect purpose, structure, supported behavior, and evidence. A complex system h
 The [coherence proposal](coherence.md) defines those views and their evidence boundaries. An agent should move from the big picture to relevant source and back, with visible omissions and unknowns. A compact summary must not claim exhaustive runtime understanding or complete change-impact coverage.
 
 Declared intent needs explicit ownership. Compiler facts, syntax, hypotheses, contracts, and observations need distinguishable provenance. Changes to either code or declarations may invalidate derived relationships and summaries.
+
+[Decision 0006](design/0006-conversational-knowledge.md) lets the existing agent prefill purpose from evidence and refine knowledge through normal conversation. Host-attested developer statements remain distinct from model interpretations. A model cannot establish approval merely by claiming it occurred, and changed code cannot silently rewrite a declared requirement. Host provenance integration is still to be implemented.
 
 ## Lifecycle and different kinds of state
 
@@ -125,7 +135,7 @@ A summary such as "project administrators can now archive tasks" must be backed 
 
 The primary comparison is the cost of completing a correct change. Measurements include context and generation tokens, verification and repair work, latency, and review effort. A shorter encoding is useful only if the complete process benefits.
 
-The compiler implementation language, final encoding, first source adapter, and detailed adoption contracts are undecided. Python is used only for repository quality tooling. Milestone 1 will record core choices; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
+The compiler implementation language, final encoding, deep source adapters, concrete metadata/CLI schemas, source application guarantees, and remote bindings remain undecided. The inventory/coherence behavior contract is specified, but not implemented. Python is used only for repository quality tooling; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 
