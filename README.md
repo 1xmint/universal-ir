@@ -18,15 +18,29 @@ Readable views would help people understand the program, review a change, and tr
 
 ## Current state
 
-This repository contains documentation and one worked example. There is no executable program format, compiler, runtime, or public executable API yet. Support across platforms and lower token costs are goals to test, not demonstrated results.
+This repository contains documentation, examples, and documentation quality tooling. There is no executable program format, compiler, runtime, or public executable API yet. Support across platforms and lower token costs are goals to test, not demonstrated results.
 
 The first implementation step is to define a small, versioned program format with typed values, functions, references, and explicit effects. The implementation language and final encoding will be chosen during that milestone.
+
+## Try contributing with your coding agent
+
+Clone this repository, open it in an existing coding agent, and ask the agent to read AGENTS.md before taking a small task from the roadmap. Your coding tool handles model authentication; repository checks need no model credentials.
+
+~~~sh
+git clone https://github.com/1xmint/universal-ir.git
+cd universal-ir
+~~~
+
+The [AI usage examples](examples/using-with-ai.md) cover subscription-based tools, API-backed agents, and a proposed future journey for building your own app. The [contribution guide](CONTRIBUTING.md#local-checks) provides reproducible local checks.
 
 ## Start here
 
 - [Roadmap](ROADMAP.md): milestones and what it takes to complete them.
 - [Architecture](docs/architecture.md): proposed parts and how they connect.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
+- [AI usage examples](examples/using-with-ai.md): how a coding subscription or API-backed agent fits.
+- [Development readiness](docs/development.md): quality gates, review policy, and GitHub controls.
+- [Design decisions](docs/design/README.md): durable records of accepted choices and tradeoffs.
 - [Contributing](CONTRIBUTING.md): how to help refine and build the project.
 
 ## License

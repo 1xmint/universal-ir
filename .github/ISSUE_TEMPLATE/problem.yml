@@ -1,0 +1,20 @@
+name: Documentation or tooling problem
+description: Report a reproducible problem with the current repository.
+title: "[Problem] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and expected result
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include revision, relevant environment, commands, and safe output.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "For sensitive security issues, use private vulnerability reporting. Never include working credentials."
