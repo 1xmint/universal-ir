@@ -1,67 +1,84 @@
-# Using Universal IR with a coding agent
+# Real development with a coding agent or API harness
 
-A coding subscription or API key gives your chosen tool access to a model. Universal IR would provide a checked program representation and compiler tools. The coding agent would connect the two.
+These examples describe people using Universal IR in their own projects. They are planned consumer journeys, not instructions for contributing to Universal IR.
 
-Today this repository contains a design, examples, and documentation quality tooling. It cannot yet build an application. The journeys below distinguish actions you can take now from proposed future use.
+There is no installer, project setup integration, usable CLI, compiler, or SDK yet. The reusable-core and CLI-first direction is accepted; the supported languages, source adapters, and exact interfaces still need specifications.
 
-## Today: use an existing coding subscription
+## Example 1: a user with a coding subscription
 
-Use a coding agent that can work with local files and commands. Authenticate through that agent using an access method supported by its provider. Universal IR does not collect your subscription credentials.
+The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.
 
-Clone the project and open the folder in your agent:
+The intended setup is:
 
-~~~sh
-git clone https://github.com/1xmint/universal-ir.git
-cd universal-ir
-git switch -c docs/my-first-contribution
-~~~
+1. Install the released Universal IR CLI once.
+2. Select a new project location or an existing repository.
+3. Initialize the supported project representation and connect it to the coding agent.
+4. Keep the agent's existing subscription authentication.
+5. Start prompting the agent to create, change, or fix the project.
 
-Ask the agent to read README.md, ROADMAP.md, AGENTS.md, and the relevant example before changing anything. Give it a bounded task:
+Setup should establish project intent, supported structure, known checks, and how the agent invokes the CLI. It should surface unsupported code or capabilities before claiming that the project is ready. Exact setup commands and supported agent integrations do not exist yet.
 
-> Review the project task example against the architecture. Find inconsistencies in permission rules or archive behavior. Fix only those documentation issues, run the repository checks, and report the changes, evidence, and remaining questions. Do not invent a working compiler or mark unbuilt milestones complete.
+### New project
 
-Review the diff yourself. Use the [local checks](../CONTRIBUTING.md#local-checks) and submit a pull request. No API key is needed for those checks.
+The user asks:
 
-For milestone 1, a useful design task is:
+> Create a new repository for a project task app. Members can read and create tasks; project administrators can archive them. Set up the project and its checks, then show me how to run it.
 
-> Propose the smallest program format needed to represent and interpret a pure function. Explain values, types, references, errors, and unsupported operations. Include valid and invalid examples. Record the proposal as a design decision and identify choices needing maintainer acceptance. Keep compiler implementation out of this change.
+The existing agent host handles authorized repository creation and ordinary environment operations. Universal IR would provide the supported program representation, bounded edits, checks, and target compilation.
 
-This helps build Universal IR. It does not yet use Universal IR to build your own app.
+The agent would settle requirements, build the graph, check behavior, and generate the supported application artifacts. It would report what passed, what remains unresolved, and how to run the application. The user would not need to maintain separate copies of the same program rules in repeated prompts.
 
-## Today: use an API-backed agent
+See the [task application example](project-tasks.md) for the intended behavior. Repository creation, compilation, and deployment are distinct operations; the agent must stay within the user's authorized task.
 
-An API key alone cannot read a repository or run its commands. Use an existing agent host or your own integration that can call the model, expose scoped file and command tools, and track tool results.
+### Existing project
 
-Authenticate in that host's local settings or environment. Do not paste keys into prompts, examples, Git commits, or pull requests. Access methods and billing depend on the provider; a subscription does not establish API access for every tool.
+The user opens an existing repository and asks:
 
-Point the host at your clone and use the same bounded tasks and checks as above. Set your own model budget and review its tool actions. The repository does not supply this agent host or pay for its model calls.
+> Fix the archive action for project administrators. Keep the existing framework and unrelated code. Reproduce the problem, make the smallest relevant change, and run the project's checks.
 
-## Proposed future: build your own app
+A supported adoption workflow would inspect the current project, identify relevant source and rules, and give the agent a coherent view of the task. The agent would propose a bounded change, receive check results, and repair failures before reporting completion.
 
-Once the core and application targets exist, a user journey could be:
+This requires a source adapter and a defined relationship between existing files and the program graph. The tool must detect stale information after external edits and preserve unrelated code. It must report unsupported parts rather than assume it understands every language, framework, or runtime.
 
-1. Install the released Universal IR CLI and open a separate application workspace.
-2. Use your existing coding agent and its existing model authentication.
-3. Ask for a project task app and settle the permissions and behavior requirements.
-4. Have the agent create a program graph through the supported editing interface.
-5. Validate the candidate graph and run behavior checks.
-6. Accept a checked version and compile it through the TypeScript and PostgreSQL targets.
-7. Review the readable changes and generated artifacts before running or deploying the app.
-8. Ask for the administrator archive change, then repeat the checks and review the data migration.
+The source/graph authority and round-trip policy remain open design work. A partial index of a repository cannot be described as a complete executable representation. The supported subset must be demonstrated on a real existing-project change before this journey is advertised as working.
 
-The model could run remotely while validation and compilation run locally. The library, installer, CLI commands, and integration protocol do not exist yet; their exact interfaces will be decided and documented before release.
+### What the CLI provides
 
-Universal IR would complement the coding agent. It would not automatically provide model access, deployment hosting, or support for every existing framework.
+The CLI is the first entry point into the reusable core. It would expose supported inspection, editing, validation, and compilation operations with automation-friendly results and clear failure behavior.
 
-## Proposed future: embed it in a custom agent
+The user can continue prompting the existing coding agent. Its tool integration must make the CLI available and guide its use; installing a command alone does not make every agent use it automatically.
 
-A developer could use an SDK to inspect a graph, submit an edit against a known version, obtain validation results, and compile supported targets. The developer's agent host would own the model loop and resource access.
+## Example 2: a developer with an API key or existing harness
 
-| Entry point | Main advantage | Main tradeoff |
-| --- | --- | --- |
-| Local CLI | Existing agents can call it through terminal tools across providers and languages | Process overhead and command-result handling |
-| Embedded SDK | Typed, direct integration with a custom host and repeated operations | Language bindings and closer version coupling |
+The developer already owns a model loop, tool execution, authentication, permissions, and a budget. They want to add Universal IR without replacing that harness.
 
-The accepted direction is reusable core, CLI first, SDK later. Both interfaces will use the same core behavior. Exact CLI commands and SDK interfaces remain to be designed; neither is implemented yet. See [decision 0002](../docs/design/0002-cli-first.md).
+The initial integration would expose the CLI as a tool:
 
-Return to the [roadmap](../ROADMAP.md), [architecture](../docs/architecture.md), or [development guide](../docs/development.md).
+1. The harness selects a supported project and establishes its current version.
+2. It requests the relevant program or source-backed view for the task.
+3. The model proposes a supported edit against that version.
+4. The CLI delegates the edit and validation to the core.
+5. The harness receives structured results, including failures and unsupported behavior.
+6. The host runs authorized project checks and supplies the observations to the model.
+7. The model repairs failures; the host accepts or publishes a change only within its authorized scope.
+
+The exact request/result format is not defined yet. This workflow must preserve the distinction between a checked representation, generated artifacts, and live deployment.
+
+The API key stays in the existing harness. Universal IR does not need to own the model conversation, route providers, or charge for model access. A key without a tool-executing host is insufficient to run these operations.
+
+A public SDK comes later for direct, typed integration. It would use the same core behavior as the CLI, so an API harness does not have to wait for an SDK to participate in the first consumer release.
+
+## What counts as success
+
+A usable consumer release must demonstrate:
+
+- A short, documented setup-to-prompt path for a supported coding agent.
+- A new-project task completed with observable checks.
+- A real change or fix in a supported existing repository, preserving unrelated code and the project's build/test workflow.
+- An external harness invoking the CLI and consuming its results.
+- Explicit support boundaries and rejection of stale or unsupported changes.
+- Measured task success, total token use, repair work, latency, review effort, and setup effort against a baseline.
+
+Less busywork and better performance are goals to evaluate. Structure alone does not establish improvements.
+
+The accepted intent is recorded in [decision 0003](../docs/design/0003-real-development-workflows.md). Follow the [roadmap](../ROADMAP.md) and [architecture](../docs/architecture.md) for the remaining design and implementation work. To contribute to Universal IR itself, use [CONTRIBUTING.md](../CONTRIBUTING.md).
