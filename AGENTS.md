@@ -2,9 +2,9 @@
 
 ## Read first
 
-Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md and the relevant worked example.
+Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/specs/local-inventory-v1.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md, examples/local-inventory.md, and the relevant worked example.
 
-This repository contains a proposed runtime design, examples, and executable documentation quality tooling. There is no executable compiler, runtime, or public runtime API.
+This repository contains a read-only inventory prototype, proposed runtime design, examples, and executable quality tooling. There is no executable compiler, runtime, or stable public SDK.
 
 ## Take a bounded task
 
@@ -13,6 +13,8 @@ This repository contains a proposed runtime design, examples, and executable doc
 - Keep changes focused on the authorized task. Raise unresolved product or compatibility choices rather than treating a model recommendation as accepted policy.
 - Use a branch and pull request. Commit, push, create a PR, or merge only within the user's authorized scope.
 - Keep provider authentication and model budgets in the existing agent host. Repository checks need no model calls.
+- Keep inventory logic in universal_ir/inventory.py and the terminal adapter in universal_ir/__main__.py. Preserve read-only target-project behavior, ignore boundaries, versioned identity, bounded views, and explicit optimistic freshness limits. Change the extractor version when established extraction behavior changes incompatibly.
+- Model enrichment and task ranking are optional future adapters. Do not let ranking discard underlying facts or let a model decide structural validity, permissions, freshness, or developer provenance.
 - Do not introduce compiler scaffolding, invented executable syntax, or unsupported feature claims into conceptual examples.
 
 ## Preserve the design
@@ -43,7 +45,7 @@ For future core changes, add meaningful behavior and failure checks. Include inv
 
 Permission checks must cover trusted execution boundaries and requests that bypass the interface. A model explanation is not evidence that behavior is correct.
 
-Add source directories and runtime tooling with executable core code. Python quality tooling does not select the compiler language. Reusable core, CLI first, SDK later is accepted in docs/design/0002-cli-first.md. Keep domain behavior in the core and the CLI as an adapter. The compiler language, final encoding, and exact CLI interfaces remain milestone 1 decisions.
+Python 3.12+ is selected for the bounded inventory prototype under decision 0007; Git evaluates ignore rules. This does not select the executable IR or compiler language. Reusable core, CLI first, SDK later is accepted in docs/design/0002-cli-first.md. Keep domain behavior in the core and the CLI as an adapter. The inventory CLI has a provisional versioned contract; compiler language, final IR encoding, and later executable interfaces remain milestone 1 decisions.
 
 ## Hand off clearly
 

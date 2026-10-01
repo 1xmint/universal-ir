@@ -1,6 +1,6 @@
 # Proposed architecture
 
-The runtime behavior in this document is not implemented. Accepted design contracts are identified below; broader mechanisms remain proposed. The current repository contains documentation, examples, and documentation quality tooling.
+The compiler/runtime behavior in this document remains proposed. A read-only local inventory subset is implemented under [decision 0007](design/0007-local-inventory-proof.md) and its [versioned contract](specs/local-inventory-v1.md). Broader coherence, knowledge, source-editing, and sharing mechanisms remain unimplemented.
 
 ## The flow
 
@@ -32,7 +32,7 @@ Readable views describe both the accepted program and proposed changes. An edit 
 
 An existing agent host owns the model conversation, authentication, tool permissions, and budget. Universal IR would provide the program representation, edit interface, checks, and compilers. The model might run remotely while those tools run locally.
 
-A local CLI will be the first entry point, so existing coding agents can call the tools through terminal commands. A public SDK will follow later for custom hosts. This priority is accepted in [decision 0002](design/0002-cli-first.md); neither interface is implemented yet. See the [usage journeys](../examples/using-with-ai.md).
+A local CLI is the first entry point, so existing coding agents can call tools through terminal commands. The source-run inventory CLI now implements a bounded inspection operation; a public SDK will follow later for custom hosts. This priority is accepted in [decision 0002](design/0002-cli-first.md). See the [working inventory walkthrough](../examples/local-inventory.md) and broader [usage journeys](../examples/using-with-ai.md).
 
 The core owns program representation, validation, editing, interpretation, and compilation behavior. The CLI is an adapter over that core, and the future SDK will use the same behavior. Exact commands, automation outputs, diagnostics, and exit behavior must be specified before CLI release.
 
@@ -135,7 +135,7 @@ A summary such as "project administrators can now archive tasks" must be backed 
 
 The primary comparison is the cost of completing a correct change. Measurements include context and generation tokens, verification and repair work, latency, and review effort. A shorter encoding is useful only if the complete process benefits.
 
-The compiler implementation language, final encoding, deep source adapters, concrete metadata/CLI schemas, source application guarantees, and remote bindings remain undecided. The inventory/coherence behavior contract is specified, but not implemented. Python is used only for repository quality tooling; this document defines no executable syntax or public executable API. Keep the reasons for accepted choices in [design decisions](design/README.md).
+Python is selected for the local inventory prototype, with SHA-256 identities and provisional JSON/CLI contracts. The implementation reconstructs each inventory, matches consecutive captures, and makes optimistic filesystem observation limits explicit. It has no persistent cache, automatic host knowledge integration, or model dependency. Compiler language, final IR encoding, deeper adapters, knowledge schemas, source application guarantees, and remote bindings remain open. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 

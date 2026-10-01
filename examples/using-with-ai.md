@@ -2,7 +2,7 @@
 
 These examples describe people using Universal IR in their own projects. They are planned consumer journeys, not instructions for contributing to Universal IR.
 
-There is no installer, project setup integration, usable CLI, source index, state service, compiler, or SDK yet. The [project-coherence specification](../docs/specs/project-coherence.md) defines the first inventory and knowledge proof. Deep semantic adapters, source editing, and executable interfaces remain later work.
+The [local inventory walkthrough](local-inventory.md) now provides working source-run commands for read-only structure, evidence, and comparison. There is no packaged installer, automatic project/agent setup, state service, compiler, or stable SDK. The [project-coherence specification](../docs/specs/project-coherence.md) defines the broader inventory and knowledge proof; deeper semantics, conversational knowledge, and source editing remain later work.
 
 ## Example 1: a user with a coding subscription
 
@@ -26,7 +26,7 @@ The user asks:
 
 The planned first proof inventories files across languages and connects explicitly declared relationships. The existing agent can propose purpose from that evidence, with interpretations labeled and linked to their inputs. The developer can correct it through normal conversation. Host-attested statements and approved declarations remain distinct from the agent's paraphrases and hypotheses.
 
-Shared configuration and durable knowledge travel in a committed `.uir/` area, with references to existing documents where useful. Local caches, drafts, and uncommitted work stay local by default. Discovery preserves application files and needs no paid model calls; explanation and conversation use the existing host's model and budget. There are no working setup commands yet.
+Shared configuration and durable knowledge will travel in a committed `.uir/` area, with references to existing documents where useful. The current prototype can read optional configuration and document links, but does not write or interpret conversational knowledge. Local inventory preserves application files and needs no model calls; explanation and conversation use the existing host's model and budget. Use the [working commands](local-inventory.md) for inventory; automated setup and knowledge recording remain future work.
 
 The new-project generation and existing-project fixes below describe later consumer capabilities. A first inventory proof does not establish permission correctness or deliver checked source edits.
 
@@ -90,7 +90,7 @@ The initial integration would expose the CLI as a tool:
 6. The host runs authorized project checks and supplies the observations to the model.
 7. The model repairs failures; the host accepts or publishes a change only within its authorized scope.
 
-The exact request/result format is not defined yet. This workflow must preserve the distinction between a checked representation, generated artifacts, and live deployment.
+The [inventory CLI contract](../docs/specs/local-inventory-v1.md) defines its provisional JSON results and errors. The source-editing request/result format is not defined yet. This workflow must preserve the distinction between a checked representation, generated artifacts, and live deployment.
 
 For the first coherence proof, the harness would request inventory and views, submit attributed knowledge, refresh inputs, and optionally exchange published snapshots or observe upstream. The source-editing loop above follows later. It must not promote model interpretations to developer declarations without the specified evidence origin.
 

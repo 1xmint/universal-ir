@@ -33,3 +33,7 @@ The initial CLI should expose only operations the core actually supports. It mus
 The roadmap, architecture, usage examples, and agent guidance must agree on this priority while keeping unimplemented features labeled.
 
 When implementing the CLI, test that its supported operations match the core's behavior, including failures, and provide a repeatable terminal workflow. A future SDK must pass equivalent core behavior checks before release.
+
+## Subsequent decisions
+
+[0007](0007-local-inventory-proof.md) delivers the first bounded source-run inventory CLI with a reusable core and provisional versioned contract. The earlier statement that no CLI existed describes this decision's adoption state; the SDK, compiler, and broader editing interfaces remain unimplemented.

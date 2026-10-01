@@ -69,7 +69,24 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Done when:** The [specification](docs/specs/project-coherence.md), decisions, and related guides agree, their examples and failures are unambiguous, documentation checks and rendering review pass, and the update is published through the checked PR workflow.
 
-**Next gate:** Specify concrete metadata schemas, content identity, filesystem/ignore behavior, view expansion, host provenance, and initial CLI I/O; choose implementation tooling. Transport bindings, access controls, schedules, and retention are required before a remote release. This documentation does not choose those interfaces or the compiler language.
+**Following increment:** The bounded local inventory contract below now specifies and implements initial configuration, content identity, filesystem/ignore behavior, view expansion, and CLI I/O. Conversational knowledge schemas and host provenance remain gates before knowledge recording. Transport bindings, access controls, schedules, and retention are required before a remote release. Executable IR and compiler choices remain open.
+
+#### Read-only local inventory prototype
+
+- [x] Record Python prototype tooling and isolated Git ignore evaluation in [decision 0007](docs/design/0007-local-inventory-proof.md).
+- [x] Specify version-1 configuration, content identity, filesystem boundaries, views, comparison, and CLI errors.
+- [x] Implement a reusable inventory core with a source-run CLI adapter and no model calls or target-project writes.
+- [x] Demonstrate mixed-language inventory, source-linked containment, document links, bounded expansion, and comparison after stopped-operation edits.
+- [x] Test invalid inputs, omissions, boundaries, missing tools, baseline integrity, and detected concurrent edits on Windows and Linux through required CI.
+- [ ] Add persistent compatible local cache reuse and incremental invalidation.
+- [ ] Implement durable conversational knowledge and host-attested provenance.
+- [ ] Evaluate optional model enrichment and task ranking against a deterministic retrieval and existing-agent baseline.
+
+**Purpose:** Ship useful local structure and evidence before model enrichment or infrastructure.
+
+**Completed subset:** The [prototype contract](docs/specs/local-inventory-v1.md) and [working walkthrough](examples/local-inventory.md) describe the implemented inventory subset. Every invocation reconstructs current inputs; matching consecutive captures are an optimistic observation, not an atomic snapshot against arbitrary writers. Full program-format, coherence, and consumer-release milestones remain incomplete.
+
+**Next gate:** Persist compatible local snapshots and define invalidation before claiming warm reuse; specify knowledge revision, attribution, and host integration before recording conversational requirements. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies.
 
 ### 2. Build the core
 
@@ -142,6 +159,6 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 ## Current boundaries
 
-The repository contains documentation, conceptual examples, and documentation quality tooling. It establishes no public executable API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. Only the project-coherence documentation increment is complete here. Compiler language, final encoding, deep source adapters, concrete metadata/CLI schemas, source application/recovery, and remote bindings remain later contracts. Source directories and runtime tooling will arrive with executable code.
+The repository contains a read-only local inventory core and source-run CLI, documentation, conceptual examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence specification and bounded inventory subset are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge/host schemas, persistent caching, source application/recovery, and remote bindings remain later work.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

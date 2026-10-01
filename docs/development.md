@@ -10,7 +10,7 @@ This checklist describes readiness for collaborative development at the current 
 | Defined architectural boundaries | [Architecture](architecture.md) and [accepted foundation decision](design/0001-foundation.md) |
 | Concrete user journeys | [Using the project with AI](../examples/using-with-ai.md) |
 | Reproducible local checks | [Contribution commands](../CONTRIBUTING.md#local-checks), pinned and hashed tooling dependencies |
-| Automated change checks | Documentation workflow checks links, structure, formatting, and checker behavior on pull requests and main |
+| Automated change checks | Required Documentation checks cover links, structure, formatting, checker behavior, and Windows/Linux inventory behavior on pull requests and main |
 | Human ownership and review | CODEOWNERS names @1xmint; the PR template asks for purpose, validation, and remaining risks |
 | Durable project decisions | [Decision records](design/README.md) |
 | Agent task boundaries and handoffs | [AGENTS.md](../AGENTS.md) |
@@ -19,7 +19,7 @@ This checklist describes readiness for collaborative development at the current 
 
 ## GitHub policy
 
-The repository uses squash merging and deletes merged branches. The active default-branch ruleset requires the **Documentation checks** status, an up-to-date branch, and resolved review conversations. There are no configured bypass actors.
+The repository uses squash merging and deletes merged branches. The active default-branch ruleset requires the **Documentation checks** status, an up-to-date branch, and resolved review conversations. That job now explicitly requires successful Windows and Linux inventory tests; it fails if either prerequisite does not succeed. There are no configured bypass actors.
 
 There is one maintainer, so the required independent approval count is zero. CODEOWNERS identifies ownership; it is not evidence that an independent review happened. Raise that count and require owner review when another independent maintainer is available.
 
@@ -47,7 +47,7 @@ The policy follows GitHub's [ruleset model](https://docs.github.com/en/repositor
 
 Before building the executable program core, milestone 1 must define the supported subset, operation meanings, errors, reference identities, effect and capability boundaries, edit acceptance, version evolution, and valid/invalid fixtures. Source-editing work also needs semantic mappings, invalidation, and application/recovery guarantees. Those decisions need a recorded rationale. The [CLI-first decision](design/0002-cli-first.md) fixes delivery priority, and [decision 0004](design/0004-universal-coherence.md) establishes universal coherence and freshness goals.
 
-The [portable project-coherence specification](specs/project-coherence.md) now defines the first inventory, knowledge, lifecycle, and optional collaboration contract. Decisions 0005 and 0006 settle source authority, portable storage, and conversational provenance. Before implementing that increment, specify concrete metadata schemas, content identity, filesystem/ignore behavior, view expansion, compatible extraction versions, host provenance integration, and CLI I/O, and choose tooling. Remote release needs transport/access/trust, scheduling, and retention contracts. Deep source editing and executable IR retain their separate gates.
+The [portable project-coherence specification](specs/project-coherence.md) defines inventory, knowledge, lifecycle, and optional collaboration requirements. Decisions 0005 and 0006 settle source authority, portable storage, and conversational provenance. [Decision 0007](design/0007-local-inventory-proof.md) and the [local inventory contract](specs/local-inventory-v1.md) now define and implement the bounded configuration, identity, filesystem, views, and CLI subset in Python. Each request reconstructs inputs; persistent caching and knowledge/host provenance remain next gates. Remote release needs transport/access/trust, scheduling, and retention contracts. Deeper source editing and executable IR retain their separate gates.
 
 Keep an interpreter as a reference for target behavior. Passing type checks alone must not be presented as proof that a program matches human intent or is safe to deploy.
 

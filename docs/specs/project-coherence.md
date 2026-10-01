@@ -2,7 +2,7 @@
 
 **Status:** Accepted design specification, revision 0, under [decision 0005](../design/0005-portable-project-state.md) and [decision 0006](../design/0006-conversational-knowledge.md).
 
-This specifies required behavior for the first coherence proof. Nothing described here is implemented. Operation names and record categories are conceptual, not executable commands, wire schemas, or a public API. The implementation language, serialization, hashing scheme, and transport bindings remain separate implementation decisions.
+This specifies required behavior for the broader first coherence proof. The [local inventory version-1 contract](local-inventory-v1.md) implements a bounded subset: read-only capture, containment, configured document links, bounded views, and comparison. It explicitly limits freshness to optimistic consecutive captures on a trusted filesystem. Persistent knowledge, caches, sharing, and remote awareness remain unimplemented. Operation names and record categories here remain conceptual; the narrower contract records the prototype's Python tooling, JSON, hashing, and CLI I/O without selecting executable IR encoding or remote bindings.
 
 ## Purpose and first-proof boundary
 
@@ -201,7 +201,7 @@ A GitLab or self-hosted Git project can use refs and fetching; webhooks are opti
 
 ## Acceptance scenarios
 
-These are requirements for future implementation, not passing tests today.
+These are requirements for the broader coherence implementation. Only the bounded inventory cases identified in the [local prototype contract](local-inventory-v1.md) are exercised today; that evidence does not complete the lifecycle, sharing, knowledge, or semantic requirements below.
 
 | Scenario | Expected outcome |
 | --- | --- |
@@ -245,7 +245,7 @@ Deterministic inventory is designed to need no model calls. AI interpretation an
 
 This documentation increment is complete when the specification, decision records, architecture, roadmap, and usage guidance agree; examples and failure outcomes are unambiguous; documentation checks and rendering review pass; and the update is published through the checked PR workflow. It does not complete the full program-format milestone.
 
-Before executable work, specify concrete metadata schemas and encoding, content identity/canonicalization, supported filesystem and ignore behavior, compatible extractor versions, view pagination, host provenance integration, and initial CLI I/O. Before remote release, define transport bindings, access controls, trust configuration, scheduling, and artifact retention. These are explicit later gates, not permission to infer semantics or hide incompatibility.
+The local prototype now specifies initial configuration, JSON encoding, content identity/canonicalization, filesystem and ignore behavior, extraction compatibility, pagination, and CLI I/O. Durable knowledge schemas, host provenance integration, cache compatibility, and persistent workspace identity remain gates before those operations are implemented. Before remote release, define transport bindings, access controls, trust configuration, scheduling, and artifact retention. These are explicit later gates, not permission to infer semantics or hide incompatibility.
 
 ## Supporting references
 

@@ -12,6 +12,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0004](0004-universal-coherence.md) | Accepted | Universal foundation, connected views, and freshness goals |
 | [0005](0005-portable-project-state.md) | Accepted | Local project state, reusable snapshots, and published collaboration |
 | [0006](0006-conversational-knowledge.md) | Accepted | AI-prefilled, attributable conversational project knowledge |
+| [0007](0007-local-inventory-proof.md) | Accepted | Read-only Python inventory, provisional CLI, and explicit observation boundaries |
 
 ## Adding a decision
 
@@ -27,4 +28,4 @@ Record an accepted decision through the pull request that adopts it. Link to any
 
 Reusable core, CLI first, SDK later, real-development consumer journeys, and universal coherence remain accepted. Decisions 0005 and 0006 now establish existing-source authority, repository knowledge with local caches, optional shared snapshots, published-revision awareness, inventory-first scope, and conversational knowledge provenance.
 
-The [project-coherence specification](../specs/project-coherence.md) is a completed documentation increment, not an implemented feature or the full program-format milestone. Executable IR semantics, implementation language, encoding, deep source adapters, concrete metadata/CLI schemas, source application/recovery, and remote bindings still need implementation contracts. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
+The [project-coherence specification](../specs/project-coherence.md) is a completed documentation increment. Decision 0007 and its [version-1 contract](../specs/local-inventory-v1.md) implement a bounded local inventory subset, not the full program-format or coherence milestone. Executable IR semantics, compiler language, final encoding, deeper adapters, knowledge/host schemas, source application/recovery, and remote bindings still need contracts. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
