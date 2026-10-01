@@ -37,3 +37,5 @@ Evaluate task success, total token use, repair work, latency, review effort, and
 ## Subsequent decisions
 
 [0005](0005-portable-project-state.md) resolves source authority and portable state storage, with local operation and optional published collaboration. [0006](0006-conversational-knowledge.md) defines AI-prefilled purpose and attributable conversation-derived knowledge. The [coherence specification](../specs/project-coherence.md) covers the first inventory proof; checked source edits and the full consumer release remain future work.
+
+[0007](0007-local-inventory-proof.md) implements a bounded inventory CLI for use in real projects. Earlier CLI-absence statements describe the decision's adoption state; the installer, automatic setup, SDK, and full change/generation journeys remain future work.

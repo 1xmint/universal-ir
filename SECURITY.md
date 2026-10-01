@@ -2,7 +2,7 @@
 
 ## Current scope
 
-Universal IR has no released compiler or runtime. Security reports can still concern the development tooling, GitHub workflows, dependency handling, or a concrete flaw in the proposed capability model.
+Universal IR has no released compiler or runtime. Security reports can concern the read-only inventory prototype, development tooling, GitHub workflows, dependency handling, or a concrete flaw in the proposed capability model. Inventory assumes trusted local files and is not a sandbox against malicious concurrent filesystem writers; its output is not a security or secret-sanitization check.
 
 ## Report privately
 

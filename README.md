@@ -16,7 +16,7 @@ Connect purpose, structure, behavior, and evidence in one shared representation.
 
 For graph-managed programs, let AI propose small structured edits, check each candidate, and use target compilers to produce runnable software. Different targets would handle how supported programs run on a server, in a browser, or on another system.
 
-For existing projects, the accepted design keeps source files authoritative and builds a rebuildable view of supported facts. Shared configuration and durable project knowledge travel in a committed `.uir/` area; local caches and working views describe each checkout. Optional shared snapshots can reuse compatible extraction. External edits must be reconciled before presenting a view as current. None of these operations is implemented yet.
+For existing projects, the accepted design keeps source files authoritative and builds a rebuildable view of supported facts. A first read-only inventory prototype now captures files, containment, optional configuration, document links, and current content identities. Committed durable knowledge, local caches, and optional shared snapshots remain later increments; views must remain tied to actual inputs.
 
 Readable views would help people and agents understand a project, review a change, and trace behavior back to its rules and evidence. Source state, check results, deployments, and runtime observations would remain distinct.
 
@@ -24,9 +24,21 @@ The accepted delivery direction is [reusable core, CLI first, SDK later](docs/de
 
 ## Current state
 
-This repository contains documentation, examples, and documentation quality tooling. There is no executable program format, source index, state service, usable CLI, compiler, runtime, or public executable API yet. Broad software support, fast coherent views, and lower token costs are goals to test, not demonstrated results.
+This repository contains a working read-only local inventory prototype, documentation, examples, and quality tooling. It has no executable program format, semantic source adapter, state service, compiler, runtime, or stable public SDK. Broad software support, fast coherent views, and lower token costs are goals to test, not demonstrated results.
 
-The [portable project-coherence specification](docs/specs/project-coherence.md) defines the first proof: inventory across languages, connected views, conversational project knowledge, and freshness. Deep semantic adapters, checked source edits, executable IR, and compilers follow in later increments. Concrete metadata schemas, extraction/CLI interfaces, and implementation language must be specified before building that proof; final executable IR encoding remains open.
+The [portable project-coherence specification](docs/specs/project-coherence.md) defines the broader first proof: inventory across languages, connected views, conversational project knowledge, and freshness. The [local inventory contract](docs/specs/local-inventory-v1.md) implements its initial bounded subset in Python, with provisional versioned JSON and source-run CLI I/O. Conversational knowledge, caching, deeper adapters, checked source edits, and compilation follow later; executable IR language and encoding remain open.
+
+## Try the first working command
+
+With Python 3.12+ and Git installed, run from this checkout:
+
+~~~sh
+python -m universal_ir inventory /path/to/your/project
+~~~
+
+On Windows, the repository's development environment can use `.venv\Scripts\python -m universal_ir inventory "C:\path\to\your\project"`.
+
+The command leaves the selected project untouched and returns a bounded JSON overview with containment, guidance candidates, classification hypotheses, content identity, freshness, and exclusions. Expand an included directory with `--path services`; save `--full` output for later `--baseline` comparison. It also works on non-Git folders, but requires the Git executable for ignore rules. Each request rescans contents; there is no cache or ongoing monitoring. See the [working walkthrough](examples/local-inventory.md) for setup, comparison, harness integration, and limitations.
 
 ## Intended use in your own projects
 
@@ -35,7 +47,7 @@ The intended setup is: install the CLI, connect a supported new or existing proj
 - **Coding subscription:** Keep using your existing coding agent and authentication. Its terminal tools invoke the Universal IR CLI while it creates a project, changes a feature, or fixes a supported existing repository.
 - **API-backed harness:** Register the CLI as a tool in your existing model loop. Use its structured results and checks to guide work; adopt a public SDK later if a direct integration is useful.
 
-These are planned consumer workflows, not working setup instructions. There is no installer or usable CLI yet. The first design lets the existing agent prefill purpose from evidence and refine it through normal conversation, while keeping interpretations and developer declarations distinguishable. Local inventory requires no model calls by design; AI interpretation and agent work have separate costs to measure.
+The full consumer workflows remain planned. The inventory CLI can be invoked today from the source checkout; there is no packaged installer or automatic agent integration. The broader design lets the existing agent prefill purpose and refine it through conversation while keeping interpretations and developer declarations distinguishable. This prototype does not persist that knowledge. Local inventory makes no model calls; AI interpretation and agent work have separate costs to measure.
 
 The [coherence specification](docs/specs/project-coherence.md) covers local and optional shared views, including awareness of published changes before a graph is ready. The broader [adoption proposal](docs/existing-repositories.md) covers future checked source changes, whose application guarantees still need contracts and demonstration.
 
@@ -47,6 +59,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Architecture](docs/architecture.md): proposed parts and how they connect.
 - [Coherent project views](docs/coherence.md): nested structure, cross-cutting relationships, and different kinds of state.
 - [Portable project-coherence specification](docs/specs/project-coherence.md): repository storage, conversational knowledge, lifecycle, and collaboration contracts.
+- [Local inventory prototype](examples/local-inventory.md): working commands, with the [versioned contract](docs/specs/local-inventory-v1.md).
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.

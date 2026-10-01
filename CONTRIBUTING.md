@@ -1,6 +1,6 @@
 # Contributing
 
-Start with the [README](README.md), [architecture](docs/architecture.md), [roadmap](ROADMAP.md), and [development guide](docs/development.md). The current runtime design is proposed; documentation quality tooling is executable.
+Start with the [README](README.md), [architecture](docs/architecture.md), [roadmap](ROADMAP.md), and [development guide](docs/development.md). The compiler/runtime design remains proposed; local inventory and quality tooling are executable.
 
 ## Propose a change
 
@@ -12,7 +12,7 @@ Keep each pull request focused on one coherent change. Explain the problem and r
 
 ## Local checks
 
-Install Python 3.12 or newer and Git. These are documentation tooling requirements, not a choice of compiler implementation language.
+Install Python 3.12 or newer and Git. They run quality tooling and the local inventory prototype, not an executable IR compiler. Inventory itself uses the standard library and Git; the pinned Markdown dependency is for documentation checks only.
 
 Create an isolated environment:
 
@@ -40,7 +40,7 @@ The checker uses a Markdown parser to check local links and heading anchors, doc
 
 The checker supports CommonMark links, headings, tables, and strikethrough. Use Markdown links rather than raw HTML links. Inspect GitHub rendering when changing tables, diagrams, or other presentation-sensitive content. Checks do not establish semantic agreement between documents; the reviewer must inspect that.
 
-The documentation workflow runs the checker and its failure-oriented tests. Dependency versions and artifact hashes are pinned. Dependabot proposes dependency updates; validate the updated lock hashes and both commands before merging.
+The workflow runs documentation checks and checker tests, plus inventory behavior/failure tests on Windows and Linux with Python 3.12. The required Documentation checks job explicitly fails unless both inventory jobs pass, including when a prerequisite fails. Dependency versions and artifact hashes are pinned. Dependabot proposes dependency updates; validate the updated lock hashes and both local commands before merging.
 
 ## Review and publication
 
@@ -54,7 +54,7 @@ For agent contributions, include scope, changed behavior, commands and outcomes,
 
 Keep important accepted choices in numbered [decision records](docs/design/README.md), including their reasons, tradeoffs, and compatibility effects. Record acceptance through the pull request that adopts the decision. Preserve superseded records.
 
-Reusable core, CLI first, SDK later is accepted in [decision 0002](docs/design/0002-cli-first.md). The compiler implementation language, final encoding, and exact CLI interfaces remain decisions for milestone 1. Add compiler source directories and runtime build tooling when implementing the core.
+Reusable core, CLI first, SDK later is accepted in [decision 0002](docs/design/0002-cli-first.md). [Decision 0007](docs/design/0007-local-inventory-proof.md) chooses Python for the inventory prototype and specifies its provisional CLI. Keep reusable behavior in `universal_ir/inventory.py` and terminal handling in `universal_ir/__main__.py`. Compiler language, final IR encoding, and later executable interfaces remain milestone 1 decisions.
 
 ## Provide evidence
 

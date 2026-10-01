@@ -1,6 +1,6 @@
 # Coherent views of complex software
 
-The universal-foundation direction is accepted in [decision 0004](design/0004-universal-coherence.md). The first inventory, knowledge, lifecycle, and collaboration contracts are specified in [portable project coherence](specs/project-coherence.md), under decisions [0005](design/0005-portable-project-state.md) and [0006](design/0006-conversational-knowledge.md). Broader semantic mechanisms below remain proposed. There is no working project index, state service, CLI, or compiler yet.
+The universal-foundation direction is accepted in [decision 0004](design/0004-universal-coherence.md). Inventory, knowledge, lifecycle, and collaboration requirements are specified in [portable project coherence](specs/project-coherence.md), under decisions [0005](design/0005-portable-project-state.md) and [0006](design/0006-conversational-knowledge.md). A [local inventory subset](specs/local-inventory-v1.md) now provides a read-only CLI, containment, document links, bounded views, and content comparison. Deeper semantics, persistent knowledge, state services, and compilation remain future work.
 
 ## What instantly coherent means
 

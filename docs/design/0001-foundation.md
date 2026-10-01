@@ -29,3 +29,7 @@ The single-maintainer review policy avoids requiring approval from a nonexistent
 ## Validation
 
 The [development guide](../development.md) states the local commands and GitHub controls. Quality checks, checker tests, CI results, and the configured repository rules provide evidence for development readiness at this stage.
+
+## Subsequent decisions
+
+[0007](0007-local-inventory-proof.md) expands Python's use from quality tooling to a bounded read-only inventory prototype. The executable IR and compiler language remain open, and the original program-core gates still apply. Required documentation status now also gates Windows/Linux inventory tests.
