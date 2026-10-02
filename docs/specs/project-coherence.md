@@ -120,6 +120,8 @@ Capture selected project-relevant goals, requirements, and decisions, not every 
 
 When supporting inputs change, mark dependent interpretations and summaries stale and allow the host to refresh them. Refresh need not call a model for unaffected records. Changed code must not silently rewrite declared intent. Report a known discrepancy when there is evidence; inventory alone cannot discover every behavioral violation of a requirement.
 
+The subsequent [knowledge record specification](project-knowledge-v1.md) defines prototype schemas, source projections, attribution/history dimensions, and failure outcomes. It remains documentation: a host proof binding and checked acceptance protocol must be demonstrated before a writer or verified developer provenance ships. See the [correction and collaboration walkthrough](../../examples/knowledge-lifecycle.md).
+
 ## Shared snapshots and local fallback
 
 Snapshot exchange is optional and provider-independent. Uncommitted overlays remain local by default. Exporting a snapshot for a published revision must identify that exact revision's inputs; a dirty local snapshot cannot be mislabeled as the branch revision. Shared snapshot contents do not overwrite local source, configuration, or declarations on import.

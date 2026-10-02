@@ -1,0 +1,296 @@
+{
+  "format": "uir.inventory-cost.v1",
+  "recorded_at": "2026-10-02T01:06:53.270535+00:00",
+  "tool_source_id": "sha256:bd60831abcfe68ab73207d4e1cfc11d8e15c733b4397734805d8b3c35616aebc",
+  "tool_source_files": {
+    "universal_ir/__init__.py": "sha256:e6ecfcc7c6aeec526267aba299de56f3c240ddb176893f36a7f8559bf0e7633c",
+    "universal_ir/__main__.py": "sha256:7a47cde7d97b6501d3a6ca2c94938b501078a792525b4e7941f706189ad645b4",
+    "universal_ir/cache.py": "sha256:551977c237c60b98a1c5228df7146ac52e1e35e95ea69595b1e35726e2beae7c",
+    "universal_ir/inventory.py": "sha256:cfbe5eb69520077c4b4cc3f353fa4b709aa3ca1455bdc5f1f5ebc65e42311d2c",
+    "scripts/measure_inventory.py": "sha256:5de109e608992b8716ff29c57a347cb9edf6236bdeb9343d958587748f9d45c9"
+  },
+  "tool_source_unchanged": true,
+  "inventory_format": "uir.inventory.v1",
+  "extractor": "inventory.v1",
+  "python": "3.14.4",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "corpus": "synthetic_100_opaque_mixed_extension_files_plus_guidance_and_ignore",
+  "repetitions": 3,
+  "order": [
+    "uncached",
+    "cold_cache",
+    "warm_cache"
+  ],
+  "model_calls": 0,
+  "network_transfer_bytes": 0,
+  "unmeasured": [
+    "git_child_cpu",
+    "peak_memory",
+    "separate_extraction_and_verification",
+    "separate_cache_read_validation_and_write",
+    "model_tokens",
+    "agent_task_success",
+    "repair_attempts",
+    "review_effort"
+  ],
+  "cold_meaning": "empty_tool_cache_not_cold_os_filesystem_cache",
+  "summary": {
+    "uncached": {
+      "successful_samples": 3,
+      "median_process_wall_ns": 1069932200
+    },
+    "cold_cache": {
+      "successful_samples": 3,
+      "median_process_wall_ns": 1058352700
+    },
+    "warm_cache": {
+      "successful_samples": 3,
+      "median_process_wall_ns": 1060901700
+    }
+  },
+  "trials": [
+    {
+      "trial": 1,
+      "comparison": "matching_inventory_identities_and_expected_cache_states",
+      "samples": [
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 15873,
+          "cache": null,
+          "artifact_bytes": 0,
+          "timings": {
+            "inventory_with_freshness_ns": 992369600,
+            "cache_total_ns": 0,
+            "view_ns": 751300,
+            "json_encoding_ns": 144400
+          },
+          "worker_wall_ns": 993543800,
+          "worker_cpu_ns_excluding_git": 312500000,
+          "process_wall_ns": 1132708700,
+          "mode": "uncached"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16199,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "miss",
+            "publication": "stored",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-0/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 888774000,
+            "cache_total_ns": 21253400,
+            "view_ns": 707500,
+            "json_encoding_ns": 114400
+          },
+          "worker_wall_ns": 911288600,
+          "worker_cpu_ns_excluding_git": 281250000,
+          "process_wall_ns": 1058352700,
+          "mode": "cold_cache"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16198,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "hit",
+            "publication": "reused",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-0/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 901440300,
+            "cache_total_ns": 12159400,
+            "view_ns": 777700,
+            "json_encoding_ns": 108100
+          },
+          "worker_wall_ns": 914959800,
+          "worker_cpu_ns_excluding_git": 328125000,
+          "process_wall_ns": 1060901700,
+          "mode": "warm_cache"
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "comparison": "matching_inventory_identities_and_expected_cache_states",
+      "samples": [
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 15873,
+          "cache": null,
+          "artifact_bytes": 0,
+          "timings": {
+            "inventory_with_freshness_ns": 915561200,
+            "cache_total_ns": 0,
+            "view_ns": 704900,
+            "json_encoding_ns": 103100
+          },
+          "worker_wall_ns": 916632700,
+          "worker_cpu_ns_excluding_git": 281250000,
+          "process_wall_ns": 1050803900,
+          "mode": "uncached"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16199,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "miss",
+            "publication": "stored",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-1/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 902814500,
+            "cache_total_ns": 12220700,
+            "view_ns": 705200,
+            "json_encoding_ns": 118300
+          },
+          "worker_wall_ns": 916279800,
+          "worker_cpu_ns_excluding_git": 328125000,
+          "process_wall_ns": 1054624700,
+          "mode": "cold_cache"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16198,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "hit",
+            "publication": "reused",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-1/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 897344300,
+            "cache_total_ns": 12033300,
+            "view_ns": 726500,
+            "json_encoding_ns": 102700
+          },
+          "worker_wall_ns": 910661700,
+          "worker_cpu_ns_excluding_git": 312500000,
+          "process_wall_ns": 1047864300,
+          "mode": "warm_cache"
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "comparison": "matching_inventory_identities_and_expected_cache_states",
+      "samples": [
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 15873,
+          "cache": null,
+          "artifact_bytes": 0,
+          "timings": {
+            "inventory_with_freshness_ns": 933769200,
+            "cache_total_ns": 0,
+            "view_ns": 714600,
+            "json_encoding_ns": 116700
+          },
+          "worker_wall_ns": 934880600,
+          "worker_cpu_ns_excluding_git": 265625000,
+          "process_wall_ns": 1069932200,
+          "mode": "uncached"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16199,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "miss",
+            "publication": "stored",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-2/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 1082109500,
+            "cache_total_ns": 11401000,
+            "view_ns": 727700,
+            "json_encoding_ns": 114600
+          },
+          "worker_wall_ns": 1094789800,
+          "worker_cpu_ns_excluding_git": 296875000,
+          "process_wall_ns": 1238836300,
+          "mode": "cold_cache"
+        },
+        {
+          "status": "ok",
+          "snapshot": "sha256:a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998",
+          "manifest_identity_valid": true,
+          "ignore_engine": "git-2.53.0",
+          "included_files": 103,
+          "included_file_bytes": 80057,
+          "context_json_bytes": 16198,
+          "cache": {
+            "format": "uir.local-cache.v1",
+            "lookup": "hit",
+            "publication": "reused",
+            "verification": "full_local_capture",
+            "artifact": "<temporary workspace>/cache-2/uir-inventory-cache-v1/a5192e0a8425576577f35c500aab4b0d7772f72c72b3546e88d050962c98f998.json"
+          },
+          "artifact_bytes": 17774,
+          "timings": {
+            "inventory_with_freshness_ns": 1038090700,
+            "cache_total_ns": 12156300,
+            "view_ns": 750100,
+            "json_encoding_ns": 106200
+          },
+          "worker_wall_ns": 1051604000,
+          "worker_cpu_ns_excluding_git": 328125000,
+          "process_wall_ns": 1186519500,
+          "mode": "warm_cache"
+        }
+      ]
+    }
+  ]
+}

@@ -28,6 +28,8 @@ This repository contains a working read-only local inventory prototype, document
 
 The [portable project-coherence specification](docs/specs/project-coherence.md) defines the broader first proof: inventory across languages, connected views, conversational project knowledge, and freshness. The [local inventory contract](docs/specs/local-inventory-v1.md) and [local cache contract](docs/specs/local-cache-v1.md) implement bounded subsets in Python, with provisional versioned JSON and source-run CLI I/O. Conversational knowledge, incremental extraction, deeper adapters, checked source edits, and compilation follow later; executable IR language and encoding remain open.
 
+The [knowledge record specification](docs/specs/project-knowledge-v1.md) now defines evidence, attribution, revisions, and failure meanings before a writer or host integration is built. The [local measurement tool and baseline](benchmarks/README.md) record uncached/cold/warm costs on a small synthetic fixture; they do not demonstrate faster agent work or reduced tokens.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
