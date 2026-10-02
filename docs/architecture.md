@@ -1,6 +1,6 @@
 # Proposed architecture
 
-The compiler/runtime behavior in this document remains proposed. A read-only local inventory subset is implemented under [decision 0007](design/0007-local-inventory-proof.md) and its [versioned contract](specs/local-inventory-v1.md), with optional verified local snapshots under [decision 0008](design/0008-verified-local-snapshots.md). Broader coherence, knowledge, source-editing, and sharing mechanisms remain unimplemented.
+The compiler/runtime behavior in this document remains proposed. A read-only local inventory subset is implemented under [decision 0007](design/0007-local-inventory-proof.md) and its [versioned contract](specs/local-inventory-v1.md), with optional verified local snapshots under [decision 0008](design/0008-verified-local-snapshots.md). Read-only knowledge inspection now follows [decision 0010](design/0010-read-only-knowledge-inspection.md); broader coherence, authenticated recording, source-editing, and sharing mechanisms remain unimplemented.
 
 ## The flow
 
@@ -82,7 +82,7 @@ Declared intent needs explicit ownership. Compiler facts, syntax, hypotheses, co
 
 [Decision 0006](design/0006-conversational-knowledge.md) lets the existing agent prefill purpose from evidence and refine knowledge through normal conversation. Host-attested developer statements remain distinct from model interpretations. A model cannot establish approval merely by claiming it occurred, and changed code cannot silently rewrite a declared requirement. Host provenance integration is still to be implemented.
 
-The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 0009](design/0009-knowledge-and-cost-gates.md), specifies immutable revisions, scoped source projections, explicit evidence, and separate attribution/history states. Source projections exclude knowledge metadata to prevent self-invalidation. Authenticated receipt bindings and checked acceptance concurrency/recovery remain gates; the inventory does not interpret these records yet.
+The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 0009](design/0009-knowledge-and-cost-gates.md), specifies immutable revisions, scoped source projections, explicit evidence, and separate attribution/history states. Source projections exclude knowledge metadata to prevent self-invalidation. The separate [knowledge reader](specs/knowledge-inspection-v1.md) now validates included records, traces matching/changed/unresolved support, and displays competing structural heads with unverified claims. Matching inventory captures bracket its record/quote reads. It does not compute effective approved intent; authenticated receipt bindings and checked acceptance concurrency/recovery remain gates before writing.
 
 ## Lifecycle and different kinds of state
 
@@ -141,7 +141,7 @@ The primary comparison is the cost of completing a correct change. Measurements 
 
 The [local inventory baseline](../benchmarks/README.md) measures the narrower current core in fresh workers, retaining raw attempts and missing measurements. Its small synthetic run supports no general speedup or agent-token claim. Full-task and sharing comparisons remain future experiments.
 
-Python is selected for the local inventory prototype, with SHA-256 identities and provisional JSON/CLI contracts. The implementation reconstructs each inventory, matches consecutive captures, and makes optimistic filesystem observation limits explicit. Optional local snapshots are persisted and reused only after full verification; they do not yet reduce extraction work. It has no automatic host knowledge integration or model dependency. Compiler language, final IR encoding, incremental extraction, deeper adapters, knowledge schemas, source application guarantees, and remote bindings remain open. Keep the reasons for accepted choices in [design decisions](design/README.md).
+Python is selected for the local inventory prototype, with SHA-256 identities and provisional JSON/CLI contracts. The implementation reconstructs each inventory, matches consecutive captures, and makes optimistic filesystem observation limits explicit. Optional local snapshots are persisted and reused only after full verification; they do not yet reduce extraction work. It has no automatic host knowledge integration or model dependency. Compiler language, final IR encoding, incremental extraction, deeper adapters, authenticated knowledge acceptance, source application guarantees, and remote bindings remain open. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 

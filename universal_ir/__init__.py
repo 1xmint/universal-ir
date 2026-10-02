@@ -1,1 +1,1 @@
-"""Read-only project inventory prototype; no public SDK stability promise."""
+"""Read-only project inspection prototype; no public SDK stability promise."""
