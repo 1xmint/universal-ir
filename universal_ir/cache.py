@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import stat
 from tempfile import mkstemp
+from time import sleep
 
 from .inventory import canonical, identity, parse_json
 
@@ -78,6 +79,19 @@ def _lookup(path: Path, expected: dict, encoded: bytes):
         return "corrupt", None
 
 
+def _matches_existing(path: Path, encoded: bytes) -> bool:
+    _check_artifact(path)
+    try:
+        descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_BINARY", 0) |
+                             getattr(os, "O_NOFOLLOW", 0))
+    except FileNotFoundError:
+        return False
+    with os.fdopen(descriptor, "rb") as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            raise CacheUnavailable("Cache artifact is not a regular file.")
+        return stream.read(len(encoded) + 1) == encoded
+
+
 def _publish(path: Path, encoded: bytes):
     """Publish a whole artifact; interrupted temporary files are never read."""
     _check_directories(path.parent)
@@ -92,8 +106,20 @@ def _publish(path: Path, encoded: bytes):
             stream.flush()
             os.fsync(stream.fileno())
         _check_directories(path.parent)
-        _check_artifact(path)
-        os.replace(temporary, path)
+        for attempt in range(4):
+            try:
+                # Another identical writer may have finished since lookup.
+                # Leave accepted bytes in place rather than replace readers' file.
+                if _matches_existing(path, encoded):
+                    return
+                os.replace(temporary, path)
+                return
+            except PermissionError as error:
+                # Windows can briefly deny replacement while a reader is open.
+                # Persistent permission failures still become cache diagnostics.
+                if getattr(error, "winerror", None) not in {5, 32, 33} or attempt == 3:
+                    raise
+                sleep(0.05)
     finally:
         if temporary is not None:
             try:

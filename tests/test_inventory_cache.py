@@ -224,9 +224,44 @@ class CacheTests(unittest.TestCase):
         with ThreadPoolExecutor(max_workers=4) as pool:
             results = list(pool.map(lambda _: cache_snapshot(copy.deepcopy(fresh), self.store), range(8)))
         self.assertTrue(all(item["snapshot"] == fresh["snapshot"] for item in results))
-        self.assertTrue(all("diagnostic" not in item["cache"] for item in results))
+        self.assertTrue(all("diagnostic" not in item["cache"] for item in results), results)
         self.assertEqual(self.run_cache()["cache"]["lookup"], "hit")
         self.assertEqual(len(list((self.store / NAMESPACE).glob("*.json"))), 1)
+
+    def test_identical_completed_publication_is_not_replaced_again(self):
+        first = self.run_cache()
+        artifact = Path(first["cache"]["artifact"])
+        with patch("universal_ir.cache.os.replace") as replace:
+            _publish(artifact, artifact.read_bytes())
+        replace.assert_not_called()
+        self.assertEqual(list(artifact.parent.glob(".pending-*.tmp")), [])
+
+    def test_windows_sharing_errors_retry_boundedly_and_persistent_failure_is_visible(self):
+        sharing = PermissionError("reader still open")
+        sharing.winerror = 32
+        real_replace = os.replace
+        calls = []
+
+        def blocked_once(source, destination):
+            calls.append(destination)
+            if len(calls) == 1:
+                raise sharing
+            real_replace(source, destination)
+
+        with patch("universal_ir.cache.os.replace", side_effect=blocked_once), \
+                patch("universal_ir.cache.sleep") as sleep:
+            result = self.run_cache()
+        self.assertEqual(result["cache"]["publication"], "stored")
+        self.assertEqual(len(calls), 2)
+        sleep.assert_called_once_with(0.05)
+        self.source.write_bytes(b"print(2)\n")
+        with patch("universal_ir.cache.os.replace", side_effect=sharing) as replace, \
+                patch("universal_ir.cache.sleep") as sleep:
+            result = self.run_cache()
+        self.assertEqual(result["cache"]["publication"], "unavailable")
+        self.assertEqual(replace.call_count, 4)
+        self.assertEqual(sleep.call_count, 3)
+        self.assertEqual(result["status"], "ok")
 
     def test_late_old_publication_cannot_replace_newer_snapshot(self):
         old = inventory(self.root)

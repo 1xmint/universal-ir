@@ -47,10 +47,10 @@ The [raw three-trial report](results/local-inventory-windows.json) was recorded 
 
 | Mode | Median worker-process wall time | Successful samples |
 | --- | --- | --- |
-| Uncached | 1.142 seconds | 3 |
-| Cold tool-cache | 1.085 seconds | 3 |
-| Warm tool-cache | 1.132 seconds | 3 |
+| Uncached | 4.004 seconds | 3 |
+| Cold tool-cache | 3.878 seconds | 3 |
+| Warm tool-cache | 3.692 seconds | 3 |
 
 All nine samples had matching inventory IDs and expected storage states. The snapshot artifact was 17,774 bytes; the first trial's default context JSON was about 15.9 KB without cache metadata and 16.2 KB with it. Use the raw report for exact values.
 
-These timings are close, and the experiment supports no general speedup claim. Warm requests still perform full source verification. The benchmark's failure behavior and report arithmetic are tested in Windows/Linux CI; that does not reproduce this Windows timing on every runner. Expand corpora, record finer costs, and use fair task-level comparisons before selecting optimizations.
+These are observations from one small fixed-order run, and the experiment supports no general speedup claim. Warm requests still perform full source verification. The benchmark's failure behavior and report arithmetic are tested in Windows/Linux CI; that does not reproduce this Windows timing on every runner. Expand corpora, record finer costs, and use fair task-level comparisons before selecting optimizations.
