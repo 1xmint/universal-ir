@@ -42,6 +42,8 @@ The checker supports CommonMark links, headings, tables, and strikethrough. Use 
 
 The workflow runs documentation checks and checker tests, plus inventory/cache/cost and knowledge inspection behavior/failure tests on Windows and Linux with Python 3.12. The required Documentation checks job explicitly fails unless both inventory jobs pass, including when a prerequisite fails. Dependency versions and artifact hashes are pinned. Dependabot proposes dependency updates; validate the updated lock hashes and both local commands before merging.
 
+Receipt tests additionally require `python -m pip install --require-hashes --only-binary=:all: -r requirements-receipts.txt` (use the environment's Python path above). The runtime dependency is optional for inventory/default knowledge inspection; CI tests those before installing the receipt verifier, then exercises receipt behavior and the fictional host demo on both platforms. The same required job covers all suites. No model credentials or paid calls are required.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

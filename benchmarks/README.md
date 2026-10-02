@@ -1,6 +1,6 @@
 # Local inventory cost baseline
 
-This tool measures inventory/storage, not knowledge inspection or completed AI coding tasks. It supplies an early correctness and cost baseline before incremental extraction. The published raw run describes the historical tool sources identified by its hashes; subsequent reader/CLI changes do not retroactively measure themselves. There are no performance thresholds or token-saving claims.
+This tool measures inventory/storage, not knowledge inspection, receipt verification, or completed AI coding tasks. It supplies an early correctness and cost baseline before incremental extraction. The published raw run describes the historical tool sources identified by its hashes; subsequent reader/CLI changes do not retroactively measure themselves. There are no performance thresholds or token-saving claims.
 
 ## Reproduce
 

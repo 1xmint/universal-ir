@@ -8,6 +8,7 @@ import sys
 from .inventory import FORMAT, InventoryError, compare, inventory, load_baseline, view
 from .cache import cache_snapshot
 from .knowledge import FORMAT as KNOWLEDGE_FORMAT, inspect_knowledge
+from .receipts import FORMAT as RECEIPT_FORMAT, verify_project_receipt
 
 
 class Parser(argparse.ArgumentParser):
@@ -32,14 +33,24 @@ def main(argv=None) -> int:
     knowledge.add_argument("--limit", type=int, default=20)
     knowledge.add_argument("--offset", type=int, default=0)
     knowledge.add_argument("--full", action="store_true", help="Include all inspected revisions and coverage gaps")
+    receipt = commands.add_parser("verify-receipt", help="Verify a host receipt under an explicit pinned policy; does not accept knowledge")
+    receipt.add_argument("root", type=Path)
+    receipt.add_argument("record_id")
+    receipt.add_argument("--receipt", type=Path, required=True, help="External signed receipt JSON")
+    receipt.add_argument("--policy", type=Path, required=True, help="External host-owned trust policy JSON")
+    receipt.add_argument("--policy-id", required=True, help="Policy digest pinned by the host, not model-controlled inputs")
     output_format = FORMAT
     try:
         args = parser.parse_args(argv)
         if args.command == "knowledge":
             output_format = KNOWLEDGE_FORMAT
-        if not 1 <= args.limit <= 200 or args.offset < 0:
+        elif args.command == "verify-receipt":
+            output_format = RECEIPT_FORMAT
+        if args.command != "verify-receipt" and (not 1 <= args.limit <= 200 or args.offset < 0):
             raise InventoryError("invalid_arguments", "limit must be 1..200 and offset must be nonnegative.")
-        if args.command == "knowledge":
+        if args.command == "verify-receipt":
+            output = verify_project_receipt(args.root, args.record_id, args.receipt, args.policy, args.policy_id)
+        elif args.command == "knowledge":
             output = inspect_knowledge(args.root, selected_id=args.selected_id, offset=args.offset,
                                        limit=args.limit, full=args.full)
         else:

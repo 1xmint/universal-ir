@@ -16,7 +16,7 @@ Alice says: “Our main goal is tenant isolation. Billing is the first use case;
 
 The agent proposes a successor to `project-purpose`, retaining the earlier revision. It also proposes a separate `tenant-isolation` requirement. A supported host must establish Alice's actual user event and exact wording or her explicit approval of any shortened wording, scope, and supersession. Each record receives approval bound to its exact ID. Approval of the purpose does not automatically approve the separate requirement.
 
-The host-owned receipt points to the finished record ID, so there is no circular receipt/record hash. A receipt copied into a repository remains unverified until a configured binding verifies it. Today, no such binding is implemented: this example's attribution is a required future outcome. A host without it may retain a clearly labeled interpretation of Alice's statement, but cannot claim a verified developer declaration.
+The host-owned receipt points to the finished record ID, so there is no circular receipt/record hash. A receipt copied into a repository remains unverified until a trusted configured binding verifies it. A separate [signed receipt verifier](host-receipts.md) now checks assertions under a caller-pinned policy, but its demo events are fictional. Alice's actual user-event authentication and checked acceptance are still required future outcomes. A host without those boundaries may retain a clearly labeled interpretation of Alice's statement, but cannot claim this verified conversational workflow is supplied.
 
 ## Source changes and a second developer
 

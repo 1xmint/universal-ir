@@ -122,6 +122,8 @@ When supporting inputs change, mark dependent interpretations and summaries stal
 
 The subsequent [knowledge record specification](project-knowledge-v1.md) defines prototype schemas, source projections, attribution/history dimensions, and failure outcomes. The record contract now has a bounded [read-only inspection implementation](knowledge-inspection-v1.md); a host proof binding and checked acceptance protocol must still be demonstrated before a writer or verified developer provenance ships. See the [correction and collaboration walkthrough](../../examples/knowledge-lifecycle.md).
 
+The subsequent [explicit-policy receipt binding](host-receipts-v1.md) verifies host signatures without changing default knowledge attribution. Its fictional demo does not prove actual user-event authentication or accepted conversational state. A concrete host adapter and the [acceptance protocol](knowledge-acceptance-draft.md) remain gates.
+
 ## Shared snapshots and local fallback
 
 Snapshot exchange is optional and provider-independent. Uncommitted overlays remain local by default. Exporting a snapshot for a published revision must identify that exact revision's inputs; a dirty local snapshot cannot be mislabeled as the branch revision. Shared snapshot contents do not overwrite local source, configuration, or declarations on import.

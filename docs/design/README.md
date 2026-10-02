@@ -16,6 +16,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0008](0008-verified-local-snapshots.md) | Accepted | Optional external local snapshots, fresh verification, and recoverable publication |
 | [0009](0009-knowledge-and-cost-gates.md) | Accepted | Knowledge record/evidence contracts, host verification gates, and measured local costs |
 | [0010](0010-read-only-knowledge-inspection.md) | Accepted | Read-only evidence/history inspection before authenticated knowledge recording |
+| [0011](0011-explicit-host-receipts.md) | Accepted | Explicit-policy signed receipt verification before live host integration and acceptance |
 
 ## Adding a decision
 
@@ -31,4 +32,4 @@ Record an accepted decision through the pull request that adopts it. Link to any
 
 Reusable core, CLI first, SDK later, real-development consumer journeys, and universal coherence remain accepted. Decisions 0005 and 0006 now establish existing-source authority, repository knowledge with local caches, optional shared snapshots, published-revision awareness, inventory-first scope, and conversational knowledge provenance.
 
-The [project-coherence specification](../specs/project-coherence.md) is a completed documentation increment. Decisions 0007, 0008, and 0010 implement bounded inventory, local snapshots, and knowledge inspection; decision 0009 specifies records. These do not complete the program-format or coherence milestone. Executable IR semantics, compiler language, final encoding, deeper adapters, authenticated host bindings, knowledge acceptance, source application/recovery, and remote bindings still need contracts and evidence. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
+The [project-coherence specification](../specs/project-coherence.md) is a completed documentation increment. Decisions 0007, 0008, and 0010 implement bounded inventory, local snapshots, and knowledge inspection; decision 0009 specifies records. These do not complete the program-format or coherence milestone. Executable IR semantics, compiler language, final encoding, deeper adapters, live authenticated user-event integration, knowledge acceptance, source application/recovery, and remote bindings still need contracts and evidence. Follow [milestone 1](../../ROADMAP.md#1-define-a-small-program-format).
