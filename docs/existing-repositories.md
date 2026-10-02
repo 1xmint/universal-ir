@@ -106,6 +106,8 @@ These are future acceptance cases, not passing tests. The [complex-project walkt
 
 ## Open specifications and references
 
+The [knowledge record contract](specs/project-knowledge-v1.md) now specifies durable evidence, revisions, source projection, and attribution boundaries. This does not implement record acceptance or a trusted host; those binding/concurrency/recovery gates remain before conversational knowledge delivery.
+
 The [coherence specification](specs/project-coherence.md) settles ownership, storage, first-proof scope, conceptual records and operations, lifecycle outcomes, provenance, optional sharing, and published collaboration. The [inventory contract](specs/local-inventory-v1.md) defines initial configuration, content identity, filesystem behavior, compatibility, view expansion, and CLI I/O; the [cache increment](specs/local-cache-v1.md) adds external local persistence after full verification. Knowledge/host integration and incremental extraction remain gates. Before source editing, define the deep adapter, support matrix, semantic identities, invalidation, and application/recovery protocol. Remote release also needs transport, access, trust, scheduling, and retention contracts. Performance remains to be measured.
 
 Useful existing work includes [TypeScript compiler services](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API), [versioned LSP edits and declared failure handling](https://raw.githubusercontent.com/microsoft/language-server-protocol/gh-pages/_specifications/lsp/3.17/types/workspaceEdit.md), and [static analysis limitations](https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/). These are references, not dependencies or claims of current compatibility.

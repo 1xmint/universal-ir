@@ -4,6 +4,8 @@ These examples describe people using Universal IR in their own projects. They ar
 
 The [local inventory walkthrough](local-inventory.md) now provides working source-run commands for read-only structure, evidence, comparison, and optional verified local snapshots. A host can supply `--cache-dir` outside the project; a hit still fully verifies current source and keeps new checkout observations separate. There is no packaged installer, automatic project/agent setup, state service, compiler, or stable SDK. The [project-coherence specification](../docs/specs/project-coherence.md) defines the broader inventory and knowledge proof; deeper semantics, conversational knowledge, and source editing remain later work.
 
+The [knowledge lifecycle walkthrough](knowledge-lifecycle.md) specifies how a purpose inference could become an attributable requirement and survive edits or conflicting revisions. It is not a shipped host integration. The [local cost baseline](../benchmarks/README.md) measures inventory/storage only, with no demonstrated agent-performance improvement.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

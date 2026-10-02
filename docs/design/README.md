@@ -14,6 +14,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0006](0006-conversational-knowledge.md) | Accepted | AI-prefilled, attributable conversational project knowledge |
 | [0007](0007-local-inventory-proof.md) | Accepted | Read-only Python inventory, provisional CLI, and explicit observation boundaries |
 | [0008](0008-verified-local-snapshots.md) | Accepted | Optional external local snapshots, fresh verification, and recoverable publication |
+| [0009](0009-knowledge-and-cost-gates.md) | Accepted | Knowledge record/evidence contracts, host verification gates, and measured local costs |
 
 ## Adding a decision
 

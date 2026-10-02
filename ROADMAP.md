@@ -69,7 +69,7 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Done when:** The [specification](docs/specs/project-coherence.md), decisions, and related guides agree, their examples and failures are unambiguous, documentation checks and rendering review pass, and the update is published through the checked PR workflow.
 
-**Following increment:** The bounded local inventory contract below now specifies and implements initial configuration, content identity, filesystem/ignore behavior, view expansion, and CLI I/O. Conversational knowledge schemas and host provenance remain gates before knowledge recording. Transport bindings, access controls, schedules, and retention are required before a remote release. Executable IR and compiler choices remain open.
+**Following increments:** The bounded local inventory contract below specifies and implements initial configuration, content identity, filesystem/ignore behavior, view expansion, and CLI I/O, with optional external snapshots. Knowledge record/evidence schemas are specified; authenticated host bindings and checked acceptance remain gates before knowledge recording. Transport bindings, access controls, schedules, and retention are required before a remote release. Executable IR and compiler choices remain open.
 
 #### Read-only local inventory prototype
 
@@ -79,9 +79,11 @@ This is a documentation increment within milestone 1. The first working proof wi
 - [x] Demonstrate mixed-language inventory, source-linked containment, document links, bounded expansion, and comparison after stopped-operation edits.
 - [x] Test invalid inputs, omissions, boundaries, missing tools, baseline integrity, and detected concurrent edits on Windows and Linux through required CI.
 - [x] Add persistent compatible local snapshots, full freshness verification, corruption recovery, and interrupted publication under [decision 0008](docs/design/0008-verified-local-snapshots.md).
-- [ ] Measure uncached, cold-cache, and warm-cache costs before optimizing extraction.
+- [x] Measure bounded uncached, cold-cache, and warm-cache costs before optimizing extraction; publish a reproducible script and [raw local baseline](benchmarks/README.md), including unmeasured costs.
 - [ ] Add incremental extraction and dependency invalidation with correctness equivalent to full reconstruction.
 - [ ] Implement durable conversational knowledge and host-attested provenance.
+- [x] Specify immutable knowledge revisions, source/document evidence, attribution boundaries, supersession/conflicts, and observable failure outcomes under [decision 0009](docs/design/0009-knowledge-and-cost-gates.md).
+- [ ] Select and demonstrate one authenticated host receipt binding and a serialized stale/concurrent/interrupted acceptance protocol before shipping a knowledge writer.
 - [ ] Evaluate optional model enrichment and task ranking against a deterministic retrieval and existing-agent baseline.
 
 **Purpose:** Ship useful local structure and evidence before model enrichment or infrastructure.
@@ -90,7 +92,9 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Cache increment:** The [cache contract](docs/specs/local-cache-v1.md) adds explicitly selected external storage, compatible reuse only after full local verification, recovery diagnostics, and whole-file publication. It does not complete incremental extraction or the broader sharing contract; no cost savings are claimed.
 
-**Next gates:** Specify knowledge revision, attribution, evidence dependencies, and host integration before recording conversational requirements. Collect local cost baselines before optimizing extraction. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache progress cannot complete interpreter or compiler gates.
+**Knowledge and measurement increment:** The [knowledge contract](docs/specs/project-knowledge-v1.md) specifies records, dependencies, receipt payload requirements, views, and failure meanings. It does not implement attribution or acceptance. The [measurement tool](benchmarks/README.md) publishes nine samples from one synthetic Windows run; extraction/freshness and cache subphases remain grouped, with no general savings claim.
+
+**Next gates:** Implement and test one authenticated host binding and acceptance protocol before recording conversational requirements; then ship knowledge inspection/recording and a real agent walkthrough. Broaden and separate cost measurements before incremental scan optimization. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache progress cannot complete interpreter or compiler gates.
 
 ### 2. Build the core
 
@@ -163,6 +167,6 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 ## Current boundaries
 
-The repository contains a read-only local inventory core, optional external snapshot storage, a source-run CLI, documentation, conceptual examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence specification, bounded inventory subset, and verified local cache increment are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge/host schemas, incremental extraction, source application/recovery, and remote bindings remain later work.
+The repository contains a read-only local inventory core, optional external snapshot storage, a source-run CLI, a local cost measurement tool/report, documentation, conceptual examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence and knowledge specifications, bounded inventory/cache subsets, and small local cost baseline are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge implementation/host bindings, incremental extraction, source application/recovery, and remote bindings remain later work.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

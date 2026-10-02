@@ -62,6 +62,8 @@ For behavior changes, check intended behavior and relevant failure cases. Permis
 
 For efficiency claims, report the complete task: model and tool configuration, acceptance criteria, context and generation tokens, checking and repair costs, latency, and review effort. Include failed attempts and enough detail to reproduce the comparison.
 
+Use the [local cost tool](benchmarks/README.md) for the narrower inventory/storage baseline. Its synthetic timings, context bytes, and digest comparisons do not establish complete agent-task efficiency. Knowledge implementation must follow the [record specification](docs/specs/project-knowledge-v1.md) and demonstrate a trusted host binding plus stale/concurrent/interrupted acceptance before introducing a writer.
+
 Mark a roadmap milestone complete only when its completion conditions are met. Distinguish proposals, accepted decisions, implemented features, and measured results.
 
 ## Security and license
