@@ -1,6 +1,6 @@
 # Proposed architecture
 
-The compiler/runtime behavior in this document remains proposed. A read-only local inventory subset is implemented under [decision 0007](design/0007-local-inventory-proof.md) and its [versioned contract](specs/local-inventory-v1.md). Broader coherence, knowledge, source-editing, and sharing mechanisms remain unimplemented.
+The compiler/runtime behavior in this document remains proposed. A read-only local inventory subset is implemented under [decision 0007](design/0007-local-inventory-proof.md) and its [versioned contract](specs/local-inventory-v1.md), with optional verified local snapshots under [decision 0008](design/0008-verified-local-snapshots.md). Broader coherence, knowledge, source-editing, and sharing mechanisms remain unimplemented.
 
 ## The flow
 
@@ -63,6 +63,8 @@ For graph-managed generated artifacts, the accepted graph remains the source of 
 ## Portable knowledge and collaboration
 
 Shared configuration and durable project knowledge live in a committed `.uir/` area in adopting projects. Local caches are ignored and each checkout has its own working view. Extracted graphs are reusable artifacts, not required source-commit diffs. Import requires matching inputs, compatible extraction, integrity, and accepted producer provenance; integrity alone cannot establish correctness.
+
+The implemented [local cache subset](specs/local-cache-v1.md) uses explicitly selected external storage to preserve target-project read-only behavior and inventory identity. It stores only manifests after full current-source verification, with new checkout observations on every call. It neither authenticates producers nor imports findings without local reconstruction. Repository-local placement, incremental extraction, and shared transport remain later contracts.
 
 Optional shared builders or artifact stores can reuse published-revision work. Observed branch revision, graph readiness, and local source freshness are separate. Notifications prompt reconciliation; delayed events or older extraction results cannot regress the latest verified view. A remote merge can be reported before its graph is ready without making a local checkout appear rebased.
 
@@ -135,7 +137,7 @@ A summary such as "project administrators can now archive tasks" must be backed 
 
 The primary comparison is the cost of completing a correct change. Measurements include context and generation tokens, verification and repair work, latency, and review effort. A shorter encoding is useful only if the complete process benefits.
 
-Python is selected for the local inventory prototype, with SHA-256 identities and provisional JSON/CLI contracts. The implementation reconstructs each inventory, matches consecutive captures, and makes optimistic filesystem observation limits explicit. It has no persistent cache, automatic host knowledge integration, or model dependency. Compiler language, final IR encoding, deeper adapters, knowledge schemas, source application guarantees, and remote bindings remain open. Keep the reasons for accepted choices in [design decisions](design/README.md).
+Python is selected for the local inventory prototype, with SHA-256 identities and provisional JSON/CLI contracts. The implementation reconstructs each inventory, matches consecutive captures, and makes optimistic filesystem observation limits explicit. Optional local snapshots are persisted and reused only after full verification; they do not yet reduce extraction work. It has no automatic host knowledge integration or model dependency. Compiler language, final IR encoding, incremental extraction, deeper adapters, knowledge schemas, source application guarantees, and remote bindings remain open. Keep the reasons for accepted choices in [design decisions](design/README.md).
 
 ## Existing ideas to learn from
 

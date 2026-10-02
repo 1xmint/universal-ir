@@ -2,7 +2,7 @@
 
 **Status:** Accepted design specification, revision 0, under [decision 0005](../design/0005-portable-project-state.md) and [decision 0006](../design/0006-conversational-knowledge.md).
 
-This specifies required behavior for the broader first coherence proof. The [local inventory version-1 contract](local-inventory-v1.md) implements a bounded subset: read-only capture, containment, configured document links, bounded views, and comparison. It explicitly limits freshness to optimistic consecutive captures on a trusted filesystem. Persistent knowledge, caches, sharing, and remote awareness remain unimplemented. Operation names and record categories here remain conceptual; the narrower contract records the prototype's Python tooling, JSON, hashing, and CLI I/O without selecting executable IR encoding or remote bindings.
+This specifies required behavior for the broader first coherence proof. The [local inventory version-1 contract](local-inventory-v1.md) implements a bounded subset: read-only capture, containment, configured document links, bounded views, and comparison, extended by [verified local snapshot storage](local-cache-v1.md). It explicitly limits freshness to optimistic consecutive captures on a trusted filesystem. Persistent knowledge, incremental extraction, sharing, and remote awareness remain unimplemented. Operation names and record categories here remain conceptual; the narrower contracts record the prototype's Python tooling, JSON, hashing, storage, and CLI I/O without selecting executable IR encoding or remote bindings.
 
 ## Purpose and first-proof boundary
 
@@ -28,6 +28,8 @@ project/
 ~~~
 
 Commit the shared configuration and durable knowledge through the project's ordinary review workflow. Exclude `.uir/cache/` from version control and inventory. Linked project documents can remain in their current locations; a declaration must not be duplicated into competing authorities merely to fit this layout.
+
+The implemented cache subset refines placement under [decision 0008](../design/0008-verified-local-snapshots.md): explicitly selected external storage preserves read-only discovery and version-1 input identity. The repository-local layout above remains a broader design, not an implemented initialization command. Shared configuration and future durable knowledge retain their committed `.uir/` location; cache deletion cannot erase them.
 
 Knowledge can include an explicitly labeled AI interpretation as well as a developer declaration. Persistence or a Git merge does not silently promote an interpretation into a developer statement. Local task drafts and uncommitted work are not automatically uploaded. Only selected project knowledge travels; capturing a complete chat history is not required.
 

@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 
 from .inventory import FORMAT, InventoryError, compare, inventory, load_baseline, view
+from .cache import cache_snapshot
 
 
 class Parser(argparse.ArgumentParser):
@@ -23,6 +24,7 @@ def main(argv=None) -> int:
     command.add_argument("--offset", type=int, default=0)
     command.add_argument("--full", action="store_true", help="Export full manifest for inspection or comparison")
     command.add_argument("--baseline", type=Path, help="Previous full inventory; never replaces current extraction")
+    command.add_argument("--cache-dir", type=Path, help="Optional local snapshot storage outside the selected project; source is still fully rescanned")
     try:
         args = parser.parse_args(argv)
         if not 1 <= args.limit <= 200 or args.offset < 0:
@@ -32,6 +34,11 @@ def main(argv=None) -> int:
         output = view(result, selection=args.path, offset=args.offset, limit=args.limit, full=args.full)
         if baseline:
             output["comparison"] = compare(baseline, result, limit=args.limit, full=args.full)
+        if args.cache_dir is not None:
+            cached = cache_snapshot(result, args.cache_dir)
+            output["cache"] = cached["cache"]
+            if args.full:
+                output["manifest"] = cached["manifest"]
         print(json.dumps(output, ensure_ascii=True, indent=2, allow_nan=False))
         return 0
     except InventoryError as error:
