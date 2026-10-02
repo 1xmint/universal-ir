@@ -28,4 +28,6 @@ Portable ignore behavior is explicit but narrower than a developer's complete Gi
 
 ## Validation
 
+The subsequent [decision 0008](0008-verified-local-snapshots.md) adds optional external persistent snapshots with full source verification. The no-cache statements above describe this original shipment; its extractor and observation boundaries remain unchanged.
+
 Exercise mixed-language and non-Git fixtures, nested ignore/negation rules, boundaries, opaque files, equivalent input identities, external edits, configuration changes, bounded views, missing targets, bad baselines, missing tools, unreadable inputs, and detected changes during capture. Verify no application writes and run core tests on Windows and Linux in required CI. The [local inventory contract](../specs/local-inventory-v1.md) defines precise results and limits.

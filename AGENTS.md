@@ -2,7 +2,7 @@
 
 ## Read first
 
-Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/specs/local-inventory-v1.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md, examples/local-inventory.md, and the relevant worked example.
+Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/specs/local-inventory-v1.md, docs/specs/local-cache-v1.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md, examples/local-inventory.md, and the relevant worked example.
 
 This repository contains a read-only inventory prototype, proposed runtime design, examples, and executable quality tooling. There is no executable compiler, runtime, or stable public SDK.
 
@@ -14,6 +14,7 @@ This repository contains a read-only inventory prototype, proposed runtime desig
 - Use a branch and pull request. Commit, push, create a PR, or merge only within the user's authorized scope.
 - Keep provider authentication and model budgets in the existing agent host. Repository checks need no model calls.
 - Keep inventory logic in universal_ir/inventory.py and the terminal adapter in universal_ir/__main__.py. Preserve read-only target-project behavior, ignore boundaries, versioned identity, bounded views, and explicit optimistic freshness limits. Change the extractor version when established extraction behavior changes incompatibly.
+- Keep optional storage in universal_ir/cache.py under decision 0008. Fully verify local inputs before reuse; never serve cache after capture failure. Write only the explicitly selected external cache namespace, keep snapshot identities independent of storage, and preserve whole-file publication/recovery tests. A hit does not establish lower extraction cost or extend freshness past its observation.
 - Model enrichment and task ranking are optional future adapters. Do not let ranking discard underlying facts or let a model decide structural validity, permissions, freshness, or developer provenance.
 - Do not introduce compiler scaffolding, invented executable syntax, or unsupported feature claims into conceptual examples.
 

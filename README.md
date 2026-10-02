@@ -16,7 +16,7 @@ Connect purpose, structure, behavior, and evidence in one shared representation.
 
 For graph-managed programs, let AI propose small structured edits, check each candidate, and use target compilers to produce runnable software. Different targets would handle how supported programs run on a server, in a browser, or on another system.
 
-For existing projects, the accepted design keeps source files authoritative and builds a rebuildable view of supported facts. A first read-only inventory prototype now captures files, containment, optional configuration, document links, and current content identities. Committed durable knowledge, local caches, and optional shared snapshots remain later increments; views must remain tied to actual inputs.
+For existing projects, the accepted design keeps source files authoritative and builds a rebuildable view of supported facts. A first read-only inventory prototype now captures files, containment, optional configuration, document links, and current content identities, with optional verified local snapshot storage. Committed durable knowledge and shared snapshots remain later increments; views must remain tied to actual inputs.
 
 Readable views would help people and agents understand a project, review a change, and trace behavior back to its rules and evidence. Source state, check results, deployments, and runtime observations would remain distinct.
 
@@ -26,7 +26,7 @@ The accepted delivery direction is [reusable core, CLI first, SDK later](docs/de
 
 This repository contains a working read-only local inventory prototype, documentation, examples, and quality tooling. It has no executable program format, semantic source adapter, state service, compiler, runtime, or stable public SDK. Broad software support, fast coherent views, and lower token costs are goals to test, not demonstrated results.
 
-The [portable project-coherence specification](docs/specs/project-coherence.md) defines the broader first proof: inventory across languages, connected views, conversational project knowledge, and freshness. The [local inventory contract](docs/specs/local-inventory-v1.md) implements its initial bounded subset in Python, with provisional versioned JSON and source-run CLI I/O. Conversational knowledge, caching, deeper adapters, checked source edits, and compilation follow later; executable IR language and encoding remain open.
+The [portable project-coherence specification](docs/specs/project-coherence.md) defines the broader first proof: inventory across languages, connected views, conversational project knowledge, and freshness. The [local inventory contract](docs/specs/local-inventory-v1.md) and [local cache contract](docs/specs/local-cache-v1.md) implement bounded subsets in Python, with provisional versioned JSON and source-run CLI I/O. Conversational knowledge, incremental extraction, deeper adapters, checked source edits, and compilation follow later; executable IR language and encoding remain open.
 
 ## Try the first working command
 
@@ -38,7 +38,9 @@ python -m universal_ir inventory /path/to/your/project
 
 On Windows, the repository's development environment can use `.venv\Scripts\python -m universal_ir inventory "C:\path\to\your\project"`.
 
-The command leaves the selected project untouched and returns a bounded JSON overview with containment, guidance candidates, classification hypotheses, content identity, freshness, and exclusions. Expand an included directory with `--path services`; save `--full` output for later `--baseline` comparison. It also works on non-Git folders, but requires the Git executable for ignore rules. Each request rescans contents; there is no cache or ongoing monitoring. See the [working walkthrough](examples/local-inventory.md) for setup, comparison, harness integration, and limitations.
+The command leaves the selected project untouched and returns a bounded JSON overview with containment, guidance candidates, classification hypotheses, content identity, freshness, and exclusions. Expand an included directory with `--path services`; save `--full` output for later `--baseline` comparison. It also works on non-Git folders, but requires the Git executable for ignore rules. Each request rescans contents; there is no ongoing monitoring.
+
+Add `--cache-dir /outside/project/cache` to persist verified snapshots in an external local directory. Missing or damaged snapshots are reconstructed; unavailable storage is reported alongside the fresh local view. A cache hit still performs full source verification and does not imply faster startup. See the [working walkthrough](examples/local-inventory.md) for setup, storage, comparison, harness integration, and limitations.
 
 ## Intended use in your own projects
 

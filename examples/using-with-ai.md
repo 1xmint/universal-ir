@@ -2,7 +2,7 @@
 
 These examples describe people using Universal IR in their own projects. They are planned consumer journeys, not instructions for contributing to Universal IR.
 
-The [local inventory walkthrough](local-inventory.md) now provides working source-run commands for read-only structure, evidence, and comparison. There is no packaged installer, automatic project/agent setup, state service, compiler, or stable SDK. The [project-coherence specification](../docs/specs/project-coherence.md) defines the broader inventory and knowledge proof; deeper semantics, conversational knowledge, and source editing remain later work.
+The [local inventory walkthrough](local-inventory.md) now provides working source-run commands for read-only structure, evidence, comparison, and optional verified local snapshots. A host can supply `--cache-dir` outside the project; a hit still fully verifies current source and keeps new checkout observations separate. There is no packaged installer, automatic project/agent setup, state service, compiler, or stable SDK. The [project-coherence specification](../docs/specs/project-coherence.md) defines the broader inventory and knowledge proof; deeper semantics, conversational knowledge, and source editing remain later work.
 
 ## Example 1: a user with a coding subscription
 

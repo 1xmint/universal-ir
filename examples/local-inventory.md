@@ -83,6 +83,26 @@ The tool reconstructs current inputs and reports added, removed, or changed inve
 
 An edited, malformed, incomplete, or incompatible baseline produces an error rather than a current view. Byte integrity does not establish producer trust. A valid baseline is used only for comparison; current extraction is always local.
 
+## Keep disposable local snapshots
+
+Choose a local cache outside your project and pass the same path on later calls:
+
+~~~sh
+python -m universal_ir inventory /path/to/your/project --cache-dir /outside/project/cache
+~~~
+
+For example, when your Windows project is on the Desktop, use a separate cache under your local application data:
+
+~~~powershell
+.venv\Scripts\python -m universal_ir inventory "C:\path\to\your\project" --cache-dir "$env:LOCALAPPDATA\universal-ir"
+~~~
+
+The first call reports `cache.lookup: miss` and `cache.publication: stored`. An unchanged later call reports `hit` and `reused`, with a new local observation. Edit source while the tool is stopped and run again: changed inputs select a new snapshot; the tool never restores old source. It fully rereads files even on a hit, so this establishes persistent state and recovery rather than faster scanning.
+
+Only manifests are stored beneath the reserved `uir-inventory-cache-v1/` namespace. Missing or damaged artifacts are rebuilt. If storage is unavailable, exit 0 can still contain a fresh view with `cache.diagnostic`; a host requiring persistence must inspect that result. Source capture failures still return exit 2 or 3 and cannot fall back to an old snapshot. There is no background watcher.
+
+Do not point this flag inside the selected project, including `.uir/cache/`: this increment rejects that location without creating it. Committed configuration and future durable knowledge still travel in `.uir/`; local cache is disposable and has no authenticated producer or remote sharing. Historical artifacts accumulate until the host removes them. See the [cache contract](../docs/specs/local-cache-v1.md) for compatibility, interruption, concurrency, and storage limits.
+
 ## Harness integration and limits
 
 A custom harness can invoke the command as a subprocess, parse stdout on exit 0, and parse stderr diagnostics on exit 2 or 3. Enforce your own tool permissions and budget. Exit 3 means detected input instability; retry when files settle. Successful output reports consecutive matching captures, not an atomic filesystem snapshot or ongoing monitoring.

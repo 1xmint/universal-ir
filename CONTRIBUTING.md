@@ -54,7 +54,7 @@ For agent contributions, include scope, changed behavior, commands and outcomes,
 
 Keep important accepted choices in numbered [decision records](docs/design/README.md), including their reasons, tradeoffs, and compatibility effects. Record acceptance through the pull request that adopts the decision. Preserve superseded records.
 
-Reusable core, CLI first, SDK later is accepted in [decision 0002](docs/design/0002-cli-first.md). [Decision 0007](docs/design/0007-local-inventory-proof.md) chooses Python for the inventory prototype and specifies its provisional CLI. Keep reusable behavior in `universal_ir/inventory.py` and terminal handling in `universal_ir/__main__.py`. Compiler language, final IR encoding, and later executable interfaces remain milestone 1 decisions.
+Reusable core, CLI first, SDK later is accepted in [decision 0002](docs/design/0002-cli-first.md). [Decision 0007](docs/design/0007-local-inventory-proof.md) chooses Python for the inventory prototype and specifies its provisional CLI. Keep extraction in `universal_ir/inventory.py`, optional snapshot storage in `universal_ir/cache.py` under [decision 0008](docs/design/0008-verified-local-snapshots.md), and terminal handling in `universal_ir/__main__.py`. Compiler language, final IR encoding, and later executable interfaces remain milestone 1 decisions.
 
 ## Provide evidence
 

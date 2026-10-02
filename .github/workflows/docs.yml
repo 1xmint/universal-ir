@@ -32,7 +32,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test local inventory
-        run: python -m unittest discover -s tests -p test_inventory.py -v
+        run: python -m unittest discover -s tests -p "test_inventory*.py" -v
   docs:
     name: Documentation checks
     needs: inventory

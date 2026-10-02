@@ -78,7 +78,9 @@ This is a documentation increment within milestone 1. The first working proof wi
 - [x] Implement a reusable inventory core with a source-run CLI adapter and no model calls or target-project writes.
 - [x] Demonstrate mixed-language inventory, source-linked containment, document links, bounded expansion, and comparison after stopped-operation edits.
 - [x] Test invalid inputs, omissions, boundaries, missing tools, baseline integrity, and detected concurrent edits on Windows and Linux through required CI.
-- [ ] Add persistent compatible local cache reuse and incremental invalidation.
+- [x] Add persistent compatible local snapshots, full freshness verification, corruption recovery, and interrupted publication under [decision 0008](docs/design/0008-verified-local-snapshots.md).
+- [ ] Measure uncached, cold-cache, and warm-cache costs before optimizing extraction.
+- [ ] Add incremental extraction and dependency invalidation with correctness equivalent to full reconstruction.
 - [ ] Implement durable conversational knowledge and host-attested provenance.
 - [ ] Evaluate optional model enrichment and task ranking against a deterministic retrieval and existing-agent baseline.
 
@@ -86,7 +88,9 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Completed subset:** The [prototype contract](docs/specs/local-inventory-v1.md) and [working walkthrough](examples/local-inventory.md) describe the implemented inventory subset. Every invocation reconstructs current inputs; matching consecutive captures are an optimistic observation, not an atomic snapshot against arbitrary writers. Full program-format, coherence, and consumer-release milestones remain incomplete.
 
-**Next gate:** Persist compatible local snapshots and define invalidation before claiming warm reuse; specify knowledge revision, attribution, and host integration before recording conversational requirements. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies.
+**Cache increment:** The [cache contract](docs/specs/local-cache-v1.md) adds explicitly selected external storage, compatible reuse only after full local verification, recovery diagnostics, and whole-file publication. It does not complete incremental extraction or the broader sharing contract; no cost savings are claimed.
+
+**Next gates:** Specify knowledge revision, attribution, evidence dependencies, and host integration before recording conversational requirements. Collect local cost baselines before optimizing extraction. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache progress cannot complete interpreter or compiler gates.
 
 ### 2. Build the core
 
@@ -159,6 +163,6 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 ## Current boundaries
 
-The repository contains a read-only local inventory core and source-run CLI, documentation, conceptual examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence specification and bounded inventory subset are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge/host schemas, persistent caching, source application/recovery, and remote bindings remain later work.
+The repository contains a read-only local inventory core, optional external snapshot storage, a source-run CLI, documentation, conceptual examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence specification, bounded inventory subset, and verified local cache increment are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge/host schemas, incremental extraction, source application/recovery, and remote bindings remain later work.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.
