@@ -3,6 +3,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
 import copy
+import errno
 import io
 import json
 import os
@@ -272,6 +273,50 @@ class CacheTests(unittest.TestCase):
         self.assertEqual(current["snapshot"], new["snapshot"])
         self.assertEqual(current["cache"]["lookup"], "hit")
         self.assertEqual(len(list((self.store / NAMESPACE).glob("*.json"))), 2)
+
+    def test_windows_crt_probe_denial_without_native_code_retries_boundedly(self):
+        from universal_ir.cache import _matches_existing
+        denial = PermissionError(errno.EACCES, "Concurrent publication probe denied")
+        calls = []
+
+        def blocked_once(path, encoded):
+            calls.append(path)
+            if len(calls) == 1:
+                raise denial
+            return _matches_existing(path, encoded)
+
+        with patch("universal_ir.cache._WINDOWS", True), \
+                patch("universal_ir.cache._matches_existing", side_effect=blocked_once), \
+                patch("universal_ir.cache.sleep") as sleep:
+            result = self.run_cache()
+        self.assertEqual(result["cache"]["publication"], "stored")
+        self.assertEqual(len(calls), 2)
+        sleep.assert_called_once_with(0.05)
+        accepted = Path(result["cache"]["artifact"])
+        contents = accepted.read_bytes()
+        self.source.write_bytes(b"print(2)\n")
+        with patch("universal_ir.cache._WINDOWS", True), \
+                patch("universal_ir.cache._matches_existing", side_effect=denial) as probe, \
+                patch("universal_ir.cache.sleep") as sleep:
+            failure = self.run_cache()
+        self.assertEqual(probe.call_count, 4)
+        self.assertEqual(sleep.call_count, 3)
+        self.assertEqual(failure["cache"]["publication"], "unavailable")
+        self.assertEqual(failure["status"], "ok")
+        self.assertEqual(accepted.read_bytes(), contents)
+        self.assertEqual(list(accepted.parent.glob(".pending-*.tmp")), [])
+
+    def test_posix_access_denial_and_other_windows_errors_are_not_retried(self):
+        for windows, error in ((False, PermissionError(errno.EACCES, "denied")),
+                               (True, PermissionError(errno.EPERM, "denied"))):
+            with self.subTest(windows=windows, errno=error.errno), \
+                    patch("universal_ir.cache._WINDOWS", windows), \
+                    patch("universal_ir.cache._matches_existing", side_effect=error) as probe, \
+                    patch("universal_ir.cache.sleep") as sleep:
+                result = self.run_cache()
+            self.assertEqual(probe.call_count, 1)
+            sleep.assert_not_called()
+            self.assertEqual(result["cache"]["publication"], "unavailable")
 
     def test_cache_never_serves_when_local_capture_fails(self):
         self.run_cache()
