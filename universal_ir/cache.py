@@ -1,5 +1,6 @@
 """Optional local snapshot storage; fresh inventory remains authoritative."""
 
+import errno
 import os
 from pathlib import Path
 import stat
@@ -11,6 +12,7 @@ from .inventory import canonical, identity, parse_json
 
 CACHE_FORMAT = "uir.local-cache.v1"
 NAMESPACE = "uir-inventory-cache-v1"
+_WINDOWS = os.name == "nt"
 
 
 class CacheUnavailable(Exception):
@@ -117,7 +119,13 @@ def _publish(path: Path, encoded: bytes):
             except PermissionError as error:
                 # Windows can briefly deny replacement while a reader is open.
                 # Persistent permission failures still become cache diagnostics.
-                if getattr(error, "winerror", None) not in {5, 32, 33} or attempt == 3:
+                native = getattr(error, "winerror", None)
+                retryable = native in {5, 32, 33} or (
+                    _WINDOWS and native is None and error.errno == errno.EACCES
+                )
+                # CRT-backed os.open can report EACCES without a winerror when
+                # another writer is replacing the file being probed.
+                if not retryable or attempt == 3:
                     raise
                 sleep(0.05)
     finally:

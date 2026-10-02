@@ -42,7 +42,7 @@ Successful file replacement publishes a whole artifact on supported ordinary loc
 
 Concurrent identical writers publish identical canonical contents. Different input IDs use different artifacts, so a delayed older capture cannot overwrite a newer capture's artifact or move a latest pointer backwards. This does not coordinate application source edits or provide a live collaboration service. Path checks assume the same trusted local filesystem as inventory; they are not a sandbox against malicious concurrent path swaps.
 
-Before replacement, a writer accepts an identical completed artifact left by another writer. It leaves those bytes in place. Windows access/sharing/lock errors (5, 32, 33) during this publication check or replacement allow at most four attempts, with three 50 ms pauses. Persistent failure remains an explicit cache diagnostic alongside the fresh view; it never authorizes stale fallback. Other errors are not retried by this protocol.
+Before replacement, a writer accepts an identical completed artifact left by another writer. It leaves those bytes in place. Windows access/sharing/lock errors (5, 32, 33) during this publication check or replacement allow at most four attempts, with three 50 ms pauses. Windows CRT-backed file opens can instead report `EACCES` (errno 13) without a native Windows code; that representation uses the same bounded retries. An errno-only permission error on other platforms is not retried. Persistent failure remains an explicit cache diagnostic alongside the fresh view; it never authorizes stale fallback. Other errors are not retried by this protocol.
 
 ## Results and failure meanings
 
