@@ -40,7 +40,7 @@ The checker uses a Markdown parser to check local links and heading anchors, doc
 
 The checker supports CommonMark links, headings, tables, and strikethrough. Use Markdown links rather than raw HTML links. Inspect GitHub rendering when changing tables, diagrams, or other presentation-sensitive content. Checks do not establish semantic agreement between documents; the reviewer must inspect that.
 
-The workflow runs documentation checks and checker tests, plus inventory behavior/failure tests on Windows and Linux with Python 3.12. The required Documentation checks job explicitly fails unless both inventory jobs pass, including when a prerequisite fails. Dependency versions and artifact hashes are pinned. Dependabot proposes dependency updates; validate the updated lock hashes and both local commands before merging.
+The workflow runs documentation checks and checker tests, plus inventory/cache/cost and knowledge inspection behavior/failure tests on Windows and Linux with Python 3.12. The required Documentation checks job explicitly fails unless both inventory jobs pass, including when a prerequisite fails. Dependency versions and artifact hashes are pinned. Dependabot proposes dependency updates; validate the updated lock hashes and both local commands before merging.
 
 ## Review and publication
 
@@ -62,7 +62,7 @@ For behavior changes, check intended behavior and relevant failure cases. Permis
 
 For efficiency claims, report the complete task: model and tool configuration, acceptance criteria, context and generation tokens, checking and repair costs, latency, and review effort. Include failed attempts and enough detail to reproduce the comparison.
 
-Use the [local cost tool](benchmarks/README.md) for the narrower inventory/storage baseline. Its synthetic timings, context bytes, and digest comparisons do not establish complete agent-task efficiency. Knowledge implementation must follow the [record specification](docs/specs/project-knowledge-v1.md) and demonstrate a trusted host binding plus stale/concurrent/interrupted acceptance before introducing a writer.
+Use the [local cost tool](benchmarks/README.md) for the narrower inventory/storage baseline. Its synthetic timings, context bytes, and digest comparisons do not establish complete agent-task efficiency. Knowledge implementation must follow the [record specification](docs/specs/project-knowledge-v1.md) and demonstrate a trusted host binding plus stale/concurrent/interrupted acceptance before introducing a writer. Keep the existing reader in `universal_ir/knowledge.py` under the [inspection contract](docs/specs/knowledge-inspection-v1.md); validate its fictional fixture, evidence, history, capture races, and coverage independently of future approval work.
 
 Mark a roadmap milestone complete only when its completion conditions are met. Distinguish proposals, accepted decisions, implemented features, and measured results.
 

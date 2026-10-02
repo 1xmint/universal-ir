@@ -1,6 +1,6 @@
 # From inferred purpose to an attributable requirement
 
-This is a specified future workflow, not a command you can run today. The [knowledge contract](../docs/specs/project-knowledge-v1.md) defines exact record meanings. Current inventory can identify and hash the files; it cannot record or authenticate these statements yet.
+This is a specified future authoring/approval workflow. The [knowledge contract](../docs/specs/project-knowledge-v1.md) defines exact record meanings. Current inventory identifies and hashes the files, and the separate [working inspector](knowledge-inspection.md) reads existing records with evidence/history views. Neither records or authenticates these statements yet.
 
 ## First explanation
 

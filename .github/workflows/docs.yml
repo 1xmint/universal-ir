@@ -33,6 +33,8 @@ jobs:
           python-version: "3.12"
       - name: Test local inventory
         run: python -m unittest discover -s tests -p "test_inventory*.py" -v
+      - name: Test read-only knowledge inspection
+        run: python -m unittest discover -s tests -p "test_knowledge.py" -v
   docs:
     name: Documentation checks
     needs: inventory

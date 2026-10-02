@@ -31,6 +31,8 @@ This complements [0005](0005-portable-project-state.md). The [project-coherence 
 
 Subsequent [decision 0009](0009-knowledge-and-cost-gates.md) specifies record/evidence schemas, source dependencies, and attribution/history states in the [knowledge contract](../specs/project-knowledge-v1.md). Authenticated host proof, acceptance serialization/recovery, and knowledge CLI delivery remain implementation gates; the earlier open-schema statement describes this decision's original scope.
 
+Subsequent [decision 0010](0010-read-only-knowledge-inspection.md) delivers a read-only knowledge CLI with evidence/history views. Authenticated host proof and checked recording remain gates; the inspector does not establish accepted conversational intent.
+
 ## Alternatives considered
 
 Manual-only declarations increase setup work and miss the value of existing source and conversation. Treating inferred purpose as confirmed intent removes useful uncertainty and can silently change requirements. The chosen approach combines automatic prefill with explicit origins and ordinary conversational refinement.

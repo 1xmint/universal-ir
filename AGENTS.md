@@ -4,7 +4,7 @@
 
 Read README.md, ROADMAP.md, docs/architecture.md, and docs/design/README.md. For coherence, state, or adoption changes, also read docs/specs/project-coherence.md, docs/specs/local-inventory-v1.md, docs/specs/local-cache-v1.md, docs/coherence.md, and docs/existing-repositories.md. For user-facing changes, read examples/using-with-ai.md, examples/local-inventory.md, and the relevant worked example.
 
-This repository contains a read-only inventory prototype, proposed runtime design, examples, and executable quality tooling. There is no executable compiler, runtime, or stable public SDK.
+This repository contains read-only inventory and knowledge inspection, proposed runtime design, examples, and executable quality tooling. There is no executable compiler, runtime, or stable public SDK.
 
 ## Take a bounded task
 
@@ -16,6 +16,7 @@ This repository contains a read-only inventory prototype, proposed runtime desig
 - Keep inventory logic in universal_ir/inventory.py and the terminal adapter in universal_ir/__main__.py. Preserve read-only target-project behavior, ignore boundaries, versioned identity, bounded views, and explicit optimistic freshness limits. Change the extractor version when established extraction behavior changes incompatibly.
 - Keep optional storage in universal_ir/cache.py under decision 0008. Fully verify local inputs before reuse; never serve cache after capture failure. Write only the explicitly selected external cache namespace, keep snapshot identities independent of storage, and preserve whole-file publication/recovery tests. A hit does not establish lower extraction cost or extend freshness past its observation.
 - For knowledge changes, read docs/specs/project-knowledge-v1.md and decision 0009. No host binding or writer is implemented. Do not accept model-supplied receipt claims as authentication; bind approval to exact record content and transitions. Preserve evidence/history and test concurrency/recovery before any writer ships.
+- Keep the read-only inspector in universal_ir/knowledge.py under decision 0010 and docs/specs/knowledge-inspection-v1.md. Preserve whole-view capture checks, explicit coverage gaps, unverified/pending developer claims, included structural history, and pinned evidence. Never present structural supersession as approved withdrawal or resolution. Run tests/test_knowledge.py alongside inventory tests; the fictional fixture is test input, not actual approval or a supported writer.
 - Use scripts/measure_inventory.py and benchmarks/README.md for local scan costs. Keep raw failed attempts, source identities, scope, and unmeasured costs visible. Never equate context bytes, cache hits, or successful inventory with lower tokens or completed software tasks.
 - Model enrichment and task ranking are optional future adapters. Do not let ranking discard underlying facts or let a model decide structural validity, permissions, freshness, or developer provenance.
 - Do not introduce compiler scaffolding, invented executable syntax, or unsupported feature claims into conceptual examples.

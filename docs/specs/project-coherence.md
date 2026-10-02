@@ -2,7 +2,7 @@
 
 **Status:** Accepted design specification, revision 0, under [decision 0005](../design/0005-portable-project-state.md) and [decision 0006](../design/0006-conversational-knowledge.md).
 
-This specifies required behavior for the broader first coherence proof. The [local inventory version-1 contract](local-inventory-v1.md) implements a bounded subset: read-only capture, containment, configured document links, bounded views, and comparison, extended by [verified local snapshot storage](local-cache-v1.md). It explicitly limits freshness to optimistic consecutive captures on a trusted filesystem. Persistent knowledge, incremental extraction, sharing, and remote awareness remain unimplemented. Operation names and record categories here remain conceptual; the narrower contracts record the prototype's Python tooling, JSON, hashing, storage, and CLI I/O without selecting executable IR encoding or remote bindings.
+This specifies required behavior for the broader first coherence proof. The [local inventory version-1 contract](local-inventory-v1.md) implements a bounded subset: read-only capture, containment, configured document links, bounded views, and comparison, extended by [verified local snapshot storage](local-cache-v1.md). It explicitly limits freshness to optimistic consecutive captures on a trusted filesystem. The separate [knowledge inspector](knowledge-inspection-v1.md) now reads existing records and evidence/history without authenticated acceptance. Knowledge writing, incremental extraction, sharing, and remote awareness remain unimplemented. Operation names and record categories here remain conceptual; the narrower contracts record the prototype's Python tooling, JSON, hashing, storage, and CLI I/O without selecting executable IR encoding or remote bindings.
 
 ## Purpose and first-proof boundary
 
@@ -120,7 +120,7 @@ Capture selected project-relevant goals, requirements, and decisions, not every 
 
 When supporting inputs change, mark dependent interpretations and summaries stale and allow the host to refresh them. Refresh need not call a model for unaffected records. Changed code must not silently rewrite declared intent. Report a known discrepancy when there is evidence; inventory alone cannot discover every behavioral violation of a requirement.
 
-The subsequent [knowledge record specification](project-knowledge-v1.md) defines prototype schemas, source projections, attribution/history dimensions, and failure outcomes. It remains documentation: a host proof binding and checked acceptance protocol must be demonstrated before a writer or verified developer provenance ships. See the [correction and collaboration walkthrough](../../examples/knowledge-lifecycle.md).
+The subsequent [knowledge record specification](project-knowledge-v1.md) defines prototype schemas, source projections, attribution/history dimensions, and failure outcomes. The record contract now has a bounded [read-only inspection implementation](knowledge-inspection-v1.md); a host proof binding and checked acceptance protocol must still be demonstrated before a writer or verified developer provenance ships. See the [correction and collaboration walkthrough](../../examples/knowledge-lifecycle.md).
 
 ## Shared snapshots and local fallback
 
@@ -249,7 +249,7 @@ Deterministic inventory is designed to need no model calls. AI interpretation an
 
 This documentation increment is complete when the specification, decision records, architecture, roadmap, and usage guidance agree; examples and failure outcomes are unambiguous; documentation checks and rendering review pass; and the update is published through the checked PR workflow. It does not complete the full program-format milestone.
 
-The local prototype now specifies initial configuration, JSON encoding, content identity/canonicalization, filesystem and ignore behavior, extraction compatibility, pagination, and CLI I/O. Durable knowledge schemas, host provenance integration, cache compatibility, and persistent workspace identity remain gates before those operations are implemented. Before remote release, define transport bindings, access controls, trust configuration, scheduling, and artifact retention. These are explicit later gates, not permission to infer semantics or hide incompatibility.
+The local prototype now specifies initial configuration, JSON encoding, content identity/canonicalization, filesystem and ignore behavior, extraction compatibility, pagination, and CLI I/O. Durable knowledge schemas, read-only inspection, and optional local cache compatibility now have bounded contracts; host provenance/acceptance and persistent workspace identity remain gates before those broader operations are implemented. Before remote release, define transport bindings, access controls, trust configuration, scheduling, and artifact retention. These are explicit later gates, not permission to infer semantics or hide incompatibility.
 
 ## Supporting references
 

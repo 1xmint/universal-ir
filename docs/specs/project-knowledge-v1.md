@@ -1,6 +1,6 @@
 # Project knowledge records and attribution
 
-**Status:** Accepted specification increment under [decision 0009](../design/0009-knowledge-and-cost-gates.md). No knowledge reader, writer, receipt verifier, or agent-host adapter is implemented. Inventory still treats these files as ordinary opaque source. This contract does not select an executable IR encoding or expose a public API.
+**Status:** Accepted specification increment under [decision 0009](../design/0009-knowledge-and-cost-gates.md). A bounded [read-only inspector](knowledge-inspection-v1.md) now validates records and computes evidence/history views under decision 0010. No writer, receipt verifier, or agent-host adapter is implemented. Inventory still treats these files as ordinary opaque source; the separate knowledge operation reads their meanings. This contract does not select an executable IR encoding or expose a public API.
 
 ## Purpose and authority
 
@@ -104,4 +104,4 @@ Malformed records, digest mismatches, invalid origins, cross-project references,
 | Cache deleted or service unavailable | Durable records survive; inspect through local inventory and available proof, with unknowns visible. |
 | Invalid/replayed proof or interrupted/stale write | No new accepted declaration; preserve the previous accepted set. Exact binding/application tests are required before implementation. |
 
-This specification completes only the record/evidence/lifecycle design increment. The next gate is one concrete host binding plus the writer's concurrency/recovery protocol and executable acceptance tests. Performance, complete semantic understanding, and reduced agent tokens remain unproven. See the [worked lifecycle](../../examples/knowledge-lifecycle.md) and [local cost baseline](../../benchmarks/README.md).
+This specification completes only the record/evidence/lifecycle design increment. The separate [inspection increment](knowledge-inspection-v1.md) has executable reader evidence, while one concrete host binding plus the writer's concurrency/recovery protocol and acceptance tests remain gates before recording. Performance, complete semantic understanding, and reduced agent tokens remain unproven. See the [worked lifecycle](../../examples/knowledge-lifecycle.md), [working inspection](../../examples/knowledge-inspection.md), and [local cost baseline](../../benchmarks/README.md).

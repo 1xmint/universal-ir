@@ -20,6 +20,8 @@ Add a standard-library local measurement script over the existing core in fresh 
 
 The next agent can implement against clear record and failure meanings, but cannot mistake self-asserted identity for authenticated developer intent. Durable storage, host binding, checked acceptance, conversational capture, and knowledge views remain unimplemented. The [knowledge contract](../specs/project-knowledge-v1.md) fixes prototype design meanings, not a released API or compiler encoding.
 
+Subsequent [decision 0010](0010-read-only-knowledge-inspection.md) implements read-only record/evidence/history inspection. The preceding status describes this decision's original increment; recording, trusted host binding, checked acceptance, and conversational capture remain unimplemented.
+
 The [measurement tool](../../scripts/measure_inventory.py) adds developer tooling, not another product CLI operation. Inventory with freshness and cache read/validation/write are each timed as aggregates; finer separation and Git child CPU remain unmeasured. Timing and context bytes cannot establish token savings or successful software changes. Collect broader corpora and fair task-level comparisons before optimizing or claiming benefit.
 
 ## Validation
