@@ -118,7 +118,8 @@ def measure(root: Path | None, repetitions: int) -> dict:
     sources = tool_sources()
     trials = []
     with TemporaryDirectory(prefix="uir-cost-") as temporary:
-        scratch = Path(temporary)
+        # Windows may return an 8.3 alias while cache paths use expanded names.
+        scratch = Path(temporary).resolve()
         if root is None:
             root = scratch / "fixture"
             fixture(root)

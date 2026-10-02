@@ -15,6 +15,8 @@ On Windows use `.venv\Scripts\python` in place of `python`. The default creates 
 
 Each trial launches three fresh Python workers in fixed order: uncached, cold tool-cache, warm tool-cache. Workers use the same inventory/cache/view core as the product CLI. Each trial has a new external temporary cache; the warm worker uses the cold worker's artifact. An optional existing project is read-only. Temporary storage is outside that project and removed after the run. A selected root containing the system temporary directory is rejected before scratch creation.
 
+Resolve the scratch directory before worker calls and path redaction so Windows short-name aliases and expanded cache paths identify the same location.
+
 Save stdout as UTF-8 bytes for inspection; in Windows PowerShell, use a binary subprocess export like the [inventory example](../examples/local-inventory.md#stop-edit-and-compare) rather than legacy default redirection encoding. Reports never include source contents. Temporary artifact paths are replaced with `<temporary workspace>` in report metadata; measured context sizes use the actual worker output before that replacement.
 
 ## What the report means
@@ -45,9 +47,9 @@ The [raw three-trial report](results/local-inventory-windows.json) was recorded 
 
 | Mode | Median worker-process wall time | Successful samples |
 | --- | --- | --- |
-| Uncached | 1.070 seconds | 3 |
-| Cold tool-cache | 1.058 seconds | 3 |
-| Warm tool-cache | 1.061 seconds | 3 |
+| Uncached | 1.142 seconds | 3 |
+| Cold tool-cache | 1.085 seconds | 3 |
+| Warm tool-cache | 1.132 seconds | 3 |
 
 All nine samples had matching inventory IDs and expected storage states. The snapshot artifact was 17,774 bytes; the first trial's default context JSON was about 15.9 KB without cache metadata and 16.2 KB with it. Use the raw report for exact values.
 

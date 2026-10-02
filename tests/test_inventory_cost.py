@@ -1,6 +1,7 @@
 """Measurement validity and failure reporting, not performance thresholds."""
 
 import copy
+from contextlib import contextmanager
 import importlib.util
 import json
 from pathlib import Path
@@ -87,6 +88,22 @@ class CostTests(unittest.TestCase):
             report = cost.measure(None, 1)
         self.assertFalse(report["tool_source_unchanged"])
         self.assertEqual(len(report["trials"][0]["samples"]), 3)
+
+    def test_temporary_path_alias_is_normalized_before_artifact_redaction(self):
+        base = self.root.parent
+        (base / "alias-parent").mkdir()
+        (base / "scratch").mkdir()
+        alias = base / "alias-parent" / ".." / "scratch"
+
+        @contextmanager
+        def temporary_alias(**kwargs):
+            yield str(alias)
+
+        with patch.object(cost, "TemporaryDirectory", temporary_alias):
+            report = cost.measure(None, 1)
+        self.assertEqual(report["trials"][0]["comparison"], "matching_inventory_identities_and_expected_cache_states")
+        artifact = report["trials"][0]["samples"][2]["cache"]["artifact"]
+        self.assertTrue(artifact.startswith("<temporary workspace>/cache-0/"))
 
     def test_recorded_baseline_retains_valid_identities_and_reproducible_summary(self):
         path = SCRIPT.parent.parent / "benchmarks/results/local-inventory-windows.json"

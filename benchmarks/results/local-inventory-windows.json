@@ -1,13 +1,13 @@
 {
   "format": "uir.inventory-cost.v1",
-  "recorded_at": "2026-10-02T01:06:53.270535+00:00",
-  "tool_source_id": "sha256:bd60831abcfe68ab73207d4e1cfc11d8e15c733b4397734805d8b3c35616aebc",
+  "recorded_at": "2026-10-02T01:18:03.354309+00:00",
+  "tool_source_id": "sha256:a05a31a10a519c92d01ae346449d08b8082cc05c7fddd55d8366b6da8a00aadd",
   "tool_source_files": {
     "universal_ir/__init__.py": "sha256:e6ecfcc7c6aeec526267aba299de56f3c240ddb176893f36a7f8559bf0e7633c",
     "universal_ir/__main__.py": "sha256:7a47cde7d97b6501d3a6ca2c94938b501078a792525b4e7941f706189ad645b4",
     "universal_ir/cache.py": "sha256:551977c237c60b98a1c5228df7146ac52e1e35e95ea69595b1e35726e2beae7c",
     "universal_ir/inventory.py": "sha256:cfbe5eb69520077c4b4cc3f353fa4b709aa3ca1455bdc5f1f5ebc65e42311d2c",
-    "scripts/measure_inventory.py": "sha256:5de109e608992b8716ff29c57a347cb9edf6236bdeb9343d958587748f9d45c9"
+    "scripts/measure_inventory.py": "sha256:5078007d826da3e9b53640d7a0d0f990c6c3c90c67207eee89ba2775af5fbcfc"
   },
   "tool_source_unchanged": true,
   "inventory_format": "uir.inventory.v1",
@@ -37,15 +37,15 @@
   "summary": {
     "uncached": {
       "successful_samples": 3,
-      "median_process_wall_ns": 1069932200
+      "median_process_wall_ns": 1142432800
     },
     "cold_cache": {
       "successful_samples": 3,
-      "median_process_wall_ns": 1058352700
+      "median_process_wall_ns": 1085293300
     },
     "warm_cache": {
       "successful_samples": 3,
-      "median_process_wall_ns": 1060901700
+      "median_process_wall_ns": 1131929300
     }
   },
   "trials": [
@@ -64,14 +64,14 @@
           "cache": null,
           "artifact_bytes": 0,
           "timings": {
-            "inventory_with_freshness_ns": 992369600,
+            "inventory_with_freshness_ns": 999254200,
             "cache_total_ns": 0,
-            "view_ns": 751300,
-            "json_encoding_ns": 144400
+            "view_ns": 706600,
+            "json_encoding_ns": 106000
           },
-          "worker_wall_ns": 993543800,
-          "worker_cpu_ns_excluding_git": 312500000,
-          "process_wall_ns": 1132708700,
+          "worker_wall_ns": 1000336700,
+          "worker_cpu_ns_excluding_git": 281250000,
+          "process_wall_ns": 1142432800,
           "mode": "uncached"
         },
         {
@@ -91,14 +91,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 888774000,
-            "cache_total_ns": 21253400,
-            "view_ns": 707500,
-            "json_encoding_ns": 114400
+            "inventory_with_freshness_ns": 911701400,
+            "cache_total_ns": 11748400,
+            "view_ns": 719300,
+            "json_encoding_ns": 116300
           },
-          "worker_wall_ns": 911288600,
-          "worker_cpu_ns_excluding_git": 281250000,
-          "process_wall_ns": 1058352700,
+          "worker_wall_ns": 924734600,
+          "worker_cpu_ns_excluding_git": 296875000,
+          "process_wall_ns": 1064959100,
           "mode": "cold_cache"
         },
         {
@@ -118,14 +118,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 901440300,
-            "cache_total_ns": 12159400,
-            "view_ns": 777700,
-            "json_encoding_ns": 108100
+            "inventory_with_freshness_ns": 945146200,
+            "cache_total_ns": 11452600,
+            "view_ns": 709100,
+            "json_encoding_ns": 103800
           },
-          "worker_wall_ns": 914959800,
-          "worker_cpu_ns_excluding_git": 328125000,
-          "process_wall_ns": 1060901700,
+          "worker_wall_ns": 957876100,
+          "worker_cpu_ns_excluding_git": 312500000,
+          "process_wall_ns": 1131929300,
           "mode": "warm_cache"
         }
       ]
@@ -145,14 +145,14 @@
           "cache": null,
           "artifact_bytes": 0,
           "timings": {
-            "inventory_with_freshness_ns": 915561200,
+            "inventory_with_freshness_ns": 904932500,
             "cache_total_ns": 0,
-            "view_ns": 704900,
-            "json_encoding_ns": 103100
+            "view_ns": 735200,
+            "json_encoding_ns": 105900
           },
-          "worker_wall_ns": 916632700,
-          "worker_cpu_ns_excluding_git": 281250000,
-          "process_wall_ns": 1050803900,
+          "worker_wall_ns": 906035000,
+          "worker_cpu_ns_excluding_git": 250000000,
+          "process_wall_ns": 1053409300,
           "mode": "uncached"
         },
         {
@@ -172,14 +172,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 902814500,
-            "cache_total_ns": 12220700,
-            "view_ns": 705200,
-            "json_encoding_ns": 118300
+            "inventory_with_freshness_ns": 933061500,
+            "cache_total_ns": 12518200,
+            "view_ns": 708200,
+            "json_encoding_ns": 113700
           },
-          "worker_wall_ns": 916279800,
+          "worker_wall_ns": 946833800,
           "worker_cpu_ns_excluding_git": 328125000,
-          "process_wall_ns": 1054624700,
+          "process_wall_ns": 1085293300,
           "mode": "cold_cache"
         },
         {
@@ -199,14 +199,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 897344300,
-            "cache_total_ns": 12033300,
-            "view_ns": 726500,
-            "json_encoding_ns": 102700
+            "inventory_with_freshness_ns": 1290369400,
+            "cache_total_ns": 11467000,
+            "view_ns": 715700,
+            "json_encoding_ns": 104300
           },
-          "worker_wall_ns": 910661700,
-          "worker_cpu_ns_excluding_git": 312500000,
-          "process_wall_ns": 1047864300,
+          "worker_wall_ns": 1303109700,
+          "worker_cpu_ns_excluding_git": 359375000,
+          "process_wall_ns": 1437972200,
           "mode": "warm_cache"
         }
       ]
@@ -226,14 +226,14 @@
           "cache": null,
           "artifact_bytes": 0,
           "timings": {
-            "inventory_with_freshness_ns": 933769200,
+            "inventory_with_freshness_ns": 1050525000,
             "cache_total_ns": 0,
-            "view_ns": 714600,
-            "json_encoding_ns": 116700
+            "view_ns": 715100,
+            "json_encoding_ns": 107600
           },
-          "worker_wall_ns": 934880600,
-          "worker_cpu_ns_excluding_git": 265625000,
-          "process_wall_ns": 1069932200,
+          "worker_wall_ns": 1051630800,
+          "worker_cpu_ns_excluding_git": 312500000,
+          "process_wall_ns": 1192452600,
           "mode": "uncached"
         },
         {
@@ -253,14 +253,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 1082109500,
-            "cache_total_ns": 11401000,
-            "view_ns": 727700,
-            "json_encoding_ns": 114600
+            "inventory_with_freshness_ns": 1099561900,
+            "cache_total_ns": 11882900,
+            "view_ns": 775800,
+            "json_encoding_ns": 113800
           },
-          "worker_wall_ns": 1094789800,
-          "worker_cpu_ns_excluding_git": 296875000,
-          "process_wall_ns": 1238836300,
+          "worker_wall_ns": 1112762800,
+          "worker_cpu_ns_excluding_git": 343750000,
+          "process_wall_ns": 1266318100,
           "mode": "cold_cache"
         },
         {
@@ -280,14 +280,14 @@
           },
           "artifact_bytes": 17774,
           "timings": {
-            "inventory_with_freshness_ns": 1038090700,
-            "cache_total_ns": 12156300,
-            "view_ns": 750100,
-            "json_encoding_ns": 106200
+            "inventory_with_freshness_ns": 955313100,
+            "cache_total_ns": 11412600,
+            "view_ns": 707100,
+            "json_encoding_ns": 104800
           },
-          "worker_wall_ns": 1051604000,
+          "worker_wall_ns": 967994400,
           "worker_cpu_ns_excluding_git": 328125000,
-          "process_wall_ns": 1186519500,
+          "process_wall_ns": 1122532400,
           "mode": "warm_cache"
         }
       ]
