@@ -22,6 +22,8 @@ The next agent can implement against clear record and failure meanings, but cann
 
 Subsequent [decision 0010](0010-read-only-knowledge-inspection.md) implements read-only record/evidence/history inspection. The preceding status describes this decision's original increment; recording, trusted host binding, checked acceptance, and conversational capture remain unimplemented.
 
+Subsequent [decision 0011](0011-explicit-host-receipts.md) implements a signature binding under an explicit caller-pinned policy. A live user-event adapter, event consumption, and checked acceptance remain gates; the fictional signer is not a real conversation integration.
+
 The [measurement tool](../../scripts/measure_inventory.py) adds developer tooling, not another product CLI operation. Inventory with freshness and cache read/validation/write are each timed as aggregates; finer separation and Git child CPU remain unmeasured. Timing and context bytes cannot establish token savings or successful software changes. Collect broader corpora and fair task-level comparisons before optimizing or claiming benefit.
 
 ## Validation

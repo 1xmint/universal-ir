@@ -35,6 +35,11 @@ jobs:
         run: python -m unittest discover -s tests -p "test_inventory*.py" -v
       - name: Test read-only knowledge inspection
         run: python -m unittest discover -s tests -p "test_knowledge.py" -v
+      - name: Install optional receipt verifier
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: -r requirements-receipts.txt
+      - name: Test explicit-policy receipt verification
+        run: python -m unittest discover -s tests -p "test_receipts.py" -v
   docs:
     name: Documentation checks
     needs: inventory

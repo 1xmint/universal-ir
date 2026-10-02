@@ -1,6 +1,6 @@
 # Project knowledge records and attribution
 
-**Status:** Accepted specification increment under [decision 0009](../design/0009-knowledge-and-cost-gates.md). A bounded [read-only inspector](knowledge-inspection-v1.md) now validates records and computes evidence/history views under decision 0010. No writer, receipt verifier, or agent-host adapter is implemented. Inventory still treats these files as ordinary opaque source; the separate knowledge operation reads their meanings. This contract does not select an executable IR encoding or expose a public API.
+**Status:** Accepted specification increment under [decision 0009](../design/0009-knowledge-and-cost-gates.md). A bounded [read-only inspector](knowledge-inspection-v1.md) now validates records and computes evidence/history views under decision 0010. The separate [explicit-policy receipt verifier](host-receipts-v1.md) implements a signature binding under decision 0011 without a live user-event adapter, writer, or accepted-intent resolver. Default knowledge attribution stays unverified. Inventory still treats these files as ordinary opaque source; the separate knowledge operation reads their meanings. This contract does not select an executable IR encoding or expose a public API.
 
 ## Purpose and authority
 
@@ -56,7 +56,7 @@ Scoped additions, removals, edits, boundaries, and omission changes alter the pr
 
 A trusted host verifier must be configured outside model-supplied records. The host binds project, exact record ID/wording, actor, event, and action (`stated` for an exact utterance or `approved` for explicit approval of the proposed wording). Scope and supersession are covered by the record ID. Merely approving a general task does not approve every generated requirement.
 
-The conceptual receipt payload has exactly `format: uir.knowledge-receipt.v1`, `project_id`, `record_id`, `host_id`, `event_id`, `actor_id`, `action`, and a UTC `recorded_at` timestamp. A future binding must specify authenticated transport or signature proof, host trust configuration, replay handling, revocation, and offline verification. No binding or proof encoding is selected in this increment, so no implementation may label a claimed receipt verified yet.
+The conceptual receipt payload has exactly `format: uir.knowledge-receipt.v1`, `project_id`, `record_id`, `host_id`, `event_id`, `actor_id`, `action`, and a UTC `recorded_at` timestamp. Subsequent [decision 0011](../design/0011-explicit-host-receipts.md) selects an Ed25519 envelope and explicit caller-pinned trust policy with revocation/expiry and offline verification. Only that separate operation can report verification under its named policy. A payload alone remains unverified; default knowledge views do not infer trusted context. Actual user-event authentication and durable replay/acceptance handling still require a demonstrated host/writer protocol.
 
 Receipts refer to the completed record ID; records do not embed receipt hashes. This avoids a circular hash dependency. A host may retain the selected utterance/proof or a privacy-preserving verifiable reference; a whole conversation archive is not required. A bare receipt payload, a hash of a transcript, or a model's `approved: true` assertion is insufficient. Changing one byte of a record requires fresh approval of that new ID.
 

@@ -84,6 +84,7 @@ This is a documentation increment within milestone 1. The first working proof wi
 - [ ] Implement durable conversational knowledge and host-attested provenance.
 - [x] Specify immutable knowledge revisions, source/document evidence, attribution boundaries, supersession/conflicts, and observable failure outcomes under [decision 0009](docs/design/0009-knowledge-and-cost-gates.md).
 - [x] Implement read-only knowledge validation and evidence/history inspection, including stale support, competing revisions, coverage gaps, and unverified attribution, under [decision 0010](docs/design/0010-read-only-knowledge-inspection.md).
+- [x] Specify and implement explicit-policy signed receipt verification with optional pinned crypto, revocation/expiry checks, and a fictional offline host demonstration under [decision 0011](docs/design/0011-explicit-host-receipts.md).
 - [ ] Select and demonstrate one authenticated host receipt binding and a serialized stale/concurrent/interrupted acceptance protocol before shipping a knowledge writer.
 - [ ] Evaluate optional model enrichment and task ranking against a deterministic retrieval and existing-agent baseline.
 
@@ -97,7 +98,9 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Reader increment:** The [knowledge inspector](docs/specs/knowledge-inspection-v1.md) and [working example](examples/knowledge-inspection.md) validate existing records and report evidence, structural history, gaps, and pending attribution. They do not establish effective accepted intent, authenticate conversation, or write records. Full coherence and program-format milestones remain open.
 
-**Next gates:** Implement and test one authenticated host binding and acceptance protocol before recording conversational requirements; then ship checked recording and a real agent walkthrough. Broaden and separate cost measurements before incremental scan optimization. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache/reader progress cannot complete interpreter or compiler gates.
+**Receipt increment:** The [explicit-policy verifier](docs/specs/host-receipts-v1.md) authenticates signed host assertions under a caller-pinned policy, with a fictional offline demonstration. It does not establish a real developer channel, consume approval events, change default attribution, or accept records. The [acceptance protocol draft](docs/specs/knowledge-acceptance-draft.md) records required serialization, commit/recovery, and event-registry outcomes; these remain unimplemented.
+
+**Next gates:** Demonstrate a concrete authenticated user-event host adapter with protected signer/policy parameters and implement the serialized stale/concurrent/interrupted acceptance protocol before recording conversational requirements; then ship checked recording and a real agent walkthrough. Broaden and separate cost measurements before incremental scan optimization. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache/reader/receipt progress cannot complete interpreter or compiler gates.
 
 ### 2. Build the core
 
@@ -170,6 +173,6 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 ## Current boundaries
 
-The repository contains read-only local inventory and knowledge inspection, optional external snapshot storage, a source-run CLI, a local cost measurement tool/report, documentation, examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence and knowledge specifications, bounded inventory/cache/reader subsets, and small local cost baseline are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge writing/host bindings, incremental extraction, source application/recovery, and remote bindings remain later work.
+The repository contains read-only local inventory, knowledge inspection, and optional explicit-policy receipt verification, external snapshot storage, a source-run CLI, a local cost measurement tool/report, documentation, examples, and quality tooling. Its versioned prototype output is provisional; there is no stable SDK or executable IR API. Reusable core, CLI first, SDK later, consumer journeys, universal coherence, portable existing-source state, and conversational knowledge are accepted. The coherence and knowledge specifications, bounded inventory/cache/reader/receipt subsets, and small local cost baseline are complete; the full milestones are not. Compiler language, final IR encoding, deeper adapters, knowledge writing/live user-event adapters, incremental extraction, source application/recovery, and remote bindings remain later work.
 
 See the [architecture](docs/architecture.md) and [worked example](examples/project-tasks.md) for the proposed design.

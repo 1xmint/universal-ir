@@ -14,6 +14,8 @@ Add a read-only knowledge inspector in `universal_ir/knowledge.py`, exposed thro
 
 Keep origin, attribution, evidence, structural history, and disposition separate. No receipt verifier, writer, effective accepted-intent resolver, or conversation capture ships. Developer claims always remain unverified and pending; every claimed successor/withdrawal remains pending too. Supersession describes file-record structure and cannot establish an authorized transition. Keep all included predecessors visible through pagination/full inspection.
 
+Subsequent [decision 0011](0011-explicit-host-receipts.md) adds a separate explicit-policy receipt verifier. This does not change the default reader's attribution or supply accepted-intent resolution, writing, or actual conversation capture.
+
 Report coverage gaps rather than interpreting hidden knowledge as an empty complete set. Reject malformed included records without a partial successful knowledge result. Limit each record to 1 MiB in this prototype; bound default output by record count and explicitly report omitted revisions, groups, heads, and gaps. This does not promise a fixed token budget.
 
 ## Consequences

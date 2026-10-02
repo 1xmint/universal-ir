@@ -6,6 +6,8 @@ The [local inventory walkthrough](local-inventory.md) now provides working sourc
 
 The [knowledge lifecycle walkthrough](knowledge-lifecycle.md) specifies how a purpose inference could become an attributable requirement and survive edits or conflicting revisions. It is not a shipped host integration. The [local cost baseline](../benchmarks/README.md) measures inventory/storage only, with no demonstrated agent-performance improvement.
 
+The optional [host receipt demonstration](host-receipts.md) shows a provider-independent signature binding and read-only verification under a pinned policy. Its actor/action is scripted, not a real authenticated developer event. A live harness must protect signing/trust parameters from model tools and demonstrate event consumption plus checked acceptance before recording conversation-derived intent.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

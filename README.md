@@ -32,6 +32,8 @@ The [knowledge record specification](docs/specs/project-knowledge-v1.md) now def
 
 For a configured project with existing knowledge records, run `python -B -m universal_ir knowledge /path/to/project`. It reports matching/changed/unresolved evidence, claimed origin, unverified developer attribution, and competing included heads without choosing an approved requirement. Try the [working fictional example](examples/knowledge-inspection.md); no authoring or approval command is available yet.
 
+The optional [host receipt verifier](docs/specs/host-receipts-v1.md) checks signed assertions under an explicitly pinned policy. The [offline demonstration](examples/host-receipts.md) uses fictional events and an ephemeral key. It does not authenticate a real conversation, change default knowledge attribution, or accept/write records. A concrete host adapter and serialized acceptance remain required before conversational recording.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -67,6 +69,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Portable project-coherence specification](docs/specs/project-coherence.md): repository storage, conversational knowledge, lifecycle, and collaboration contracts.
 - [Local inventory prototype](examples/local-inventory.md): working commands, with the [versioned contract](docs/specs/local-inventory-v1.md).
 - [Knowledge inspection](examples/knowledge-inspection.md): working evidence/history views and a fictional fixture, with the [versioned contract](docs/specs/knowledge-inspection-v1.md).
+- [Host receipt verification](examples/host-receipts.md): optional signed assertion checks and the remaining live-host/acceptance boundary.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.
