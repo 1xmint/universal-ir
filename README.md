@@ -34,6 +34,8 @@ For a configured project with existing knowledge records, run `python -B -m univ
 
 The optional [host receipt verifier](docs/specs/host-receipts-v1.md) checks signed assertions under an explicitly pinned policy. The [offline demonstration](examples/host-receipts.md) uses fictional events and an ephemeral key. It does not authenticate a real conversation, change default knowledge attribution, or accept/write records. A concrete host adapter and serialized acceptance remain required before conversational recording.
 
+An internal [harness verification tool](examples/harness-verification.md) now fixes the selected project, trust policy, receipt lookup, and clock outside model requests. Its narrow handler verifies registered receipts by identity and rejects authority substitution. The host still must isolate its trusted configuration from the model's other tools; human-event authentication and acceptance remain unimplemented.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -70,6 +72,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Local inventory prototype](examples/local-inventory.md): working commands, with the [versioned contract](docs/specs/local-inventory-v1.md).
 - [Knowledge inspection](examples/knowledge-inspection.md): working evidence/history views and a fictional fixture, with the [versioned contract](docs/specs/knowledge-inspection-v1.md).
 - [Host receipt verification](examples/host-receipts.md): optional signed assertion checks and the remaining live-host/acceptance boundary.
+- [Harness verification wiring](examples/harness-verification.md): a working model-facing verification tool with host-owned settings and explicit isolation limits.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.
