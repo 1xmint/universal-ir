@@ -17,6 +17,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0009](0009-knowledge-and-cost-gates.md) | Accepted | Knowledge record/evidence contracts, host verification gates, and measured local costs |
 | [0010](0010-read-only-knowledge-inspection.md) | Accepted | Read-only evidence/history inspection before authenticated knowledge recording |
 | [0011](0011-explicit-host-receipts.md) | Accepted | Explicit-policy signed receipt verification before live host integration and acceptance |
+| [0012](0012-pinned-harness-verification.md) | Accepted | Host-configured verification tool with authority outside model requests |
 
 ## Adding a decision
 

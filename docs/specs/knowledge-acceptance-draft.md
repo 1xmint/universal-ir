@@ -8,6 +8,8 @@ A trusted host owns actual user authentication, selected conversation events, si
 
 Before a writer is accepted, select and demonstrate one concrete host adapter with an authenticated human-event boundary, a model tool schema that fixes trusted parameters outside model arguments, and an isolated signer. General shell access to host secrets or policy administration defeats that boundary. A provider-independent harness is the first candidate, with subscription-host adapters following when their actual event/permission contracts can be demonstrated.
 
+The internal [harness verification tool](harness-verification-v1.md) now implements the narrow request/pinned-configuration part for verification only. It supplies no actual event channel, signer isolation, durable event consumption, or acceptance; it does not satisfy this writer gate.
+
 ## Candidate and preconditions
 
 A candidate must carry the exact versioned record, evidence references, expected current source/inventory projection, and expected accepted heads for its logical identity. The host retains the base conditions outside an untrusted model's approval claim. Record/receipt IDs cover exact wording, scope, origin, and supersession. Approval of a changed record requires a fresh host assertion; hashes are identity, not permission.

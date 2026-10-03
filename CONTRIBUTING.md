@@ -44,6 +44,8 @@ The workflow runs documentation checks and checker tests, plus inventory/cache/c
 
 Receipt tests additionally require `python -m pip install --require-hashes --only-binary=:all: -r requirements-receipts.txt` (use the environment's Python path above). The runtime dependency is optional for inventory/default knowledge inspection; CI tests those before installing the receipt verifier, then exercises receipt behavior and the fictional host demo on both platforms. The same required job covers all suites. No model credentials or paid calls are required.
 
+The same optional dependencies support `tests/test_harness.py`, covering host-fixed settings and adversarial model requests through the real handler. Required Windows/Linux CI runs that suite after receipt tests. The adapter is internal, with no stable SDK or authenticated human-event claim.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

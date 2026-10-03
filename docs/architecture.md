@@ -86,6 +86,8 @@ The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 
 
 [Decision 0011](design/0011-explicit-host-receipts.md) now adds a separate [signed receipt verifier](specs/host-receipts-v1.md) under an explicit caller-pinned trust policy. Signature verification authenticates a host assertion under that policy; it does not prove a live user event, consume approval, resolve accepted intent, or write knowledge. A concrete host adapter and the [acceptance draft](specs/knowledge-acceptance-draft.md) remain gates. Default reader attribution stays unchanged; optional crypto is loaded only by receipt verification.
 
+[Decision 0012](design/0012-pinned-harness-verification.md) adds an internal [host-configured verification tool](specs/harness-verification-v1.md). It fixes project, policy/pin, receipt lookup, and clock outside its model-visible request and rejects authority-changing fields at the handler. Hosts must separately protect their configuration/process from other model tools. This bounded adapter authenticates neither real human events nor host administrators and leaves the live-user/acceptance gates open.
+
 ## Lifecycle and different kinds of state
 
 Source snapshots, derived findings, candidate changes, check results, built artifacts, deployments, and runtime observations describe different things. Link them by identity and evidence; refreshing source does not establish that production changed.

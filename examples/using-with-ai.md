@@ -8,6 +8,8 @@ The [knowledge lifecycle walkthrough](knowledge-lifecycle.md) specifies how a pu
 
 The optional [host receipt demonstration](host-receipts.md) shows a provider-independent signature binding and read-only verification under a pinned policy. Its actor/action is scripted, not a real authenticated developer event. A live harness must protect signing/trust parameters from model tools and demonstrate event consumption plus checked acceptance before recording conversation-derived intent.
 
+The [harness verification walkthrough](harness-verification.md) now wires a narrow model-facing handler with host-fixed project, policy, receipt lookup, and clock. It demonstrates hostile request rejection without making a model call. A subscription agent with unrestricted shells still needs a separate protected host boundary; real conversation capture and acceptance remain future work.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

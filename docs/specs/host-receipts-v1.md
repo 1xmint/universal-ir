@@ -10,6 +10,8 @@ Only the host can issue signing requests from authenticated user actions. Signin
 
 A raw CLI caller may choose a policy for inspection. Its result is valid only under the displayed policy identity. A real harness must supply and check that identity from trusted configuration and prevent the model from substituting CLI policy arguments. Model-supplied keys, `approved: true`, a receipt payload without a signature, and repository-provided trust do not establish authority. A compromised or dishonest authorized host can issue false assertions; cryptography does not recover the actual conversation.
 
+The separate internal [harness tool](harness-verification-v1.md) now fixes these settings outside model requests, including a host-selected project identity, receipt lookup, and clock. Its request enforcement does not isolate host processes or authenticate real user events. The raw CLI below remains policy-relative and gains no new model-selectable flags.
+
 ## Optional dependency
 
 Inventory and default knowledge inspection still need only Python 3.12+ and Git. Install the optional verifier from the tool checkout:

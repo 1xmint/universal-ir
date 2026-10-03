@@ -13,6 +13,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from universal_ir.inventory import canonical, identity, parse_json
 from universal_ir.knowledge import inspect_knowledge
 from universal_ir.receipts import BINDING, DOMAIN, POLICY
+from universal_ir.harness import HarnessVerifier
 
 
 def run_demo():
@@ -46,6 +47,14 @@ def run_demo():
         command = [sys.executable, "-B", "-m", "universal_ir", "verify-receipt", str(root), record["record_id"],
                    "--receipt", str(receipt_path), "--policy", str(policy_path), "--policy-id", identity(policy)]
         valid = subprocess.run(command, cwd=tool, capture_output=True, check=True)
+        verifier = HarnessVerifier(root=root, project_id=record["project_id"], policy_path=policy_path,
+                                   policy_id=identity(policy), receipt_paths={proof["receipt_id"]: receipt_path})
+        request = {"record_id": record["record_id"], "receipt_id": proof["receipt_id"]}
+        harness_valid = verifier.handle(canonical(request))
+        substitution = verifier.handle(canonical(dict(request, policy_id="sha256:" + "a" * 64)))
+        unknown = verifier.handle(canonical(dict(request, receipt_id="sha256:" + "b" * 64)))
+        if harness_valid["status"] != "ok" or substitution["error"]["code"] != "invalid_tool_request" or unknown["error"]["code"] != "unknown_receipt":
+            raise RuntimeError("Host-configured verification did not enforce its narrow request contract.")
         proof["signature"] = "00" * 64
         proof["receipt_id"] = identity({name: value for name, value in proof.items() if name != "receipt_id"})
         receipt_path.write_bytes(canonical(proof) + b"\n")
@@ -59,6 +68,8 @@ def run_demo():
     return {"format": "uir.fictional-host-demo.v1", "status": "ok", "approval_source": "scripted_fictional_event",
             "valid_receipt": json.loads(valid.stdout), "tampered_signature": failure["error"]["code"],
             "default_attribution": "unverified_attribution", "private_key_persisted": False,
+            "harness": {"valid_receipt": harness_valid, "authority_substitution": substitution["error"]["code"],
+                        "unknown_receipt": unknown["error"]["code"]},
             "real_user_integration": "not_demonstrated"}
 
 

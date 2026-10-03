@@ -216,19 +216,26 @@ def _parse_host(data, code):
         _fail(code, f"Invalid host JSON: {error}")
 
 
-def verify_project_receipt(root, record_id, receipt_path, policy_path, expected_policy_id):
+def verify_project_receipt(root, record_id, receipt_path, policy_path, expected_policy_id, *,
+                           expected_project_id=None, clock=None):
     """CLI adapter core: current record plus coherently read explicit host inputs."""
     _digest(record_id, "invalid_arguments")
     _digest(expected_policy_id, "invalid_arguments")
+    if expected_project_id is not None:
+        _text(expected_project_id, "invalid_arguments")
     for _ in range(3):
         try:
             before = inspect_knowledge(root, full=True)
+            if expected_project_id is not None and before["project_id"] != expected_project_id:
+                _fail("host_project_mismatch", "Project identity differs from trusted host configuration.")
             resolved_root = Path(before["observation"]["root"])
             proof = _external_bytes(receipt_path, resolved_root)
             policy = _external_bytes(policy_path, resolved_root)
             after = inspect_knowledge(root, full=True)
             if before["snapshot"] != after["snapshot"] or proof != _external_bytes(receipt_path, resolved_root) or policy != _external_bytes(policy_path, resolved_root):
                 continue
+            if expected_project_id is not None and after["project_id"] != expected_project_id:
+                _fail("host_project_mismatch", "Project identity differs from trusted host configuration.")
             entry = next((item for item in after["records"]["entries"] if item["record_id"] == record_id), None)
             if entry is None:
                 _fail("unknown_knowledge", "Selected record has no included revision in this project.")
@@ -236,7 +243,7 @@ def verify_project_receipt(root, record_id, receipt_path, policy_path, expected_
                       "record_id": entry["record_id"], "body": entry["body"]}
             result = verify_receipt(record, _parse_host(proof[0], "invalid_receipt"),
                                     _parse_host(policy[0], "invalid_trust_policy"), expected_policy_id,
-                                    now=datetime.now(timezone.utc))
+                                    now=clock() if clock is not None else datetime.now(timezone.utc))
             result["observation"] = {"snapshot": after["snapshot"], "root": str(resolved_root),
                                      "record_evidence": entry["evidence_status"], "coverage_complete": after["coverage"]["complete"],
                                      "atomic": False, "freshness": "matching_inspections_and_host_input_reads"}

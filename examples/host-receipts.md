@@ -15,6 +15,8 @@ On Windows, use `.venv\Scripts\python` for the existing development environment.
 
 Expect a report labeled `scripted_fictional_event` and `real_user_integration: not_demonstrated`. The script invokes the real CLI twice: a correctly signed receipt verifies under its pinned demo policy, while a tampered signature returns `invalid_receipt_signature`. Default `knowledge` inspection still reports the developer claims as `unverified_attribution`; the demonstration has not installed any trusted host integration or selected an approved retention rule.
 
+The same script now includes a `harness` report exercising the [host-configured verification tool](harness-verification.md): valid registered verification succeeds, while an added policy pin and an unregistered receipt fail. This remains a fictional host integration, not authenticated human approval.
+
 ## How this would fit your harness
 
 Your existing host would authenticate a developer event and review the exact proposed statement, scope, and transition. Its protected signer would issue a receipt for that exact record ID. Public verification can use the receipt and trusted public-key policy without exposing signing secrets to the coding model.
