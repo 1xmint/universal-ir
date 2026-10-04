@@ -92,6 +92,8 @@ The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 
 
 [Decision 0014](design/0014-prepared-receipt-verification.md) adds separate [prepared-candidate assertion verification](specs/prepared-receipts-v1.md). A distinct signature profile binds the exact record and reconstructed review context; a host-configured handler fixes review lookup and trust settings outside its single-identity model request. Changed source or proposal requires a fresh live review. Signature validity does not establish a real human event or accepted intent; historical resolution, authenticated review, and serialized acceptance remain later gates.
 
+[Decision 0015](design/0015-acceptance-protocol-model.md) adds an [abstract acceptance model](specs/knowledge-acceptance-model.md) as development tooling. It separates staged artifacts, published decisions, and historical acknowledgements; tests retain competing imported heads and reject incomplete commits or conflicting event use. Authentication, locks, atomicity, and durability are assumptions supplied by tests. Real host integration, historical verification, and physical acceptance remain unimplemented; the default reader and signed profiles are unchanged.
+
 ## Lifecycle and different kinds of state
 
 Source snapshots, derived findings, candidate changes, check results, built artifacts, deployments, and runtime observations describe different things. Link them by identity and evidence; refreshing source does not establish that production changed.

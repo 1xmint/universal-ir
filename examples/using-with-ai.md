@@ -14,6 +14,8 @@ The working [candidate preparation walkthrough](knowledge-preparation.md) lets a
 
 The [prepared review walkthrough](prepared-receipts.md) now verifies an external host assertion bound to the exact proposal and current review context, through the real CLI and a host-fixed handler. It rejects reuse after a proposal changes. Scripted test events do not demonstrate real consent; a protected authenticated host and serialized acceptance remain required for conversational recording.
 
+The [acceptance walkthrough](acceptance-protocol.md) now tests the proposed transaction rules in an abstract development model. It shows how pending artifacts, retries, and published branch conflicts should behave; it is not a tool for accepting knowledge in your project. Real authentication and physical publication remain gates.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.
