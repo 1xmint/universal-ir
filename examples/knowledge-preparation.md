@@ -28,6 +28,6 @@ Inspect coverage, support, proposed transition, and exact origin independently. 
 
 ## Future approval handoff
 
-A host can use this preview to present an exact candidate before approval. Its authenticated developer channel must bind the eventual action to the full record and transition, and acceptance must recheck freshness and actual accepted heads. The current receipt CLI still selects included records; it does not verify an external candidate or consume an approval event. The [host-configured verifier](harness-verification.md) does not add a signer or human authentication.
+A host can use this preview to present an exact candidate before approval. Its authenticated developer channel must bind the eventual action to the full record and transition, and acceptance must recheck freshness and actual accepted heads. The original `verify-receipt` CLI selects included records. Separate [prepared review verification](prepared-receipts.md) now checks external host assertions bound to exact preparation context; neither operation consumes an approval event or supplies a signer or human authentication.
 
 This is the preparation step in the [acceptance draft](../docs/specs/knowledge-acceptance-draft.md), not an implemented transaction or writer. It makes a proposal reviewable while preserving the project's present state.

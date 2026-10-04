@@ -10,6 +10,7 @@ from .cache import cache_snapshot
 from .knowledge import FORMAT as KNOWLEDGE_FORMAT, inspect_knowledge
 from .receipts import FORMAT as RECEIPT_FORMAT, verify_project_receipt
 from .preparation import FORMAT as PREPARATION_FORMAT, prepare_knowledge
+from .prepared_receipts import FORMAT as PREPARED_RECEIPT_FORMAT, verify_candidate_receipt
 
 
 class Parser(argparse.ArgumentParser):
@@ -44,6 +45,13 @@ def main(argv=None) -> int:
     preparation.add_argument("root", type=Path)
     preparation.add_argument("candidate", type=Path, help="Complete knowledge record JSON outside the project")
     preparation.add_argument("--expected-snapshot", help="Reject if current project differs from this prior inventory snapshot")
+    prepared = commands.add_parser("verify-preparation", help="Verify a signed assertion for an external candidate and exact review base")
+    prepared.add_argument("root", type=Path)
+    prepared.add_argument("candidate", type=Path)
+    prepared.add_argument("--receipt", type=Path, required=True)
+    prepared.add_argument("--policy", type=Path, required=True)
+    prepared.add_argument("--policy-id", required=True, help="Host-pinned trust policy identity")
+    prepared.add_argument("--preparation-id", required=True, help="Host-pinned preparation identity from the reviewed candidate/context")
     output_format = FORMAT
     try:
         args = parser.parse_args(argv)
@@ -53,10 +61,15 @@ def main(argv=None) -> int:
             output_format = RECEIPT_FORMAT
         elif args.command == "prepare-knowledge":
             output_format = PREPARATION_FORMAT
+        elif args.command == "verify-preparation":
+            output_format = PREPARED_RECEIPT_FORMAT
         if args.command in ("inventory", "knowledge") and (not 1 <= args.limit <= 200 or args.offset < 0):
             raise InventoryError("invalid_arguments", "limit must be 1..200 and offset must be nonnegative.")
         if args.command == "verify-receipt":
             output = verify_project_receipt(args.root, args.record_id, args.receipt, args.policy, args.policy_id)
+        elif args.command == "verify-preparation":
+            output = verify_candidate_receipt(args.root, args.candidate, args.receipt, args.policy,
+                                              args.policy_id, args.preparation_id)
         elif args.command == "prepare-knowledge":
             output = prepare_knowledge(args.root, args.candidate, expected_snapshot=args.expected_snapshot)
         elif args.command == "knowledge":

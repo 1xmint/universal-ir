@@ -48,6 +48,8 @@ The same optional dependencies support `tests/test_harness.py`, covering host-fi
 
 Read-only candidate preparation uses only the standard library and Git. Required CI runs `tests/test_preparation.py` before installing optional crypto, alongside the knowledge reader. Keep overlay evaluation identical to stored-record evidence/history rules and preserve default inspection; preparation never establishes consent or writes project state.
 
+Prepared-candidate receipt verification uses the same optional pinned crypto. Required Windows/Linux CI runs `tests/test_prepared_receipts.py`, including the fictional real-CLI/handler demonstration, context invalidation, profile separation, races, and fixed-host request tests. Run the full local suite after shared receipt/harness changes; keep the earlier profiles and default attribution compatible. This verifies exact host assertions without supplying human authentication or acceptance.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

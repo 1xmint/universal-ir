@@ -88,7 +88,9 @@ The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 
 
 [Decision 0012](design/0012-pinned-harness-verification.md) adds an internal [host-configured verification tool](specs/harness-verification-v1.md). It fixes project, policy/pin, receipt lookup, and clock outside its model-visible request and rejects authority-changing fields at the handler. Hosts must separately protect their configuration/process from other model tools. This bounded adapter authenticates neither real human events nor host administrators and leaves the live-user/acceptance gates open.
 
-[Decision 0013](design/0013-read-only-knowledge-preparation.md) adds read-only [external candidate preparation](specs/knowledge-preparation-v1.md). A virtual overlay uses the reader's validation/evidence/history logic to make exact proposals reviewable before storage. It reports current inputs and included structural heads, not accepted-intent state. Preparation neither approves a candidate nor verifies an external candidate receipt; authenticated review and serialized acceptance remain later gates.
+[Decision 0013](design/0013-read-only-knowledge-preparation.md) adds read-only [external candidate preparation](specs/knowledge-preparation-v1.md). A virtual overlay uses the reader's validation/evidence/history logic to make exact proposals reviewable before storage. It reports current inputs and included structural heads, not accepted-intent state. Preparation itself neither approves a candidate nor verifies a receipt.
+
+[Decision 0014](design/0014-prepared-receipt-verification.md) adds separate [prepared-candidate assertion verification](specs/prepared-receipts-v1.md). A distinct signature profile binds the exact record and reconstructed review context; a host-configured handler fixes review lookup and trust settings outside its single-identity model request. Changed source or proposal requires a fresh live review. Signature validity does not establish a real human event or accepted intent; historical resolution, authenticated review, and serialized acceptance remain later gates.
 
 ## Lifecycle and different kinds of state
 
