@@ -88,6 +88,8 @@ The following are conceptual operations, not executable command names or a publi
 
 Before any writer ships, its binding and application protocol must prove expected-head checks, stale-input rejection, concurrent acceptance, interrupted writes, and preservation of the prior accepted set. Cross-process compare-and-publish requires serialization or an equivalent atomic protocol; writing an immutable file alone does not settle competing acceptance. These are implementation gates, not supplied features.
 
+The subsequent [acceptance logical contract/model](knowledge-acceptance-model.md) specifies decision bindings, staged versus published history, exact historical retries, event use, and imported forks. Only its abstract in-memory scenarios execute; real host proof, accepted-state derivation, capture, locking, commit/durability, and recovery remain required before a writer ships. Default knowledge inspection is unchanged.
+
 Malformed records, digest mismatches, invalid origins, cross-project references, and cycles return `invalid_knowledge` without replacing accepted state. Unavailable referenced revisions/evidence are `unresolved_evidence` during inspection and block dependent acceptance. Unsupported host proof returns `unverified_attribution`; attempted declaration acceptance returns `attribution_required`. Changed inputs/heads return `stale_candidate`; unresolved competing heads return `knowledge_conflict`. A knowledge inspection failure cannot silently yield a complete knowledge view; independent file inventory may still succeed with its own narrower scope.
 
 ## Observable acceptance cases

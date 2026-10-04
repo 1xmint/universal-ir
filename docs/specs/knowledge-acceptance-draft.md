@@ -2,6 +2,8 @@
 
 **Status:** Proposed design for the next increment. No writer, acceptance ledger, lock implementation, or live user-event adapter exists. The [receipt verifier](host-receipts-v1.md) authenticates assertions under a caller-pinned policy; it does not implement this protocol.
 
+The subsequent [logical contract and executable model](knowledge-acceptance-model.md) now specify decision information, inert staging, exact retries, event conflicts, and imported-history outcomes under explicit assumptions. Only that in-memory development model runs; no physical transaction or effective-intent reader is implemented. This draft retains the host/platform gates.
+
 ## Required boundary
 
 A trusted host owns actual user authentication, selected conversation events, signing access, policy distribution, and project write permission. A model may propose a complete candidate; it cannot choose the trust pin, approve itself, supply a trusted event registry, or bypass acceptance checks. `stated` requires exact authenticated utterance and attributable scope/transition; otherwise require explicit approval of the complete proposed statement. Signed claims from a fictional test signer do not demonstrate a real developer channel.

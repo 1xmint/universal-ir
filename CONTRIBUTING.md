@@ -50,6 +50,8 @@ Read-only candidate preparation uses only the standard library and Git. Required
 
 Prepared-candidate receipt verification uses the same optional pinned crypto. Required Windows/Linux CI runs `tests/test_prepared_receipts.py`, including the fictional real-CLI/handler demonstration, context invalidation, profile separation, races, and fixed-host request tests. Run the full local suite after shared receipt/harness changes; keep the earlier profiles and default attribution compatible. This verifies exact host assertions without supplying human authentication or acceptance.
 
+The development-only [acceptance protocol model](docs/specs/knowledge-acceptance-model.md) uses the standard library and runs with `python -B scripts/acceptance_model.py`. Required Windows/Linux CI runs `tests/test_acceptance_model.py` before crypto installation. Its boolean conditions and ideal commit/lock/restart are test assumptions, not evidence of authenticated events or filesystem guarantees. Do not wire it into production recording or model tools.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

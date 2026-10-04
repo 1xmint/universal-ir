@@ -40,6 +40,8 @@ The [prepared-candidate verifier](examples/prepared-receipts.md) now checks an e
 
 Read-only [knowledge preparation](examples/knowledge-preparation.md) now reviews a complete external candidate against current evidence and included history before it enters project storage. It returns exact wording, a structural transition preview, and input-bound preconditions. A preview does not approve, authenticate, or write the proposal; the real user and acceptance gates remain open.
 
+An [acceptance protocol model](examples/acceptance-protocol.md) now tests staging, restart, event reuse, and conflicting published histories in memory. Its authentication and commit guarantees are explicit test assumptions. It is development tooling; real host integration and physical acceptance remain unimplemented.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -79,6 +81,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Harness verification wiring](examples/harness-verification.md): a working model-facing verification tool with host-owned settings and explicit isolation limits.
 - [Knowledge preparation](examples/knowledge-preparation.md): review an external proposal while preserving current records and conflicting history.
 - [Prepared review verification](examples/prepared-receipts.md): verify an exact external host assertion and reject reuse after the review changes.
+- [Acceptance protocol model](examples/acceptance-protocol.md): run abstract staging, restart, and collaboration scenarios before a writer is built.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.
