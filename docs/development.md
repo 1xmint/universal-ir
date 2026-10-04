@@ -55,4 +55,6 @@ The [knowledge specification](specs/project-knowledge-v1.md) defines record/evid
 
 The internal [host-configured verification adapter](specs/harness-verification-v1.md) now has its own required Windows/Linux request-injection, fixed-authority, time/policy, and preservation checks under decision 0012. It narrows one tool's inputs; it does not establish process isolation or real user-event authentication. The same writer gates remain open.
 
+Read-only [external candidate preparation](specs/knowledge-preparation-v1.md), under decision 0013, adds evidence/history previews and input-bound review preconditions. Its standard-library/Git tests and fictional real-CLI example run on Windows/Linux before optional crypto installation. This is preparation without authenticated action or publication; acceptance and recovery gates remain open.
+
 Before a runtime release, add the applicable test matrix, installation instructions, version and compatibility policy, release automation, and supported-version security policy. Add evidence for each claim as the product grows.

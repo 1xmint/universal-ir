@@ -46,6 +46,8 @@ Receipt tests additionally require `python -m pip install --require-hashes --onl
 
 The same optional dependencies support `tests/test_harness.py`, covering host-fixed settings and adversarial model requests through the real handler. Required Windows/Linux CI runs that suite after receipt tests. The adapter is internal, with no stable SDK or authenticated human-event claim.
 
+Read-only candidate preparation uses only the standard library and Git. Required CI runs `tests/test_preparation.py` before installing optional crypto, alongside the knowledge reader. Keep overlay evaluation identical to stored-record evidence/history rules and preserve default inspection; preparation never establishes consent or writes project state.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

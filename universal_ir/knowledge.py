@@ -243,7 +243,7 @@ def _history(records):
     return order, children, heads
 
 
-def _inspect_capture(root, captured):
+def _inspect_capture(root, captured, *, candidate=None):
     manifest = captured.manifest
     project = manifest["configuration"]["project_id"]
     if project is None:
@@ -278,6 +278,14 @@ def _inspect_capture(root, captured):
             _invalid(f"Invalid knowledge JSON at {path}: {error}")
         key = record["record_id"]
         records[key], locations[key] = record, path
+    if candidate is not None:
+        if not isinstance(candidate, dict) or not isinstance(candidate.get("body"), dict):
+            _invalid("A candidate must be a complete knowledge record.")
+        path = f"{STORE}/{candidate['body'].get('id')}/{str(candidate.get('record_id'))[7:]}.json"
+        validate_record(candidate, project, path)
+        key = candidate["record_id"]
+        if key not in records:
+            records[key], locations[key] = candidate, None
     order, children, heads = _history(records)
     computed = {}
     for key in order:

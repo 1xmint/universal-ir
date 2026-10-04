@@ -82,6 +82,8 @@ No accept, record, resolve, receipt, or model flags exist. The authenticated hos
 
 The separate [verify-receipt operation](host-receipts-v1.md) can inspect a signed assertion under a caller-pinned policy. It leaves this operation's default attribution unchanged and supplies no accepted-intent resolver, live user-event binding, or writer.
 
+The separate [preparation operation](knowledge-preparation-v1.md) evaluates an external candidate through an optional in-memory overlay using the same reader logic. Ordinary inspection never receives that overlay and remains unchanged. A proposed structural successor is not stored or accepted.
+
 ## Acceptance evidence
 
 `tests/test_knowledge.py` exercises record integrity/schema, fictional fixture counts/forks, byte-offset quotes, source/configuration/ignore changes, missing/dependent references, long/cyclic history, pending withdrawals, coverage gaps, link/junction boundaries, races and torn-record retry, equivalent checkouts, real CLI behavior, and target preservation. Required Windows/Linux CI runs these tests alongside inventory/cache/cost and documentation checks. This demonstrates the bounded reader, not lower agent tokens, complete semantic understanding, or authenticated collaboration. See the [working walkthrough](../../examples/knowledge-inspection.md).

@@ -10,6 +10,8 @@ The optional [host receipt demonstration](host-receipts.md) shows a provider-ind
 
 The [harness verification walkthrough](harness-verification.md) now wires a narrow model-facing handler with host-fixed project, policy, receipt lookup, and clock. It demonstrates hostile request rejection without making a model call. A subscription agent with unrestricted shells still needs a separate protected host boundary; real conversation capture and acceptance remain future work.
 
+The working [candidate preparation walkthrough](knowledge-preparation.md) lets an agent/host inspect exact proposed knowledge before it enters project storage. It checks source/evidence/history and can reject a stale review base, while leaving current records untouched. This supplies a concrete proposal for later review, not authenticated approval or recording.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.
