@@ -9,6 +9,7 @@ from .inventory import FORMAT, InventoryError, compare, inventory, load_baseline
 from .cache import cache_snapshot
 from .knowledge import FORMAT as KNOWLEDGE_FORMAT, inspect_knowledge
 from .receipts import FORMAT as RECEIPT_FORMAT, verify_project_receipt
+from .preparation import FORMAT as PREPARATION_FORMAT, prepare_knowledge
 
 
 class Parser(argparse.ArgumentParser):
@@ -39,6 +40,10 @@ def main(argv=None) -> int:
     receipt.add_argument("--receipt", type=Path, required=True, help="External signed receipt JSON")
     receipt.add_argument("--policy", type=Path, required=True, help="External host-owned trust policy JSON")
     receipt.add_argument("--policy-id", required=True, help="Policy digest pinned by the host, not model-controlled inputs")
+    preparation = commands.add_parser("prepare-knowledge", help="Review an external candidate without approving or writing it")
+    preparation.add_argument("root", type=Path)
+    preparation.add_argument("candidate", type=Path, help="Complete knowledge record JSON outside the project")
+    preparation.add_argument("--expected-snapshot", help="Reject if current project differs from this prior inventory snapshot")
     output_format = FORMAT
     try:
         args = parser.parse_args(argv)
@@ -46,10 +51,14 @@ def main(argv=None) -> int:
             output_format = KNOWLEDGE_FORMAT
         elif args.command == "verify-receipt":
             output_format = RECEIPT_FORMAT
-        if args.command != "verify-receipt" and (not 1 <= args.limit <= 200 or args.offset < 0):
+        elif args.command == "prepare-knowledge":
+            output_format = PREPARATION_FORMAT
+        if args.command in ("inventory", "knowledge") and (not 1 <= args.limit <= 200 or args.offset < 0):
             raise InventoryError("invalid_arguments", "limit must be 1..200 and offset must be nonnegative.")
         if args.command == "verify-receipt":
             output = verify_project_receipt(args.root, args.record_id, args.receipt, args.policy, args.policy_id)
+        elif args.command == "prepare-knowledge":
+            output = prepare_knowledge(args.root, args.candidate, expected_snapshot=args.expected_snapshot)
         elif args.command == "knowledge":
             output = inspect_knowledge(args.root, selected_id=args.selected_id, offset=args.offset,
                                        limit=args.limit, full=args.full)

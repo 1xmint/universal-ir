@@ -10,6 +10,8 @@ Before a writer is accepted, select and demonstrate one concrete host adapter wi
 
 The internal [harness verification tool](harness-verification-v1.md) now implements the narrow request/pinned-configuration part for verification only. It supplies no actual event channel, signer isolation, durable event consumption, or acceptance; it does not satisfy this writer gate.
 
+Read-only [candidate preparation](knowledge-preparation-v1.md) now validates and previews an external record against current inputs and included structural history. It supplies a review base before storage, not approved/accepted heads or an authenticated action. Stage 1's user action and all transaction stages remain unimplemented.
+
 ## Candidate and preconditions
 
 A candidate must carry the exact versioned record, evidence references, expected current source/inventory projection, and expected accepted heads for its logical identity. The host retains the base conditions outside an untrusted model's approval claim. Record/receipt IDs cover exact wording, scope, origin, and supersession. Approval of a changed record requires a fresh host assertion; hashes are identity, not permission.
