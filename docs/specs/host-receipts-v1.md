@@ -2,6 +2,8 @@
 
 **Status:** Implemented bounded verification under [decision 0011](../design/0011-explicit-host-receipts.md). This binds signatures to [knowledge records](project-knowledge-v1.md); it supplies neither a live user-event adapter nor a knowledge writer. It is a provisional CLI/format, not a stable SDK.
 
+Subsequent [prepared-candidate verification](prepared-receipts-v1.md) adds a separate fixed profile and operation binding the external record's exact review context. The record-only schema, signature domain, and included-record operation specified here remain unchanged. Both use the same pinned trust-policy format and retain human-event/acceptance limits.
+
 ## Authority and host duties
 
 The first candidate integration is a provider-independent host/harness. A trusted caller owns the project trust policy, its expected digest, trusted clock, and signer access. The host must authenticate the actual developer channel and event; `stated` means the exact recorded text was stated, and `approved` means explicit approval of the exact proposed wording and record transition. Scope and supersession are part of the record identity. General permission to work on a project does not approve generated requirements. If scope/transition cannot be established from the event, obtain explicit approval rather than infer it.

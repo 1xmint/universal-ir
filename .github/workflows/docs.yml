@@ -42,6 +42,8 @@ jobs:
           python -m pip install --require-hashes --only-binary=:all: -r requirements-receipts.txt
       - name: Test explicit-policy receipt verification
         run: python -m unittest discover -s tests -p "test_receipts.py" -v
+      - name: Test prepared-candidate receipt verification
+        run: python -m unittest discover -s tests -p "test_prepared_receipts.py" -v
       - name: Test host-configured verification tool
         run: python -m unittest discover -s tests -p "test_harness.py" -v
   docs:

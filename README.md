@@ -36,6 +36,8 @@ The optional [host receipt verifier](docs/specs/host-receipts-v1.md) checks sign
 
 An internal [harness verification tool](examples/harness-verification.md) now fixes the selected project, trust policy, receipt lookup, and clock outside model requests. Its narrow handler verifies registered receipts by identity and rejects authority substitution. The host still must isolate its trusted configuration from the model's other tools; human-event authentication and acceptance remain unimplemented.
 
+The [prepared-candidate verifier](examples/prepared-receipts.md) now checks an external developer-claim assertion bound to its exact proposal and current review context. It rejects reuse after source or proposal changes, with a host-fixed handler accepting only a registered preparation identity. Its fictional demonstration establishes no real human event or accepted intent; no writer is available.
+
 Read-only [knowledge preparation](examples/knowledge-preparation.md) now reviews a complete external candidate against current evidence and included history before it enters project storage. It returns exact wording, a structural transition preview, and input-bound preconditions. A preview does not approve, authenticate, or write the proposal; the real user and acceptance gates remain open.
 
 ## Try the first working command
@@ -76,6 +78,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Host receipt verification](examples/host-receipts.md): optional signed assertion checks and the remaining live-host/acceptance boundary.
 - [Harness verification wiring](examples/harness-verification.md): a working model-facing verification tool with host-owned settings and explicit isolation limits.
 - [Knowledge preparation](examples/knowledge-preparation.md): review an external proposal while preserving current records and conflicting history.
+- [Prepared review verification](examples/prepared-receipts.md): verify an exact external host assertion and reject reuse after the review changes.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.

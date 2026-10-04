@@ -12,6 +12,8 @@ The [harness verification walkthrough](harness-verification.md) now wires a narr
 
 The working [candidate preparation walkthrough](knowledge-preparation.md) lets an agent/host inspect exact proposed knowledge before it enters project storage. It checks source/evidence/history and can reject a stale review base, while leaving current records untouched. This supplies a concrete proposal for later review, not authenticated approval or recording.
 
+The [prepared review walkthrough](prepared-receipts.md) now verifies an external host assertion bound to the exact proposal and current review context, through the real CLI and a host-fixed handler. It rejects reuse after a proposal changes. Scripted test events do not demonstrate real consent; a protected authenticated host and serialized acceptance remain required for conversational recording.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

@@ -7,6 +7,7 @@ from pathlib import Path
 from .inventory import InventoryError, parse_json
 from .knowledge import DIGEST
 from .receipts import verify_project_receipt
+from .prepared_receipts import verify_candidate_receipt
 
 
 FORMAT = "uir.harness-verification.v1"
@@ -23,6 +24,34 @@ def tool_definition():
                                  name: {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$",
                                         "minLength": 71, "maxLength": 71}
                                  for name in ("record_id", "receipt_id")}}}
+
+
+def prepared_tool_definition():
+    return {"name": "uir_verify_preparation",
+            "description": "Verify a host-registered external candidate and its exact reviewed context. "
+                           "Does not authenticate a human event, accept, or write knowledge.",
+            "input_schema": {"type": "object", "additionalProperties": False, "required": ["preparation_id"],
+                             "properties": {"preparation_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$",
+                                                               "minLength": 71, "maxLength": 71}}}}
+
+
+def _request(arguments, fields):
+    if not isinstance(arguments, bytes) or len(arguments) > MAX_REQUEST_BYTES:
+        raise InventoryError("invalid_tool_request", "Request must be at most 1024 UTF-8 JSON bytes.")
+    try:
+        request = parse_json(arguments)
+    except (ValueError, UnicodeError) as error:
+        raise InventoryError("invalid_tool_request", "Request is not strict UTF-8 JSON.") from error
+    if not isinstance(request, dict) or set(request) != set(fields):
+        raise InventoryError("invalid_tool_request", "Request fields do not match the registered operation.")
+    for value in request.values():
+        _digest(value, "invalid_tool_request")
+    return request
+
+
+def _failure(error):
+    return {"format": FORMAT, "status": "error", "error": {
+        "code": error.code, "message": "Verification failed; the host can inspect the inputs and retry."}}
 
 
 def _digest(value, code):
@@ -70,34 +99,59 @@ class HarnessVerifier:
     def handle(self, arguments):
         """Consume raw UTF-8 JSON arguments; return an automation result, no writes."""
         try:
-            if not isinstance(arguments, bytes) or len(arguments) > MAX_REQUEST_BYTES:
-                raise InventoryError("invalid_tool_request", "Request must be at most 1024 UTF-8 JSON bytes.")
-            try:
-                request = parse_json(arguments)
-            except (ValueError, UnicodeError) as error:
-                raise InventoryError("invalid_tool_request", "Request is not strict UTF-8 JSON.") from error
-            if not isinstance(request, dict) or set(request) != {"record_id", "receipt_id"}:
-                raise InventoryError("invalid_tool_request", "Only record_id and receipt_id are permitted.")
-            for value in request.values():
-                _digest(value, "invalid_tool_request")
+            request = _request(arguments, ("record_id", "receipt_id"))
             path = self._receipt_paths.get(request["receipt_id"])
             if path is None:
                 raise InventoryError("unknown_receipt", "Receipt is not registered by this host.")
 
-            def trusted_time():
-                try:
-                    return self._clock()
-                except Exception as error:
-                    raise InventoryError("host_clock_unavailable", "Host clock failed.") from error
-
             result = verify_project_receipt(
                 self._root, request["record_id"], path, self._policy_path, self._policy_id,
-                expected_project_id=self._project_id, clock=trusted_time,
+                expected_project_id=self._project_id, clock=self._trusted_time,
             )
             if result["receipt_id"] != request["receipt_id"]:
                 raise InventoryError("receipt_lookup_mismatch", "Registered input does not match requested receipt.")
             return {"format": FORMAT, "status": "ok", "result": result}
         except InventoryError as error:
             # Do not forward host paths or arbitrary decoder/OS details to a model.
-            return {"format": FORMAT, "status": "error", "error": {
-                "code": error.code, "message": "Verification failed; the host can inspect the inputs and retry."}}
+            return _failure(error)
+
+    def _trusted_time(self):
+        try:
+            return self._clock()
+        except Exception as error:
+            raise InventoryError("host_clock_unavailable", "Host clock failed.") from error
+
+
+class PreparedReceiptVerifier(HarnessVerifier):
+    """Host owns the complete review registry; models select a preparation ID."""
+
+    def __init__(self, *, root, project_id, policy_path, policy_id, reviews, clock=None):
+        super().__init__(root=root, project_id=project_id, policy_path=policy_path, policy_id=policy_id,
+                         receipt_paths={}, clock=clock)
+        if not isinstance(reviews, dict):
+            raise InventoryError("invalid_host_configuration", "Host review registry must be a dictionary.")
+        self._reviews = {}
+        for preparation_id, review in reviews.items():
+            _digest(preparation_id, "invalid_host_configuration")
+            if not isinstance(review, dict) or set(review) != {"record_id", "candidate_path", "receipt_id", "receipt_path"}:
+                raise InventoryError("invalid_host_configuration", "Review entry has unsupported fields.")
+            for name in ("record_id", "receipt_id"):
+                _digest(review[name], "invalid_host_configuration")
+            self._reviews[preparation_id] = {"record_id": review["record_id"], "receipt_id": review["receipt_id"],
+                                             "candidate_path": _path(review["candidate_path"]),
+                                             "receipt_path": _path(review["receipt_path"])}
+
+    def handle(self, arguments):
+        try:
+            request = _request(arguments, ("preparation_id",))
+            review = self._reviews.get(request["preparation_id"])
+            if review is None:
+                raise InventoryError("unknown_preparation", "Review is not registered by this host.")
+            result = verify_candidate_receipt(
+                self._root, review["candidate_path"], review["receipt_path"], self._policy_path, self._policy_id,
+                request["preparation_id"], expected_project_id=self._project_id, clock=self._trusted_time)
+            if result["record_id"] != review["record_id"] or result["receipt_id"] != review["receipt_id"]:
+                raise InventoryError("receipt_lookup_mismatch", "Review lookup does not match verified candidate/receipt identities.")
+            return {"format": FORMAT, "status": "ok", "result": result}
+        except InventoryError as error:
+            return _failure(error)

@@ -101,20 +101,28 @@ def validate_policy(policy, expected_id):
 
 
 def validate_receipt(receipt):
+    return _validate_receipt(receipt, binding=BINDING, payload_format="uir.knowledge-receipt.v1",
+                             extra_field=None, actions=("stated", "approved"))
+
+
+def _validate_receipt(receipt, *, binding, payload_format, extra_field, actions):
+    """Shared encoding checks; callers fix binding/domain rather than negotiate."""
     code = "invalid_receipt"
     _shape(receipt, "format algorithm key_id payload signature receipt_id", code)
-    if receipt["format"] != BINDING or receipt["algorithm"] != "ed25519":
+    if receipt["format"] != binding or receipt["algorithm"] != "ed25519":
         _fail(code, "Unsupported receipt binding or algorithm.")
     _digest(receipt["key_id"], code)
     _digest(receipt["receipt_id"], code)
     _hex(receipt["signature"], 64, code)
     payload = receipt["payload"]
-    _shape(payload, "format project_id record_id host_id event_id actor_id action recorded_at", code)
-    if payload["format"] != "uir.knowledge-receipt.v1" or payload["action"] not in ("stated", "approved"):
+    _shape(payload, "format project_id record_id host_id event_id actor_id action recorded_at " + (extra_field or ""), code)
+    if payload["format"] != payload_format or payload["action"] not in actions:
         _fail(code, "Unsupported receipt payload or action.")
     for field in ("project_id", "host_id", "event_id", "actor_id"):
         _text(payload[field], code)
     _digest(payload["record_id"], code)
+    if extra_field is not None:
+        _digest(payload[extra_field], code)
     _time(payload["recorded_at"], code)
     without_id = {key: value for key, value in receipt.items() if key != "receipt_id"}
     if identity(without_id) != receipt["receipt_id"]:
@@ -131,6 +139,12 @@ def verify_receipt(record, receipt, policy, expected_policy_id, *, now):
     """Verify under a caller-pinned policy, not authority chosen by model records."""
     validate_policy(policy, expected_policy_id)
     validate_receipt(receipt)
+    return _verify_assertion(record, receipt, policy, expected_policy_id, now=now,
+                             signed_bytes=signing_bytes(receipt))
+
+
+def _verify_assertion(record, receipt, policy, expected_policy_id, *, now, signed_bytes):
+    """Grant/time/subject/signature checks after a fixed binding was validated."""
     if not isinstance(now, datetime) or now.tzinfo is None or now.utcoffset() != timezone.utc.utcoffset(now):
         _fail("invalid_verification_time", "Verification requires a trusted, timezone-aware UTC time.")
     now = now.astimezone(timezone.utc)
@@ -165,7 +179,7 @@ def verify_receipt(record, receipt, policy, expected_policy_id, *, now):
         _fail("receipt_verifier_unavailable", "Install the optional pinned requirements-receipts.txt dependencies.")
     try:
         public = Ed25519PublicKey.from_public_bytes(bytes.fromhex(grant["public_key"]))
-        public.verify(bytes.fromhex(receipt["signature"]), signing_bytes(receipt))
+        public.verify(bytes.fromhex(receipt["signature"]), signed_bytes)
     except InvalidSignature:
         _fail("invalid_receipt_signature", "Signature does not verify under the authorized host key.")
     except UnsupportedAlgorithm:
@@ -181,8 +195,11 @@ def verify_receipt(record, receipt, policy, expected_policy_id, *, now):
 
 def _external_bytes(path, root):
     """Read explicit host inputs outside source boundaries; reject path links."""
-    path = Path(os.path.abspath(path))
     try:
+        path = Path(os.path.abspath(path))
+        str(path).encode("utf-8")
+        if "\x00" in str(path):
+            _fail("invalid_host_input", "Host input paths cannot contain NUL.")
         for part in (path, *path.parents):
             if _is_link(part):
                 _fail("invalid_host_input", "Host input paths cannot cross a link or junction.")
@@ -205,6 +222,8 @@ def _external_bytes(path, root):
         return data, digest, token
     except FileNotFoundError as error:
         raise ChangedDuringCapture() from error
+    except (TypeError, ValueError, UnicodeError):
+        _fail("invalid_host_input", "Host input path is not representable.")
     except OSError as error:
         _fail("unreadable_input", f"Cannot read explicit host input: {error}")
 

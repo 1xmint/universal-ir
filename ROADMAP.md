@@ -87,6 +87,7 @@ This is a documentation increment within milestone 1. The first working proof wi
 - [x] Specify and implement explicit-policy signed receipt verification with optional pinned crypto, revocation/expiry checks, and a fictional offline host demonstration under [decision 0011](docs/design/0011-explicit-host-receipts.md).
 - [x] Add a narrow host-configured verification tool that fixes project, policy, lookup, and clock outside model requests, with adversarial request tests under [decision 0012](docs/design/0012-pinned-harness-verification.md).
 - [x] Add read-only external candidate preparation with evidence/history previews, input-bound preconditions, and stale-base rejection under [decision 0013](docs/design/0013-read-only-knowledge-preparation.md).
+- [x] Verify external candidate assertions bound to exact preparation context, with a distinct signature profile and host-fixed review lookup under [decision 0014](docs/design/0014-prepared-receipt-verification.md).
 - [ ] Select and demonstrate one authenticated host receipt binding and a serialized stale/concurrent/interrupted acceptance protocol before shipping a knowledge writer.
 - [ ] Evaluate optional model enrichment and task ranking against a deterministic retrieval and existing-agent baseline.
 
@@ -104,7 +105,9 @@ This is a documentation increment within milestone 1. The first working proof wi
 
 **Harness verification increment:** The [host-configured tool](docs/specs/harness-verification-v1.md) keeps trust selections outside its two-identity model request and demonstrates rejection of authority substitution. It is an internal verification adapter, not a public SDK, host/process sandbox, authenticated human channel, signer, or writer. The live-user and acceptance gate remains unchecked.
 
-**Preparation increment:** The [candidate preparation command](docs/specs/knowledge-preparation-v1.md) validates and previews an external record before it enters the store. It identifies actual source and included structural heads without approving or writing a transition. Accepted heads, candidate receipt verification, actual user events, and serialized publication/recovery remain gates.
+**Preparation increment:** The [candidate preparation command](docs/specs/knowledge-preparation-v1.md) validates and previews an external record before it enters the store. It identifies actual source and included structural heads without approving or writing a transition. Accepted heads, actual user events, and serialized publication/recovery remain gates.
+
+**Prepared receipt increment:** The [external candidate verifier](docs/specs/prepared-receipts-v1.md) binds a host assertion to the exact reconstructed preparation and rejects stale context or profile reuse. A narrow internal handler fixes review lookup and authority outside model arguments. The fictional demo proves verification/preservation, not real human authentication, consumed events, historical approval resolution, or acceptance. Those gates remain unchecked.
 
 **Next gates:** Demonstrate a concrete authenticated user-event host adapter with protected signer/policy parameters and implement the serialized stale/concurrent/interrupted acceptance protocol before recording conversational requirements; then ship checked recording and a real agent walkthrough. Broaden and separate cost measurements before incremental scan optimization. Keep GLiNER-family models and Jev as optional evaluation candidates rather than dependencies. Coherence increments and executable IR have separate acceptance evidence; inventory/cache/reader/receipt progress cannot complete interpreter or compiler gates.
 

@@ -12,6 +12,8 @@ The internal [harness verification tool](harness-verification-v1.md) now impleme
 
 Read-only [candidate preparation](knowledge-preparation-v1.md) now validates and previews an external record against current inputs and included structural history. It supplies a review base before storage, not approved/accepted heads or an authenticated action. Stage 1's user action and all transaction stages remain unimplemented.
 
+Separate [prepared-candidate verification](prepared-receipts-v1.md) now binds a signed host assertion to that exact reconstructed review and rejects stale context. Its host-fixed registry is a verification lookup, not an authenticated event registry or accepted-head ledger. Publication changes the live full snapshot; this verifier cannot derive historical accepted intent afterwards. A writer needs durable reviewed-base/acceptance records and a separately specified resolver. Stage 1's actual human event and all transaction stages remain open.
+
 ## Candidate and preconditions
 
 A candidate must carry the exact versioned record, evidence references, expected current source/inventory projection, and expected accepted heads for its logical identity. The host retains the base conditions outside an untrusted model's approval claim. Record/receipt IDs cover exact wording, scope, origin, and supersession. Approval of a changed record requires a fresh host assertion; hashes are identity, not permission.
