@@ -18,6 +18,8 @@ The [acceptance walkthrough](acceptance-protocol.md) now tests the proposed tran
 
 The [WebAuthn walkthrough](webauthn-review.md) now checks exact-review assertions using a fictional software credential. A future protected review host could connect this check to a developer's browser/authenticator while keeping enrollment and trusted settings out of agent tools. That real ceremony, protected host, event capture, and acceptance are still unimplemented; the walkthrough neither records intent nor proves consent.
 
+The [temporary browser walkthrough](browser-review.md) now provides a developer-operated registration/review page with origin/capability checks and current-review verification. It is an in-memory development demo; the coding agent must not receive its session capability or enrollment authority. Unrestricted local agents can defeat this boundary. Protected operator authentication and a real device/developer ceremony remain required before recording requirements.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

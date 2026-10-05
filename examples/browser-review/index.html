@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal IR · review demo</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/review.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">UNIVERSAL IR / DEVELOPMENT DEMO</p>
+    <h1>Review a project requirement</h1>
+    <p class="notice">This temporary session checks a credential and an exact proposal. It does not establish accepted intent or write project files. Enrollment is not isolated from unrestricted local agents.</p>
+    <p id="status" role="status" aria-live="polite">Connecting to the selected review…</p>
+    <section id="proposal" hidden>
+      <dl id="identities"></dl>
+      <h2>Exact proposed statement</h2>
+      <pre id="statement"></pre>
+      <h2>Scope</h2>
+      <pre id="scope"></pre>
+      <h2>Evidence and transition</h2>
+      <pre id="evidence"></pre>
+      <details><summary>Complete review, including omissions and freshness</summary><pre id="complete"></pre></details>
+      <p>Your authenticator may retain the credential created for localhost after this demo ends. Universal IR keeps its credential state only in this temporary process.</p>
+      <div class="actions">
+        <button id="register" disabled>Register a temporary credential</button>
+        <button id="review" disabled>Prepare this review for approval</button>
+      </div>
+      <div id="approval" hidden>
+        <p id="expires"></p>
+        <label><input id="ack" type="checkbox"> I have reviewed this exact statement, scope, evidence, and transition.</label>
+        <button id="approve" disabled>Authenticate this exact review</button>
+      </div>
+      <button id="cancel">Cancel this session</button>
+    </section>
+    <section id="outcome" hidden><h2>Verification result</h2><p>No knowledge was accepted or written.</p><pre id="result"></pre></section>
+  </main>
+</body>
+</html>
