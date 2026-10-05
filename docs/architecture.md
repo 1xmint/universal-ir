@@ -98,6 +98,8 @@ The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 
 
 [Decision 0017](design/0017-temporary-browser-review.md) adds internal [registration checks and a temporary browser host](specs/browser-review-demo-v1.md). It requests no device attestation, checks credential/context, and displays the complete prepared proposal through origin/capability-gated loopback transport. Public credentials and stages live only in process memory; completion closes that session without issuing receipts or writing knowledge. Protected actor enrollment, host isolation, real developer/device evidence, and durable acceptance remain unimplemented. This is development tooling rather than a released authenticated host.
 
+[Decision 0018](design/0018-deterministic-task-context.md) adds a read-only [task-context view](specs/task-context-v1.md). Literal path/content matching selects bounded exact source excerpts and containment edges, with reasons, snapshot identity, omissions, and opaque-file gaps. Matching captures bracket reads; an expected snapshot rejects stale continuation. This is a deterministic retrieval baseline, with no model calls, semantic dependency extraction, source writes, or measured whole-task improvement.
+
 ## Lifecycle and different kinds of state
 
 Source snapshots, derived findings, candidate changes, check results, built artifacts, deployments, and runtime observations describe different things. Link them by identity and evidence; refreshing source does not establish that production changed.

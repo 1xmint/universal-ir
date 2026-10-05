@@ -84,10 +84,12 @@ For an archive-permission fix, an agent would receive the requirement, relevant 
 
 The agent could expand a dependency or ask for additional source and evidence. Truncation and omitted relationships must be visible. Budget limits must not turn an incomplete dependency view into a claim that no other dependencies exist.
 
+The implemented [task-context prototype](specs/task-context-v1.md) supplies a narrower first view: literal matches, exact bounded source excerpts, and containment paths, with current snapshot evidence and explicit gaps. It has no resolved call/dependency semantics or complete impact analysis. Expected-snapshot pins reject changed inputs during pagination. See the [working walkthrough](../examples/task-context.md); optional model ranking and full-agent retrieval comparisons remain future evidence.
+
 Summaries should be derived from identified inputs and refreshed when those inputs change. A model-generated summary needs the same freshness and evidence boundaries as other inferred content. Storing a summary does not remove the cost of verifying or updating it.
 
 ## Validation across scales
 
 Use the [complex-project walkthrough](../examples/complex-project.md) to define concrete navigation and change scenarios. Check that a reader or agent can move from a system overview to relevant detail, follow cross-service relationships, and find unknowns without losing the snapshot or evidence trail.
 
-The [coherence specification](specs/project-coherence.md) defines required first-proof lifecycle, attribution, sharing, and remote-awareness outcomes. The [knowledge record contract](specs/project-knowledge-v1.md) now specifies evidence, revisions, and attribution boundaries without implementing a writer or host binding. The broader [adoption proposal](existing-repositories.md) adds future checked source changes. Retrieval algorithms, host proof, acceptance/source application guarantees, performance budgets, and runtime integrations remain implementation gates.
+The [coherence specification](specs/project-coherence.md) defines required first-proof lifecycle, attribution, sharing, and remote-awareness outcomes. The [knowledge record contract](specs/project-knowledge-v1.md) now specifies evidence, revisions, and attribution boundaries without implementing a writer or host binding. The broader [adoption proposal](existing-repositories.md) adds future checked source changes. Retrieval evaluation beyond the literal baseline, host proof, acceptance/source application guarantees, performance budgets, and runtime integrations remain gates.

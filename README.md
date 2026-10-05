@@ -46,6 +46,8 @@ An optional [WebAuthn review component](examples/webauthn-review.md) now checks 
 
 A [temporary browser review demo](examples/browser-review.md) now adds registration checks, a readable exact-review page, and loopback transport. It keeps state in memory and rejects stale or completed sessions. It is development tooling: protected operator enrollment, host isolation, and a real developer/authenticator ceremony remain unproved; no knowledge is accepted or written.
 
+A read-only [task-context command](examples/task-context.md) now locates literal terms in paths and eligible source, returning bounded exact excerpts, match reasons, containment, and explicit gaps. Matching inventory captures bind evidence to current inputs; an expected snapshot can guard pagination. It has no model calls and establishes no semantic dependencies or token savings.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -59,6 +61,8 @@ On Windows, the repository's development environment can use `.venv\Scripts\pyth
 The command leaves the selected project untouched and returns a bounded JSON overview with containment, guidance candidates, classification hypotheses, content identity, freshness, and exclusions. Expand an included directory with `--path services`; save `--full` output for later `--baseline` comparison. It also works on non-Git folders, but requires the Git executable for ignore rules. Each request rescans contents; there is no ongoing monitoring.
 
 Add `--cache-dir /outside/project/cache` to persist verified snapshots in an external local directory. Missing or damaged snapshots are reconstructed; unavailable storage is reported alongside the fresh local view. A cache hit still performs full source verification and does not imply faster startup. See the [working walkthrough](examples/local-inventory.md) for setup, storage, comparison, harness integration, and limitations.
+
+To locate source for a task, run `python -B -m universal_ir context /path/to/your/project --query "archive administrator"`. See the [task walkthrough](examples/task-context.md) for scopes, budgets, evidence, and stale-page rejection. Literal retrieval is a baseline for later context experiments, not complete change-impact analysis.
 
 ## Intended use in your own projects
 
@@ -80,6 +84,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Coherent project views](docs/coherence.md): nested structure, cross-cutting relationships, and different kinds of state.
 - [Portable project-coherence specification](docs/specs/project-coherence.md): repository storage, conversational knowledge, lifecycle, and collaboration contracts.
 - [Local inventory prototype](examples/local-inventory.md): working commands, with the [versioned contract](docs/specs/local-inventory-v1.md).
+- [Task context](examples/task-context.md): working literal retrieval with source excerpts, containment, and the [versioned contract](docs/specs/task-context-v1.md).
 - [Knowledge inspection](examples/knowledge-inspection.md): working evidence/history views and a fictional fixture, with the [versioned contract](docs/specs/knowledge-inspection-v1.md).
 - [Host receipt verification](examples/host-receipts.md): optional signed assertion checks and the remaining live-host/acceptance boundary.
 - [Harness verification wiring](examples/harness-verification.md): a working model-facing verification tool with host-owned settings and explicit isolation limits.
