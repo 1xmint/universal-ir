@@ -204,7 +204,11 @@ class ContextTests(unittest.TestCase):
 
     def test_unreadable_source_fails_and_does_not_become_a_gap(self):
         self.write("a.py", "hit")
+        entry = next(item for item in inventory(self.root)["manifest"]["entries"] if item["path"] == "a.py")
+        # Patch only during the direct read: POSIX temp cleanup also uses os.open.
         with patch("universal_ir.context.os.open", side_effect=PermissionError("denied")):
+            self.assert_code("unreadable_input", _read_text, self.root, entry)
+        with patch("universal_ir.context._read_text", side_effect=InventoryError("unreadable_input", "denied")):
             self.assert_code("unreadable_input", task_context, self.root, "hit")
 
     def test_equal_size_timestamp_edit_cannot_reuse_old_excerpts(self):
