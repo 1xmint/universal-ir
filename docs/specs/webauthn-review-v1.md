@@ -1,6 +1,6 @@
 # WebAuthn assertions for prepared knowledge reviews
 
-**Status:** Implemented bounded internal verification component under [decision 0016](../design/0016-webauthn-review-assertions.md). Enrollment, browser ceremony, protected review host, receipt issuance, and acceptance remain unimplemented. The Python interface and JSON transports are provisional, not a public SDK or executable CLI contract.
+**Status:** Implemented bounded internal verification component under [decision 0016](../design/0016-webauthn-review-assertions.md). The subsequent [registration/temporary browser demo](browser-review-demo-v1.md) now supplies development transport and presentation. Protected enrollment/host authority, real developer ceremony, receipt issuance, and acceptance remain unimplemented or unproved. The Python interface and JSON transports are provisional, not a public SDK or executable CLI contract.
 
 ## Purpose and trust boundary
 

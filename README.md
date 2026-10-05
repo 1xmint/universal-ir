@@ -44,6 +44,8 @@ An [acceptance protocol model](examples/acceptance-protocol.md) now tests stagin
 
 An optional [WebAuthn review component](examples/webauthn-review.md) now checks credential assertions against exact prepared reviews, including signed presence/verification flags, expiry, and current source. Its software-key demonstration establishes no real developer consent. Protected enrollment, a browser review host, authenticated event capture, and acceptance remain required; this component writes nothing.
 
+A [temporary browser review demo](examples/browser-review.md) now adds registration checks, a readable exact-review page, and loopback transport. It keeps state in memory and rejects stale or completed sessions. It is development tooling: protected operator enrollment, host isolation, and a real developer/authenticator ceremony remain unproved; no knowledge is accepted or written.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -85,6 +87,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Prepared review verification](examples/prepared-receipts.md): verify an exact external host assertion and reject reuse after the review changes.
 - [Acceptance protocol model](examples/acceptance-protocol.md): run abstract staging, restart, and collaboration scenarios before a writer is built.
 - [WebAuthn review assertions](examples/webauthn-review.md): exercise exact-review signature checks with a fictional software credential and explicit human-event limits.
+- [Temporary browser review](examples/browser-review.md): run registration and review transport with an exact proposal and explicit no-write boundaries.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.

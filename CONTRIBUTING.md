@@ -54,6 +54,8 @@ The development-only [acceptance protocol model](docs/specs/knowledge-acceptance
 
 WebAuthn assertion tests additionally require `python -m pip install --require-hashes --only-binary=:all: -r requirements-webauthn.txt`, which includes the receipt dependency lock. Install both documentation and WebAuthn requirements before running full unittest discovery. Required Windows/Linux CI runs `tests/test_webauthn_review.py` after the optional installation; default suites still run first. The [software-credential demonstration](examples/webauthn-review.md) verifies real signatures, not real developer enrollment or consent. Protect trusted construction and keep imports lazy; no host UI or knowledge writer is supplied.
 
+The subsequent [temporary browser host](examples/browser-review.md) adds registration and loopback transport tests in `tests/test_browser_review.py`. Required Windows/Linux CI also uses a pinned setup-node action with Node 22 to run `node --test tests/browser_review.test.cjs`; run this frontend command locally alongside Python discovery. Node is test tooling only; running the Python host/browser page needs no Node. Credential tests are scripted, and a visual browser check is not a real user/device ceremony. The temporary host supplies no isolated enrollment or knowledge writer.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.
