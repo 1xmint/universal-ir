@@ -23,6 +23,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0015](0015-acceptance-protocol-model.md) | Accepted | Logical acceptance contract and in-memory staging/retry/collaboration model |
 | [0016](0016-webauthn-review-assertions.md) | Accepted | Optional host-configured WebAuthn assertions for exact prepared reviews |
 | [0017](0017-temporary-browser-review.md) | Accepted | Internal registration checks and temporary browser review transport |
+| [0018](0018-deterministic-task-context.md) | Accepted | Deterministic literal task retrieval with fresh bounded source evidence |
 
 ## Adding a decision
 

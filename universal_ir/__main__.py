@@ -11,6 +11,7 @@ from .knowledge import FORMAT as KNOWLEDGE_FORMAT, inspect_knowledge
 from .receipts import FORMAT as RECEIPT_FORMAT, verify_project_receipt
 from .preparation import FORMAT as PREPARATION_FORMAT, prepare_knowledge
 from .prepared_receipts import FORMAT as PREPARED_RECEIPT_FORMAT, verify_candidate_receipt
+from .context import FORMAT as CONTEXT_FORMAT, task_context
 
 
 class Parser(argparse.ArgumentParser):
@@ -29,6 +30,14 @@ def main(argv=None) -> int:
     command.add_argument("--full", action="store_true", help="Export full manifest for inspection or comparison")
     command.add_argument("--baseline", type=Path, help="Previous full inventory; never replaces current extraction")
     command.add_argument("--cache-dir", type=Path, help="Optional local snapshot storage outside the selected project; source is still fully rescanned")
+    context = commands.add_parser("context", help="Find literal task terms and return fresh bounded source excerpts")
+    context.add_argument("root", type=Path)
+    context.add_argument("--query", required=True, help="Whitespace-separated literal terms; no semantic understanding")
+    context.add_argument("--path", default=".")
+    context.add_argument("--limit", type=int, default=10)
+    context.add_argument("--offset", type=int, default=0)
+    context.add_argument("--max-bytes", type=int, default=8192, help="Total UTF-8 excerpt bytes; metadata is separate")
+    context.add_argument("--expected-snapshot", help="Pin current inputs when expanding or paging a prior view")
     knowledge = commands.add_parser("knowledge", help="Inspect existing knowledge, evidence, and revision conflicts")
     knowledge.add_argument("root", type=Path)
     knowledge.add_argument("--id", dest="selected_id", help="Expand a logical knowledge identity")
@@ -57,6 +66,8 @@ def main(argv=None) -> int:
         args = parser.parse_args(argv)
         if args.command == "knowledge":
             output_format = KNOWLEDGE_FORMAT
+        elif args.command == "context":
+            output_format = CONTEXT_FORMAT
         elif args.command == "verify-receipt":
             output_format = RECEIPT_FORMAT
         elif args.command == "prepare-knowledge":
@@ -65,7 +76,11 @@ def main(argv=None) -> int:
             output_format = PREPARED_RECEIPT_FORMAT
         if args.command in ("inventory", "knowledge") and (not 1 <= args.limit <= 200 or args.offset < 0):
             raise InventoryError("invalid_arguments", "limit must be 1..200 and offset must be nonnegative.")
-        if args.command == "verify-receipt":
+        if args.command == "context":
+            output = task_context(args.root, args.query, selection=args.path, limit=args.limit,
+                                  offset=args.offset, max_bytes=args.max_bytes,
+                                  expected_snapshot=args.expected_snapshot)
+        elif args.command == "verify-receipt":
             output = verify_project_receipt(args.root, args.record_id, args.receipt, args.policy, args.policy_id)
         elif args.command == "verify-preparation":
             output = verify_candidate_receipt(args.root, args.candidate, args.receipt, args.policy,

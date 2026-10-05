@@ -20,6 +20,8 @@ Discovery would inventory the selected workspace, project guidance, configuratio
 
 Discovery must not run arbitrary project scripts, reformat files, install dependencies, replace agent instructions, or modify the project's manifests. Any tool-owned configuration and cache locations must be specified and distinguishable from application files. Authorized execution remains a host responsibility.
 
+The working [task-context command](../examples/task-context.md) now locates literal terms and returns bounded exact source excerpts with containment, snapshot identity, and visible gaps. It uses full inventory capture around source reads and can pin pagination to expected inputs. Literal selection cannot establish semantic relationships, complete change impact, or source-edit acceptance; the following deeper-adapter requirements remain proposed.
+
 Use deterministic language tooling for established syntax, symbols, types, and references where available. Record the adapter and compiler compatibility versions. Unresolved dependencies, configuration errors, and unknown framework conventions must appear in diagnostics. An optional model interpretation remains a labeled hypothesis.
 
 Existing build or test failures belong in the baseline. A project with baseline failures must not be labeled healthy, and an edit must not claim a fully green result by ignoring them. Acceptance must specify the target behavior and how relevant new failures are detected.

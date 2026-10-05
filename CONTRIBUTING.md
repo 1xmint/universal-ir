@@ -56,6 +56,8 @@ WebAuthn assertion tests additionally require `python -m pip install --require-h
 
 The subsequent [temporary browser host](examples/browser-review.md) adds registration and loopback transport tests in `tests/test_browser_review.py`. Required Windows/Linux CI also uses a pinned setup-node action with Node 22 to run `node --test tests/browser_review.test.cjs`; run this frontend command locally alongside Python discovery. Node is test tooling only; running the Python host/browser page needs no Node. Credential tests are scripted, and a visual browser check is not a real user/device ceremony. The temporary host supplies no isolated enrollment or knowledge writer.
 
+The read-only [task-context command](examples/task-context.md) uses only the standard library and Git. Required Windows/Linux CI runs `tests/test_context.py` before optional crypto installation, covering literal selection, exact bounded source ranges, scope/gaps, pagination pins, races, and preservation. Run it alongside inventory tests after retrieval or extraction changes. Smaller excerpts and zero model calls do not establish whole-task token savings.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

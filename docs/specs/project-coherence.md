@@ -75,6 +75,8 @@ A view must identify its selection scope and visible omissions. When a size limi
 
 Views may expose supported source excerpts, but an excerpt and an inferred explanation have different evidence status. Checking graph structure or successfully extracting files is not evidence that tests pass, permissions hold, or a deployment is current. Historical observations keep their exact input and environment references and cannot become evidence for a different version.
 
+The bounded [task-context operation](task-context-v1.md) now implements literal retrieval with exact source ranges, containment, omissions, and input-bound continuation. It is one subset of these view requirements; deep semantic connections, approved intent, and complete task context remain unimplemented.
+
 ## Lifecycle and freshness
 
 Local freshness, extraction support, remote awareness, and artifact availability are separate dimensions. A current local inventory can contain unknown behavior and can be behind a newer remote branch. Unsupported deep analysis does not make independent file navigation impossible.
