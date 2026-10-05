@@ -21,6 +21,7 @@ Keep important choices here so a new contributor or agent can find the reasons w
 | [0013](0013-read-only-knowledge-preparation.md) | Accepted | Read-only external knowledge proposals and evidence/history previews before storage |
 | [0014](0014-prepared-receipt-verification.md) | Accepted | Context-bound external candidate assertions and host-fixed review verification |
 | [0015](0015-acceptance-protocol-model.md) | Accepted | Logical acceptance contract and in-memory staging/retry/collaboration model |
+| [0016](0016-webauthn-review-assertions.md) | Accepted | Optional host-configured WebAuthn assertions for exact prepared reviews |
 
 ## Adding a decision
 

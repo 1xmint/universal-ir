@@ -16,6 +16,8 @@ The [prepared review walkthrough](prepared-receipts.md) now verifies an external
 
 The [acceptance walkthrough](acceptance-protocol.md) now tests the proposed transaction rules in an abstract development model. It shows how pending artifacts, retries, and published branch conflicts should behave; it is not a tool for accepting knowledge in your project. Real authentication and physical publication remain gates.
 
+The [WebAuthn walkthrough](webauthn-review.md) now checks exact-review assertions using a fictional software credential. A future protected review host could connect this check to a developer's browser/authenticator while keeping enrollment and trusted settings out of agent tools. That real ceremony, protected host, event capture, and acceptance are still unimplemented; the walkthrough neither records intent nor proves consent.
+
 ## Example 1: a user with a coding subscription
 
 The user already has a coding agent that can work with local files and terminal commands. They want a short setup path, then ordinary task prompts.

@@ -42,6 +42,8 @@ Read-only [knowledge preparation](examples/knowledge-preparation.md) now reviews
 
 An [acceptance protocol model](examples/acceptance-protocol.md) now tests staging, restart, event reuse, and conflicting published histories in memory. Its authentication and commit guarantees are explicit test assumptions. It is development tooling; real host integration and physical acceptance remain unimplemented.
 
+An optional [WebAuthn review component](examples/webauthn-review.md) now checks credential assertions against exact prepared reviews, including signed presence/verification flags, expiry, and current source. Its software-key demonstration establishes no real developer consent. Protected enrollment, a browser review host, authenticated event capture, and acceptance remain required; this component writes nothing.
+
 ## Try the first working command
 
 With Python 3.12+ and Git installed, run from this checkout:
@@ -82,6 +84,7 @@ The [real development examples](examples/using-with-ai.md) explain both journeys
 - [Knowledge preparation](examples/knowledge-preparation.md): review an external proposal while preserving current records and conflicting history.
 - [Prepared review verification](examples/prepared-receipts.md): verify an exact external host assertion and reject reuse after the review changes.
 - [Acceptance protocol model](examples/acceptance-protocol.md): run abstract staging, restart, and collaboration scenarios before a writer is built.
+- [WebAuthn review assertions](examples/webauthn-review.md): exercise exact-review signature checks with a fictional software credential and explicit human-event limits.
 - [Existing-repository adoption](docs/existing-repositories.md): proposed freshness and checked-change lifecycle.
 - [Project task example](examples/project-tasks.md): one application and a change to its rules.
 - [Complex-project example](examples/complex-project.md): connected services, offline edits, and source versus runtime state.
