@@ -4,6 +4,8 @@
 
 The subsequent [logical contract and executable model](knowledge-acceptance-model.md) now specify decision information, inert staging, exact retries, event conflicts, and imported-history outcomes under explicit assumptions. Only that in-memory development model runs; no physical transaction or effective-intent reader is implemented. This draft retains the host/platform gates.
 
+The optional [WebAuthn review assertion component](webauthn-review-v1.md) now checks a host-configured credential against exact current preparation. Its software-credential tests do not establish real enrollment, protected review display, or human authentication; stage 1 and all physical transaction gates remain open.
+
 ## Required boundary
 
 A trusted host owns actual user authentication, selected conversation events, signing access, policy distribution, and project write permission. A model may propose a complete candidate; it cannot choose the trust pin, approve itself, supply a trusted event registry, or bypass acceptance checks. `stated` requires exact authenticated utterance and attributable scope/transition; otherwise require explicit approval of the complete proposed statement. Signed claims from a fictional test signer do not demonstrate a real developer channel.

@@ -48,6 +48,11 @@ jobs:
         run: python -m unittest discover -s tests -p "test_prepared_receipts.py" -v
       - name: Test host-configured verification tool
         run: python -m unittest discover -s tests -p "test_harness.py" -v
+      - name: Install optional WebAuthn verifier
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: -r requirements-webauthn.txt
+      - name: Test host-configured WebAuthn review assertions
+        run: python -m unittest discover -s tests -p "test_webauthn_review.py" -v
   docs:
     name: Documentation checks
     needs: inventory

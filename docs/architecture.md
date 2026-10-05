@@ -94,6 +94,8 @@ The [knowledge record contract](specs/project-knowledge-v1.md), under [decision 
 
 [Decision 0015](design/0015-acceptance-protocol-model.md) adds an [abstract acceptance model](specs/knowledge-acceptance-model.md) as development tooling. It separates staged artifacts, published decisions, and historical acknowledgements; tests retain competing imported heads and reject incomplete commits or conflicting event use. Authentication, locks, atomicity, and durability are assumptions supplied by tests. Real host integration, historical verification, and physical acceptance remain unimplemented; the default reader and signed profiles are unchanged.
 
+[Decision 0016](design/0016-webauthn-review-assertions.md) adds optional [WebAuthn review assertion checks](specs/webauthn-review-v1.md). A trusted host fixes the credential, actor/event, origin, clock, and exact preparation before a fresh challenge is generated. Verification requires signed presence/verification flags and current review context; no enrollment, protected browser UI, receipt issuance, event consumption, or acceptance is implemented. A separate local review host is the first candidate integration, with isolation and a real developer ceremony still to demonstrate. Software-credential tests prove protocol checks, not human consent.
+
 ## Lifecycle and different kinds of state
 
 Source snapshots, derived findings, candidate changes, check results, built artifacts, deployments, and runtime observations describe different things. Link them by identity and evidence; refreshing source does not establish that production changed.

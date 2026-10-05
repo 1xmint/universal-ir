@@ -52,6 +52,8 @@ Prepared-candidate receipt verification uses the same optional pinned crypto. Re
 
 The development-only [acceptance protocol model](docs/specs/knowledge-acceptance-model.md) uses the standard library and runs with `python -B scripts/acceptance_model.py`. Required Windows/Linux CI runs `tests/test_acceptance_model.py` before crypto installation. Its boolean conditions and ideal commit/lock/restart are test assumptions, not evidence of authenticated events or filesystem guarantees. Do not wire it into production recording or model tools.
 
+WebAuthn assertion tests additionally require `python -m pip install --require-hashes --only-binary=:all: -r requirements-webauthn.txt`, which includes the receipt dependency lock. Install both documentation and WebAuthn requirements before running full unittest discovery. Required Windows/Linux CI runs `tests/test_webauthn_review.py` after the optional installation; default suites still run first. The [software-credential demonstration](examples/webauthn-review.md) verifies real signatures, not real developer enrollment or consent. Protect trusted construction and keep imports lazy; no host UI or knowledge writer is supplied.
+
 ## Review and publication
 
 Work on a branch and open a pull request. Default-branch rules require the Documentation checks status, an up-to-date branch, resolved review conversations, and linear history. Squash merge reviewed changes.

@@ -1,0 +1,5 @@
+# Optional WebAuthn verification only; enrollment/UI/host isolation are separate.
+-r requirements-receipts.txt
+fido2==2.2.1 \
+    --hash=sha256:ed397da981b9ab133da6ead7309e41f924b566b749956129efe286fae097749f \
+    --hash=sha256:85787428a94c3f8eaf72f0ff30afba983b559a1b1b795c93318c81b4ad4062c4
